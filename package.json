@@ -1,0 +1,47 @@
+{
+  "name": "logan",
+  "version": "1.0.0",
+  "description": "Sistema de controle de uma instituição de ensino",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuizFelipeM/Logan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuizFelipeM/Logan/issues"
+  },
+  "homepage": "https://github.com/LuizFelipeM/Logan#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "eslint": "^7.3.1",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "/*.test.ts",
+      "/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  }
+}

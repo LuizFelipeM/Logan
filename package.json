@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --inspect=5858 -r ts-node/register ./src/server.ts",
     "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,19 @@
   "homepage": "https://github.com/LuizFelipeM/Logan#readme",
   "devDependencies": {
     "@types/cors": "^2.8.6",
-    "eslint": "^7.3.1",
+    "@types/jest": "^26.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9.5"
   },
   "dependencies": {
@@ -31,6 +41,7 @@
     "express": "^4.17.1",
     "knex": "^0.21.1"
   },
+
   "nodemonConfig": {
     "ignore": [
       "/*.test.ts",
@@ -43,5 +54,18 @@
     ],
     "exec": "npm start",
     "ext": "ts"
+  },
+
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.+(ts|tsx|js)",
+      "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
   }
 }

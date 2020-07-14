@@ -1,9 +1,9 @@
-import Perfil from './Perfil'
+import Profile from './Profile'
 
 export default interface User {
   id: number,
   name: string,
   gender: string,
   birthDate: Date,
-  perfil: Perfil,
+  profile: Profile,
 }

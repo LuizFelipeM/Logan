@@ -41,7 +41,6 @@
     "express": "^4.17.1",
     "knex": "^0.21.1"
   },
-
   "nodemonConfig": {
     "ignore": [
       "/*.test.ts",
@@ -55,7 +54,6 @@
     "exec": "npm start",
     "ext": "ts"
   },
-
   "jest": {
     "roots": [
       "<rootDir>/src"

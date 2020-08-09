@@ -1,8 +1,8 @@
-import cors from 'cors'
 import express from 'express'
+import { initialize } from './startup/initialize'
 
 const app = express()
 
-app.use(cors())
+initialize(app)
 
-app.listen(9868)
+app.listen(8080)

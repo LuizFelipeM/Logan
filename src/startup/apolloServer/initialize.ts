@@ -1,18 +1,28 @@
 import { Express } from 'express'
-import { mergeSchemas, ApolloServer } from 'apollo-server-express'
-import depthLimit from 'graphql-depth-limit'
+import { mergeSchemas, IResolversParameter } from 'apollo-server-express'
+import { join } from 'path'
+import { glob } from 'glob'
+import { loadFilesSync } from 'graphql-tools'
+import { initilizeApolloServer } from '../apolloServer'
 
-import { resolvers } from './resolversDefinition'
-import { schemas } from './schemasDefinition'
+export function initializeGraphqlServer (app: Express): void {
+  const path = join(__dirname, '..', '..', 'interface')
 
-export function initializeApolloServer (app: Express): void {
-  const schema = mergeSchemas({ schemas, resolvers })
-
-  const apolloServer = new ApolloServer({
-    schema,
-    playground: true,
-    validationRules: [depthLimit(7)]
+  const schemas = loadFilesSync(path, {
+    ignoredExtensions: ['ts', 'js'],
+    recursive: true,
+    ignoreIndex: true
   })
 
-  apolloServer.applyMiddleware({ app, path: '/api' })
+  glob(`${path}/**/resolvers/*Resolver.ts`, (err, files) => {
+    if (!err) {
+      Promise.all(files.map(file => import(file)))
+        .then(resolvers => resolvers.flatMap(resolver => Object.values(resolver)) as IResolversParameter)
+        .then(resolvers => mergeSchemas({ schemas, resolvers }))
+        .then(schema => initilizeApolloServer(schema, app))
+        .catch(error => console.error('Error while starting Apollo Server', error))
+    } else {
+      console.error(err)
+    }
+  })
 }

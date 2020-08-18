@@ -1,11 +1,13 @@
 import { Config } from 'knex'
+import { toInteger } from 'lodash'
 
 export const development: Config = {
   client: 'postgresql',
   connection: {
-    user: 'api',
-    password: 'api',
-    database: 'logan'
+    user: process.env.DEV_DB_USER,
+    password: process.env.DEV_DB_PASSWORD,
+    database: process.env.DEV_DATABASE,
+    port: toInteger(process.env.DEV_DB_PORT)
   },
   migrations: { directory: './migrations' },
   seeds: { directory: './seeds' }

@@ -6,11 +6,13 @@ export const profileSchema = gql`
     profiles(limit: Int): [Profile]
   }
 
+  type Mutation {
+    createProfile(name: String!): Profile
+  }
+
   type Profile {
     id: String!
     name: String!
     rules: [Rule]
   }
 `
-
-// export const profileSchema: GraphQLSchema = makeExecutableSchema({ typeDefs: schema, resolvers: profileResolver })

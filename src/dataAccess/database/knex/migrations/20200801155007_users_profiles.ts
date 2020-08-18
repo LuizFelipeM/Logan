@@ -5,7 +5,7 @@ export async function up (knex: Knex): Promise<void> {
     .createTable('profiles', function (table) {
       table.text('id').notNullable().primary()
 
-      table.string('name', 255).notNullable()
+      table.string('name', 255).notNullable().unique()
 
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
@@ -15,6 +15,8 @@ export async function up (knex: Knex): Promise<void> {
 
       table.string('firstName', 255).notNullable()
       table.string('lastName', 255).notNullable()
+      table.string('gender', 50).notNullable()
+      table.timestamp('birthDate')
 
       table.string('idProfile')
 

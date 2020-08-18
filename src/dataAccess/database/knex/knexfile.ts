@@ -7,8 +7,8 @@ export const development: Config = {
     password: 'api',
     database: 'logan'
   },
-  migrations: { directory: './src/dataAccess/database/knex/migrations' },
-  seeds: { directory: './src/dataAccess/database/knex/seeds' }
+  migrations: { directory: './migrations' },
+  seeds: { directory: './seeds' }
 }
 
 export const staging: Config = {

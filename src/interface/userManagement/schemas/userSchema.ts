@@ -2,17 +2,20 @@ import { gql } from 'apollo-server-express'
 
 export const userSchema = gql`
   type Query {
-    user(id: String!): User
+    user(id: ID!): User
     users(limit: Int): [User]
   }
 
+  type Mutation {
+    createUser(firstName: String!, lastName: String!, gender: String!, birthDate: String): User!
+  }
+
   type User {
-    id: String!
-    name: String!
+    id: ID!
+    firstName: String!
+    lastName: String!
     gender: String!
     birthDate: String
     profile: Profile
   }
 `
-
-// export const userSchema: GraphQLSchema = makeExecutableSchema({ typeDefs: schema, resolvers: userResolver })

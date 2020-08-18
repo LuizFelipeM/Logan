@@ -1,13 +1,8 @@
 import { IResolvers } from 'apollo-server-express'
-import { IUser } from '../../../domain/interfaces/user/IUser'
-import { usersMock } from '../../../domain/interfaces/user/UsersMock'
+import { user, users } from './userQueries'
+import { createUser } from './userMutations'
 
-function user (_: void, args: { id: string }): IUser | undefined {
-  return usersMock.find(user => user.id === args.id)
+export const userResolver: IResolvers = {
+  Query: { user, users },
+  Mutation: { createUser }
 }
-
-function users (_: void, args: { limit: number }): Array<IUser> {
-  return usersMock.slice(0, args.limit ?? 10)
-}
-
-export const userResolver: IResolvers = { Query: { user, users } }

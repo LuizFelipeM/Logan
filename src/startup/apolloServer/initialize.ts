@@ -14,7 +14,7 @@ export function initializeGraphqlServer (app: Express): void {
     ignoreIndex: true
   })
 
-  glob(`${path}/**/resolvers/*Resolver.ts`, (err, files) => {
+  glob(`${path}/**/*Resolver.{ts,js}`, (err, files) => {
     if (!err) {
       Promise.all(files.map(file => import(file)))
         .then(resolvers => resolvers.flatMap(resolver => Object.values(resolver)) as IResolversParameter)

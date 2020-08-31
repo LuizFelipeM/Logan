@@ -1,5 +1,10 @@
 import { Config } from 'knex'
 import { toInteger } from 'lodash'
+import { join } from 'path'
+import { config } from 'dotenv'
+
+const path = join(__dirname, '..', '..', '..', '..', '.env')
+config({ path })
 
 export const development: Config = {
   client: 'postgresql',

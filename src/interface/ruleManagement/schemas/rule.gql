@@ -1,10 +1,14 @@
 type Query {
-    rule(id: String!): Rule
+    rule(id: ID!): Rule
     rules(limit: Int): [Rule]
 }
 
+type Mutation {
+    createRule(name: String!, description: String): Rule
+}
+
 type Rule {
-    id: String!
+    id: ID!
     name: String!
-    description: String!
+    description: String
 }

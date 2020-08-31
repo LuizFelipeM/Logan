@@ -1,13 +1,8 @@
 import { IResolvers } from 'apollo-server-express'
-import { IRule } from '../../../domain/interfaces/rule/IRule'
-import { rulesMock } from '../../../domain/interfaces/rule/rulesMock'
+import { rule, rules } from './ruleQueries'
+import { createRule } from './ruleMutations'
 
-function rule (_: void, args: { id: string }): IRule | undefined {
-  return rulesMock.find(rule => rule.id === args.id)
+export const ruleResolver: IResolvers = {
+  Query: { rule, rules },
+  Mutation: { createRule }
 }
-
-function rules (_: void, args: { limit: number }): Array<IRule> | undefined {
-  return rulesMock.slice(0, args.limit ?? 10)
-}
-
-export const ruleResolver: IResolvers = { Query: { rule, rules } }

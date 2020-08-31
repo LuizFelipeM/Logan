@@ -1,5 +1,8 @@
 import { IProfile } from '../../../domain/interfaces/profile/IProfile'
-import { knex } from '../../../dataAccess/database/knex/dbConnection'
 import { profilesTable } from './profilesTable'
+import { rulesInProfilesTableName } from '../../../respository/common/rulesInProfilesTable'
 
-export const getProfiles = async (limit = 15): Promise<IProfile[]> => await knex(profilesTable).select('*').limit(limit)
+export const getProfiles = async (limit = 15): Promise<IProfile[]> => await profilesTable
+  .select<IProfile[]>('t1.*', `${rulesInProfilesTableName}.idRule`)
+  .innerJoin(rulesInProfilesTableName, 't1.id', `${rulesInProfilesTableName}.idProfile`) // Precisa ajustar isso aqui pra trazer com array_agg
+  .limit(limit)

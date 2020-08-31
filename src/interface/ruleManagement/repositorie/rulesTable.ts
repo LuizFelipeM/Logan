@@ -1,4 +1,5 @@
 import { knex } from '../../../dataAccess/database/knex/dbConnection'
 
-const tableName = 'users'
-export const usersTable = knex(tableName)
+const tableName = 'rules'
+
+export const rulesTable = knex(tableName)

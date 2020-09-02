@@ -5,3 +5,5 @@
 **/.vscode
 
 **/assets
+
+**/.env

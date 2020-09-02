@@ -2,7 +2,7 @@ import { Config } from 'knex'
 import { join } from 'path'
 import { config } from 'dotenv'
 
-const path = join(__dirname, '..', '..', '..', '..', '.env')
+const path = join(__dirname, '..', '..', '..', '.env')
 config({ path })
 
 export const development: Config = {

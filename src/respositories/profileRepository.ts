@@ -4,8 +4,18 @@ import { knex } from '../database/knex/dbConnection'
 import { rulesInProfilesTableName } from './common/rulesInProfilesTable'
 import { rulesTableName } from './common/rulesTable'
 import { jsonArray } from './utils/aggJson'
+import { IProfileDto } from '../domain/contracts/IProfileDto'
 
-const getProfileWithRules = async (id: number): Promise<IProfile> => await knex(profilesTable)
+const getProfile = async (id: number): Promise<IProfile> => await knex(profilesTable)
+  .select('*')
+  .where('t1.id', id)
+  .first()
+
+const getProfiles = async (limit = 15): Promise<IProfile[]> => await knex(profilesTable)
+  .select('*')
+  .limit(limit)
+
+const getProfileWithRules = async (id: number): Promise<IProfileDto> => await knex(profilesTable)
   .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
   .fullOuterJoin(`${rulesTableName} as t3`, 't2.idRule', 't3.id')
   .select(
@@ -16,10 +26,10 @@ const getProfileWithRules = async (id: number): Promise<IProfile> => await knex(
   .groupBy('t1.id')
   .first()
 
-const getProfilesWithRules = async (limit = 15): Promise<IProfile[]> => await knex(profilesTable)
+const getProfilesWithRules = async (limit = 15): Promise<IProfileDto[]> => await knex(profilesTable)
   .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
   .fullOuterJoin(`${rulesTableName} as t3`, 't2.idRule', 't3.id')
-  .select<IProfile[]>(
+  .select(
     't1.*',
     jsonArray('t3', 'rules')
   )
@@ -31,4 +41,10 @@ const insertProfile = async (data: Omit<IProfile, 'id' | 'rules'>): Promise<IPro
   .returning('*')
   .first()
 
-export const profileRepository = { getProfileWithRules, getProfilesWithRules, insertProfile }
+export const profileRepository = {
+  getProfile,
+  getProfiles,
+  getProfileWithRules,
+  getProfilesWithRules,
+  insertProfile
+}

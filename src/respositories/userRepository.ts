@@ -2,7 +2,7 @@ import { IUser } from '../domain/interfaces/IUser'
 import { usersTable } from './common/usersTable'
 import { knex } from '../database/knex/dbConnection'
 
-const getUserById = async (id: string): Promise<IUser> => await knex(usersTable)
+const getUserById = async (id: number): Promise<IUser> => await knex(usersTable)
   .select('*')
   .where({ id })
   .first()

@@ -2,17 +2,21 @@ import * as Knex from 'knex'
 
 export async function up (knex: Knex): Promise<void> {
   return knex.schema.createTableIfNotExists('registry', function (table) {
-    table.integer('idStatus').notNullable()
     table.increments('ra_registry').primary()
 
-    table.foreign('idStatus').references('id').inTable('statusRegistry')
+    table.integer('idStatus').notNullable()
 
-    table.timestamp('creatAt', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
+
+    table.timestamp('openRegistry', { precision: 6 }).defaultTo(knex.fn.now(6))
     table.timestamp('endEstimate', { precision: 6 }).defaultTo(knex.fn.now(6))
     table.string('periodStudy', 20)
-    table.text('observation', 'longtext')
+    table.text('observation')
     table.string('incomeFamiliar', 50)
-    table.text('homeInstitution', 'longtext')
+    table.text('homeInstitution')
+
+    table.foreign('idStatus').references('id').inTable('statusRegistry')
   })
 }
 

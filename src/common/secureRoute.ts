@@ -11,7 +11,9 @@ export const secureRoute = (...permissionsIds: number[]) => {
     if (userCanAccess) {
       next()
     } else {
-      return res.status(401).send('Você não possui as permissões necessárias para acessar este recurso')
+      return res
+        .status(401)
+        .send('Você não possui as permissões necessárias para acessar este recurso')
     }
   }
 }

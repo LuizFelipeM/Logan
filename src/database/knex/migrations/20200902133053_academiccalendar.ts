@@ -1,7 +1,7 @@
 import * as Knex from 'knex'
 
 export async function up (knex: Knex): Promise<void> {
-  return knex.schema.createTableIfNotExists('academicCalendar', function (table) {
+  return knex.schema.createTableIfNotExists('calendar', function (table) {
     table.integer('id').primary()
 
     table.timestamp('StartAcademicYear', { precision: 6 }).defaultTo(knex.fn.now(6))
@@ -22,5 +22,5 @@ export async function up (knex: Knex): Promise<void> {
 }
 
 export async function down (knex: Knex): Promise<void> {
-  return knex.schema.dropTableIfExists('academicCalendar')
+  return knex.schema.dropTableIfExists('calendar')
 }

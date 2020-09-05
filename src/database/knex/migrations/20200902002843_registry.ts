@@ -16,7 +16,7 @@ export async function up (knex: Knex): Promise<void> {
     table.string('incomeFamiliar', 50)
     table.text('homeInstitution')
 
-    table.foreign('idStatus').references('id').inTable('statusRegistry')
+    table.foreign('idStatus').references('id').inTable('status_registry')
   })
 }
 

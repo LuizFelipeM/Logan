@@ -4,6 +4,9 @@ export async function up (knex: Knex): Promise<void> {
   return knex.schema.createTableIfNotExists('students', function (table) {
     table.increments('id').primary()// PK of table Studants, will be used on "grades and absence" like a FK
 
+    table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
+
     table.integer('idUser').notNullable()
     table.integer('ra').notNullable()
     table.integer('idCourse').notNullable()

@@ -1,7 +1,7 @@
 import * as Knex from 'knex'
 
 export async function up (knex: Knex): Promise<void> {
-  return knex.schema.createTableIfNotExists('currentSemester', function (table) {
+  return knex.schema.createTableIfNotExists('current_semester', function (table) {
     table.increments('id').primary()// PK of table Current Semester
 
     table.integer('idCalender').notNullable()
@@ -28,5 +28,5 @@ export async function up (knex: Knex): Promise<void> {
 }
 
 export async function down (knex: Knex): Promise<void> {
-  return knex.schema.dropSchemaIfExists('statusRegistry')
+  return knex.schema.dropSchemaIfExists('current_semester')
 }

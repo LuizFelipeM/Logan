@@ -1,7 +1,7 @@
 import * as Knex from 'knex'
 
 export async function up (knex: Knex): Promise<void> {
-  return knex.schema.createTableIfNotExists('dicipline', function (table) {
+  return knex.schema.createTableIfNotExists('discipline', function (table) {
     table.increments('id').primary()
 
     table.integer('idCourses')
@@ -10,10 +10,10 @@ export async function up (knex: Knex): Promise<void> {
     table.integer('workload')
 
     table.foreign('idCourses').references('id').inTable('courses')
-    table.foreign('idTypeDiscipline').references('id').inTable('typediscipline')
+    table.foreign('idTypeDiscipline').references('id').inTable('type_discipline')
   })
 }
 
 export async function down (knex: Knex): Promise<void> {
-  return knex.schema.dropTableIfExists('dicipline')
+  return knex.schema.dropTableIfExists('discipline')
 }

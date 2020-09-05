@@ -4,8 +4,8 @@ export async function up (knex: Knex): Promise<void> {
   return knex.schema.createTableIfNotExists('calendar', function (table) {
     table.integer('id').primary()
 
-    table.timestamp('createdAt', { precision: 6 }).notNullable()
-    table.timestamp('lastUpdate', { precision: 6 }).notNullable()
+    table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
     table.timestamp('startAcademicYear', { precision: 6 }).notNullable()
     table.timestamp('academicYearEnd', { precision: 6 }).notNullable()

@@ -10,17 +10,17 @@ export async function up (knex: Knex): Promise<void> {
     table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
     table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
-    table.timestamp('evalP1Start', { precision: 6 }).defaultTo(knex.fn.now(6))
-    table.timestamp('evalP1End', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('evalP1Start', { precision: 6 })
+    table.timestamp('evalP1End', { precision: 6 })
 
-    table.timestamp('evalP2Start', { precision: 6 }).defaultTo(knex.fn.now(6))
-    table.timestamp('evalP2End', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('evalP2Start', { precision: 6 })
+    table.timestamp('evalP2End', { precision: 6 })
 
-    table.timestamp('evalSubStart', { precision: 6 }).defaultTo(knex.fn.now(6))
-    table.timestamp('evalSubEnd', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('evalSubStart', { precision: 6 })
+    table.timestamp('evalSubEnd', { precision: 6 })
 
-    table.timestamp('evalExamStart', { precision: 6 }).defaultTo(knex.fn.now(6))
-    table.timestamp('evalExamEnd', { precision: 6 }).defaultTo(knex.fn.now(6))
+    table.timestamp('evalExamStart', { precision: 6 })
+    table.timestamp('evalExamEnd', { precision: 6 })
 
     table.foreign('idCalender').references('id').inTable('calender')
     table.foreign('idDicipline').references('id').inTable('dicipline')

@@ -1,5 +1,5 @@
 import { IRule } from '../domain/interfaces/IRule'
-import { rulesTable } from './common/rulesTable'
+import { rulesTable } from '../database/common/rulesTable'
 
 const getRuleById = async (id: number): Promise<IRule> => await rulesTable.select('*').where({ id }).first()
 

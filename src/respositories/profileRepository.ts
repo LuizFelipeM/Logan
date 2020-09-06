@@ -1,10 +1,10 @@
 import { IProfile } from '../domain/interfaces/IProfile'
-import { profilesTable } from './common/profilesTable'
-import { rulesInProfilesTableName } from './common/rulesInProfilesTable'
+import { profilesTable } from '../database/common/profilesTable'
+import { rulesInProfilesTableName } from '../database/common/rulesInProfilesTable'
 import { knex } from '../database/knex/dbConnection'
-import { rulesTableName } from './common/rulesTable'
+import { rulesTableName } from '../database/common/rulesTable'
 
-const getProfile = async (id: number): Promise<IProfile> => await profilesTable
+const getProfile = async (id: number): Promise<IProfile> => await knex(profilesTable)
   .innerJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
   .innerJoin(`${rulesTableName} as t3`, 't2."idRule"', 't3.id')
   .select<IProfile>(
@@ -14,7 +14,7 @@ const getProfile = async (id: number): Promise<IProfile> => await profilesTable
   .where({ id })
   .groupBy('t1.id')
 
-const getProfiles = async (limit = 15): Promise<IProfile[]> => await profilesTable
+const getProfiles = async (limit = 15): Promise<IProfile[]> => await knex(profilesTable)
   .innerJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
   .innerJoin(`${rulesTableName} as t3`, 't2."idRule"', 't3.id')
   .select<IProfile[]>(
@@ -24,7 +24,7 @@ const getProfiles = async (limit = 15): Promise<IProfile[]> => await profilesTab
   .groupBy('t1.id')
   .limit(limit)
 
-const insertProfile = async (data: Omit<IProfile, 'id' | 'rules'>): Promise<IProfile> => await profilesTable
+const insertProfile = async (data: Omit<IProfile, 'id' | 'rules'>): Promise<IProfile> => await knex(profilesTable)
   .insert(data)
   .returning('*')
   .first()

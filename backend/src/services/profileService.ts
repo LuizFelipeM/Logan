@@ -1,5 +1,5 @@
 import { IProfile } from '../domain/interfaces/IProfile'
-import { profileRepository } from '../respositories/profileRepository'
+import { profileRepository } from '../repositories/profileRepository'
 
 const createProfile = async (profile: Omit<IProfile, 'id' | 'rules'>): Promise<IProfile> => await profileRepository.insertProfile(profile)
 

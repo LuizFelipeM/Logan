@@ -1,5 +1,5 @@
 import { IUser } from '../domain/interfaces/IUser'
-import { userRepository } from '../respositories/userRepository'
+import { userRepository } from '../repositories/userRepository'
 
 const getUsers = async (limit?: number): Promise<IUser[]> => await userRepository.getUsers(limit)
 

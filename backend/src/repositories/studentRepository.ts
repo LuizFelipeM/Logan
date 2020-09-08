@@ -2,9 +2,8 @@ import { IStudent } from '../domain/interfaces/IStudent'
 import { studentsTable } from '../database/common/studentsTable'
 import { knex } from '../database/knex/dbConnection'
 
-const getStudents = async (limit?: number): Promise<IStudent[]> => await knex(studentsTable)
+const getStudents = async (): Promise<IStudent[]> => await knex(studentsTable)
   .select('*')
-  .limit(limit)
 
 const getStudentById = async (id: number): Promise<IStudent> => await knex(studentsTable)
   .select('*')
@@ -16,14 +15,13 @@ const getStudentByUserId = async (user: number): Promise<IStudent> => await knex
   .where({ user })
   .first()
 
-const createStudent = async (student: Omit<IStudent, 'id'>): Promise<IStudent> => await knex(studentsTable)
+const insertStudent = async (student: Omit<IStudent, 'id'>): Promise<IStudent> => await knex(studentsTable)
   .insert(student)
-  .returning('*')
-  .first()
+  .returning<IStudent>('*')
 
 export const studentRepository = {
   getStudents,
   getStudentById,
   getStudentByUserId,
-  createStudent
+  insertStudent
 }

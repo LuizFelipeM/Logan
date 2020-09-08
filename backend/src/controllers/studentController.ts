@@ -5,9 +5,21 @@ import { IStudent } from '../domain/interfaces/IStudent'
 export const studentController = Router()
 
 studentController.get('/get-all', async (req: Request, res: Response) => {
-  const { limit } = req.query
+  const students = await studentService.getStudents()
 
-  const students = await studentService.getStudents(Number(limit))
+  return res.json(students)
+})
+
+studentController.get('/get', async (req: Request, res: Response) => {
+  const { id, userId } = req.query
+
+  let students: IStudent | undefined
+
+  if (id) {
+    students = await studentService.getStudentById(Number(id))
+  } else if (userId) {
+    students = await studentService.getStudentByUserId(Number(userId))
+  }
 
   return res.json(students)
 })

@@ -1,5 +1,5 @@
 import { IRule } from '../domain/interfaces/IRule'
-import { rulesTable } from './common/rulesTable'
+import { rulesTable } from '../database/common/rulesTable'
 import { knex } from '../database/knex/dbConnection'
 
 const getRuleById = async (id: number): Promise<IRule> => await knex(rulesTable).select('*').where({ id }).first()

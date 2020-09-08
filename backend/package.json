@@ -9,6 +9,7 @@
     "dev": "nodemon",
     "test": "jest",
     "knex:make": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:make -x ts",
+    "knex:up": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:up",
     "knex:latest": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:latest",
     "knex:rollback": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:rollback"
   },

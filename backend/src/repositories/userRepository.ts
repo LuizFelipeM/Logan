@@ -1,5 +1,5 @@
 import { IUser } from '../domain/interfaces/IUser'
-import { usersTable } from './common/usersTable'
+import { usersTable } from '../database/common/usersTable'
 import { knex } from '../database/knex/dbConnection'
 
 const getUserById = async (id: string): Promise<IUser> => await knex(usersTable)

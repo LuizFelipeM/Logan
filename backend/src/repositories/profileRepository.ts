@@ -1,8 +1,8 @@
 import { IProfile } from '../domain/interfaces/IProfile'
-import { profilesTable } from './common/profilesTable'
+import { profilesTable } from '../database/common/profilesTable'
+import { rulesInProfilesTableName } from '../database/common/rulesInProfilesTable'
 import { knex } from '../database/knex/dbConnection'
-import { rulesInProfilesTableName } from './common/rulesInProfilesTable'
-import { rulesTableName } from './common/rulesTable'
+import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
 
 const getProfileWithRules = async (id: number): Promise<IProfile> => await knex(profilesTable)

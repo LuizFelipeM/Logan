@@ -6,8 +6,8 @@ import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
 
 const getProfileWithRules = async (id: number): Promise<IProfile> => await knex(profilesTable)
-  .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
-  .fullOuterJoin(`${rulesTableName} as t3`, 't2.idRule', 't3.id')
+  .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.profile')
+  .fullOuterJoin(`${rulesTableName} as t3`, 't2.rule', 't3.id')
   .select(
     't1.*',
     jsonArray('t3', 'rules')
@@ -17,8 +17,8 @@ const getProfileWithRules = async (id: number): Promise<IProfile> => await knex(
   .first()
 
 const getProfilesWithRules = async (limit = 15): Promise<IProfile[]> => await knex(profilesTable)
-  .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.idProfile')
-  .fullOuterJoin(`${rulesTableName} as t3`, 't2.idRule', 't3.id')
+  .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.profile')
+  .fullOuterJoin(`${rulesTableName} as t3`, 't2.rule', 't3.id')
   .select<IProfile[]>(
     't1.*',
     jsonArray('t3', 'rules')

@@ -98,7 +98,7 @@ export async function up (knex: Knex): Promise<void> {
       table.foreign('classes').references('id').inTable(classesTableName)
     })
 
-    .createTable('note_fouls', function (table) {
+    .createTableIfNotExists(noteFoulsTableName, function (table) {
       table.integer('students').notNullable()
       table.integer('dicipline').notNullable()
       table.integer('semester').notNullable()

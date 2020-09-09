@@ -3,11 +3,24 @@ import { userService } from '../services/userService'
 
 export const userController = Router()
 
-userController.get('/get-all', async (req, res) => {
-  const limit = req.query.limit?.toString()
-  const convertedLimit = limit ? parseInt(limit) : undefined
+userController.get('/get', async (req, res) => {
+  const { id } = req.query
 
-  const users = await userService.getUsers(convertedLimit)
+  const user = await userService.getUser(Number(id))
+
+  return res.json(user)
+})
+
+userController.get('/get-all', async (req, res) => {
+  const users = await userService.getUsers()
 
   return res.json(users)
+})
+
+userController.delete('/', (req, res) => {
+  const { id } = req.body
+
+  userService.removeUser(id)
+
+  res.status(204).send()
 })

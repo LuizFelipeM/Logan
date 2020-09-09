@@ -7,10 +7,7 @@ export const profileController = Router()
 profileController.get('/get-all',
   async (req, res) => {
     try {
-      const limit = req.query.limit?.toString()
-      const convertedLimit = limit ? parseInt(limit) : undefined
-
-      const profiles = await profileService.getProfiles(convertedLimit)
+      const profiles = await profileService.getProfiles()
 
       return res.json(profiles)
     } catch (error) {

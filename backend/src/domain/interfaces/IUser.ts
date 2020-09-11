@@ -4,5 +4,5 @@ export interface IUser {
   lastName: string
   gender: string
   birthDate?: string
-  idProfile?: number
+  profile?: number
 }

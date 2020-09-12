@@ -1,5 +1,3 @@
-import { Override } from '../../@types/override'
+import { ICalender } from '../interfaces/ICalender'
 
-export type ICalenderDto = Override<ICalender, {
-
-}>
+export type ICalenderDto = ICalender

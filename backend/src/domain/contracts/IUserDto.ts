@@ -3,6 +3,5 @@ import { IUser } from '../interfaces/IUser'
 import { IProfileDto } from './IProfileDto'
 
 export type IUserDto = Override<IUser, {
-  profile?: IProfileDto
-  idProfile: IUser
+  profile: IProfileDto
 }>

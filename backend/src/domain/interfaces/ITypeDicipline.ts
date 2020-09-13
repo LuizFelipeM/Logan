@@ -1,4 +1,4 @@
 export interface ITypeDicipline {
-    typeDicipline: number
+    id: number
     tipyName: string
 }

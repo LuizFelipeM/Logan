@@ -1,5 +1,5 @@
 export interface ICalender {
-    calender: number
+    id: number
     startNotesP1: number
     finalNotesP1: number
     startNotesP2: number

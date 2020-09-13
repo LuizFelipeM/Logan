@@ -1,5 +1,5 @@
 export interface ICurrentSemester {
-    currentSemester: number
+    id: number
     calender: number
     dicipline: number
     evalP1Start: number

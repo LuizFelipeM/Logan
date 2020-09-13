@@ -1,5 +1,5 @@
 export interface IDicipline {
-    course:number
+    id:number
     dicipline: number
     typeDicipline:number
     diciplineName: string

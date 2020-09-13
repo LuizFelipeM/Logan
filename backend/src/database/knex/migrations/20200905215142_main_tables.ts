@@ -31,12 +31,12 @@ export async function up (knex: Knex): Promise<void> {
       table.string('gender', 50).notNullable()
       table.timestamp('birthDate')
 
-      table.integer('idProfile')
+      table.integer('profile')
 
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
-      table.foreign('idProfile').references('id').inTable(profilesTableName)
+      table.foreign('profile').references('id').inTable(profilesTableName)
     })
 
     .createTableIfNotExists(rulesTableName, function (table) {
@@ -64,7 +64,7 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(registryTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('idStatus').notNullable()
+      table.integer('status').notNullable()
       table.timestamp('openRegistry', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('endEstimate', { precision: 6 }).notNullable()
       table.string('periodStudy', 20)
@@ -75,7 +75,7 @@ export async function up (knex: Knex): Promise<void> {
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
-      table.foreign('idStatus').references('id').inTable(statusRegistryTableName)
+      table.foreign('status').references('id').inTable(statusRegistryTableName)
     })
 
     .createTableIfNotExists(campusTableName, function (table) {
@@ -87,11 +87,11 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(coursesTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('idCampus')
+      table.integer('campus')
       table.integer('totalSemester')
       table.string('name', 50)
 
-      table.foreign('idCampus').references('id').inTable(campusTableName)
+      table.foreign('campus').references('id').inTable(campusTableName)
     })
 
     .createTableIfNotExists(calendarTableName, function (table) {

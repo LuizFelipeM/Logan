@@ -1,6 +1,7 @@
-import { IRule } from '../interfaces/IRule'
+import { Override } from '../../@types/override'
 import { IProfile } from '../interfaces/IProfile'
+import { IRuleDto } from './IRuleDto'
 
-export interface IProfileDto extends Omit<IProfile, 'rules'> {
-  rules?: IRule[]
-}
+export type IProfileDto = Override<IProfile, {
+  rules?: IRuleDto[]
+}>

@@ -1,6 +1,7 @@
 import { IUser } from '../interfaces/IUser'
+import { Override } from '../../@types/override'
 import { IProfileDto } from './IProfileDto'
 
-export interface IUserDto extends Omit<IUser, 'idProfile'> {
+export type IUserDto = Override<IUser, {
   profile?: IProfileDto
-}
+}>

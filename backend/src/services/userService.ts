@@ -12,7 +12,7 @@ const getUsersWithProfile = async (id: number): Promise<IUserDto> => {
   const userDto: IUserDto = { ...user }
 
   if (user) {
-    userDto.profile = user.idProfile ? await profileRepository.getProfileWithRules(user.idProfile) : undefined
+    userDto.profile = user.profile ? await profileRepository.getProfileWithRules(user.profile) : undefined
   }
 
   return userDto

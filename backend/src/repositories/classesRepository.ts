@@ -15,4 +15,4 @@ const insertClass = async (data: Omit<IClass, 'id'>): Promise<IClass> => await k
   .returning('*')
   .first()
 
-export const ClassesRepository = { getClassById, getClass, insertClass }
+export const classesRepository = { getClassById, getClass, insertClass }

@@ -1,12 +1,12 @@
-import { ClassesRepository } from "../repositories/classesRepository"
-import { IClass } from "../domain/interfaces/IClass"
+import { classesRepository } from '../repositories/classesRepository'
+import { IClass } from '../domain/interfaces/IClass'
 
+const getClass = async (): Promise<IClass[]> => await classesRepository.getClass()
+const getClassById = async (id: number): Promise<IClass> => await classesRepository.getClassById(id)
 
-const getClass = async (id: number): Promise<IClass> => await ClassesRepository.getClass(id)
-const getClassById = async (id: number): Promise<IClass[]> => await ClassesRepository.getClassById(id)
-const createClass = async (profile: Omit<IProfile, 'id' | 'rules'>): Promise<IClass> => await ClassesRepository.insertClass(class)
+const createClass = async (Class: IClass): Promise<IClass> => await classesRepository.insertClass(Class)
 
-export const profileService = {
+export const classService = {
   getClass,
   getClassById,
   createClass

@@ -2,9 +2,9 @@ import { INoteFouls } from '../domain/interfaces/INoteFouls'
 import { noteFoulsTable } from '../database/common/noteFoulsTable'
 import { knex } from '../database/knex/dbConnection'
 
-const getNoteFoulById = async (id: number): Promise<INoteFouls> => await knex(noteFoulsTable)
+const getNoteFoulByStudentId = async (students: number): Promise<INoteFouls> => await knex(noteFoulsTable)
   .select('*')
-  .where({ id })
+  .where({ students })
   .first()
 
 const getNoteFouls = async (): Promise<INoteFouls[]> => await knex(noteFoulsTable)
@@ -12,7 +12,6 @@ const getNoteFouls = async (): Promise<INoteFouls[]> => await knex(noteFoulsTabl
 
 const insertNoteFouls = async (data: Omit<INoteFouls, 'id'>): Promise<INoteFouls> => await knex(noteFoulsTable)
   .insert(data)
-  .returning('*')
-  .first()
+  .returning<INoteFouls>('*')
 
-export const noteFoulsRepository = { getNoteFoulById, getNoteFouls, insertNoteFouls }
+export const noteFoulsRepository = { getNoteFoulByStudentId, getNoteFouls, insertNoteFouls }

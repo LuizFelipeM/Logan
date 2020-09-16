@@ -5,8 +5,8 @@ export interface INoteFouls {
     semester: number
     noteP1: number
     noteP2: number
-    subNote: number
-    examNote: number
+    noteSub: number
+    noteExam: number
     finalNote: number
     fouls: number
 }

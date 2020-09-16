@@ -17,11 +17,11 @@ noteFoulsController.get('/get-all', async (req: Request, res: Response) => {
 
 noteFoulsController.get('/get', async (req: Request, res: Response) => {
   try {
-    const { id } = req.query
+    const { studentId } = req.query
     let noteFouls: INoteFouls | undefined
 
-    if (id) {
-      noteFouls = await noteFoulsService.getNoteFoulsById(Number(id))
+    if (studentId) {
+      noteFouls = await noteFoulsService.getNoteFoulsByStudentId(Number(studentId))
     }
     return res.json(noteFouls)
   } catch (error) {
@@ -32,7 +32,7 @@ noteFoulsController.get('/get', async (req: Request, res: Response) => {
 
 noteFoulsController.post('/', async (req: Request, res: Response) => {
   try {
-    const noteFouls: INoteFouls = req.body
+    const noteFouls: Omit<INoteFouls, 'id'> = req.body
 
     const createNoteFouls = await noteFoulsService.createNoteFouls(noteFouls)
 

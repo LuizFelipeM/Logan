@@ -1,7 +1,7 @@
 export interface ISemester {
     currentSemester: number
     calender: number
-    dicipline: number
+    discipline: number
     evalP1Start: Date
     evalP1end: Date
     evalP2Start: Date

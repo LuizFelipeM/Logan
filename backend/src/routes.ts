@@ -5,6 +5,7 @@ import { secureRoute } from './common/secureRoute'
 import { studentController } from './controllers/studentController'
 import { classController } from './controllers/classesController'
 import { noteFoulsController } from './controllers/noteFoulsController'
+import { disciplineController } from './controllers/disciplineController'
 
 export const routes = Router()
 
@@ -13,3 +14,4 @@ routes.use('/profile', secureRoute(2), profileController)
 routes.use('/student', studentController)
 routes.use('/class', classController)
 routes.use('/noteFouls', noteFoulsController)
+routes.use('/discipline', disciplineController)

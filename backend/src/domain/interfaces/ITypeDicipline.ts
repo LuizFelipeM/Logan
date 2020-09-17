@@ -1,4 +1,4 @@
-export interface ITypeDicipline {
+export interface ITypediscipline {
     id: number
     typeName: string
 }

@@ -7,7 +7,7 @@ import { jsonArray } from './utils/aggJson'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
 import { AbstractRepository } from './AbstractRepository'
 
-class ProfileRepo extends AbstractRepository<IProfile> {
+export class ProfileRepository extends AbstractRepository<IProfile> {
   constructor () {
     super(profilesTable)
   }
@@ -33,4 +33,4 @@ class ProfileRepo extends AbstractRepository<IProfile> {
     .groupBy('t1.id')
 }
 
-export const profileRepository = new ProfileRepo()
+export const profileRepository = new ProfileRepository()

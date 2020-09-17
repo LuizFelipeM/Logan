@@ -2,10 +2,10 @@ import { IRule } from '../domain/interfaces/IRule'
 import { rulesTable } from '../database/common/rulesTable'
 import { AbstractRepository } from './AbstractRepository'
 
-class RuleRpo extends AbstractRepository<IRule> {
+export class RuleRpository extends AbstractRepository<IRule> {
   constructor () {
     super(rulesTable)
   }
 }
 
-export const ruleRepository = new RuleRpo()
+export const ruleRepository = new RuleRpository()

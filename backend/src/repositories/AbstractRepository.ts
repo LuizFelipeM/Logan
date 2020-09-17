@@ -3,11 +3,7 @@ import { knex } from '../database/knex/dbConnection'
 type Table = string | { t1: string }
 
 export abstract class AbstractRepository<T> {
-  private table: Table
-
-  constructor (table: Table) {
-    this.table = table
-  }
+  constructor (private table: Table) {}
 
   getAll = async (): Promise<T[]> => await knex(this.table).select('*')
 
@@ -16,14 +12,12 @@ export abstract class AbstractRepository<T> {
     .where({ id })
     .first()
 
-  insert = async (data: Omit<T, 'id'>): Promise<T> => await knex(this.table)
-    .insert(data)
-    .returning('*')
-    .first()
+  insert = async (data: Omit<T, 'id'>): Promise<void> => {
+    await knex(this.table)
+      .insert(data)
+  }
 
-  delete = async (id: number): Promise<T> => await knex(this.table)
-    .delete()
+  delete = async (id: number): Promise<void> => await knex(this.table)
     .where({ id })
-    .returning('*')
-    .first()
+    .delete()
 }

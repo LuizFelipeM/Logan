@@ -6,13 +6,13 @@ export const userController = Router()
 userController.get('/get', async (req, res) => {
   const { id } = req.query
 
-  const user = await userService.getUser(Number(id))
+  const user = await userService.getById(Number(id))
 
   return res.json(user)
 })
 
 userController.get('/get-all', async (req, res) => {
-  const users = await userService.getUsers()
+  const users = await userService.getAll()
 
   return res.json(users)
 })
@@ -20,7 +20,7 @@ userController.get('/get-all', async (req, res) => {
 userController.delete('/', (req, res) => {
   const { id } = req.body
 
-  userService.removeUser(id)
+  userService.remove(id)
 
   res.status(204).send()
 })

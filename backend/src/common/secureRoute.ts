@@ -5,7 +5,7 @@ export const secureRoute = (...permissionsIds: number[]) =>
   async (req: Request, res: Response, next: NextFunction): Promise<unknown> => {
     const { userid } = req.headers
     const id = Number(userid)
-    const user = userid ? await userService.getUser(id) : undefined
+    const user = userid ? await userService.getById(id) : undefined
     const userCanAccess = permissionsIds.includes(Number(user?.profile)) ?? undefined
 
     if (userCanAccess) {

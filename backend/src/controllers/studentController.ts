@@ -4,45 +4,30 @@ import { IStudent } from '../domain/interfaces/IStudent'
 
 export const studentController = Router()
 
-studentController.get('/get-all', async (req: Request, res: Response) => {
-  try {
-    const students = await studentService.getStudents()
+studentController.get('/', async (req: Request, res: Response) => {
+  const students = await studentService.getAll()
 
-    return res.json(students)
-  } catch (error) {
-    console.error(error)
-    return res.status(404).json({ error })
-  }
+  return res.json(students)
 })
 
 studentController.get('/get', async (req: Request, res: Response) => {
-  try {
-    const { id, userId } = req.query
+  const { id, userId } = req.query
 
-    let students: IStudent | undefined
+  let students: IStudent | undefined
 
-    if (id) {
-      students = await studentService.getStudentById(Number(id))
-    } else if (userId) {
-      students = await studentService.getStudentByUserId(Number(userId))
-    }
-
-    return res.json(students)
-  } catch (error) {
-    console.error(error)
-    return res.status(404).json({ error })
+  if (id) {
+    students = await studentService.getById(Number(id))
+  } else if (userId) {
+    students = await studentService.getByUserId(Number(userId))
   }
+
+  return res.json(students)
 })
 
 studentController.post('/', async (req: Request, res: Response) => {
-  try {
-    const student: IStudent = req.body
+  const student: IStudent = req.body
 
-    const createdStudent = await studentService.createStudent(student)
+  const createdStudent = await studentService.create(student)
 
-    return res.json(createdStudent)
-  } catch (error) {
-    console.error(error)
-    return res.status(404).json({ error })
-  }
+  return res.json(createdStudent)
 })

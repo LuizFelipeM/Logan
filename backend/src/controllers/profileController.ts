@@ -4,33 +4,21 @@ import { IProfileDto } from '../domain/contracts/IProfileDto'
 
 export const profileController = Router()
 
-profileController.get('/get-all',
-  async (req, res) => {
-    try {
-      const profiles = await profileService.getProfiles()
+profileController.get('/get-all', async (req, res) => {
+  const profiles = await profileService.getAll()
 
-      return res.json(profiles)
-    } catch (error) {
-      console.error(error)
-      return res.status(404).json({ error })
-    }
+  return res.json(profiles)
+})
+
+profileController.get('/get', async (req, res) => {
+  const { id } = req.query
+
+  let profile: IProfileDto | undefined
+
+  if (id) {
+    const profileId = parseInt(id.toString())
+    profile = await profileService.getByIdWithRules(profileId)
   }
-)
 
-profileController.get('/get',
-  async (req, res) => {
-    try {
-      const { id } = req.query
-
-      let profile: IProfileDto | undefined
-
-      if (id) {
-        const profileId = parseInt(id.toString())
-        profile = await profileService.getProfile(profileId)
-      }
-
-      return res.json(profile)
-    } catch (ex) {
-      console.error(ex)
-    }
-  })
+  return res.json(profile)
+})

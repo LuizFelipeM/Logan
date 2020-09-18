@@ -21,7 +21,7 @@ campusController.get('/get', async (req: Request, res: Response) => {
 
     let campus: ICampus | undefined
 
-    if (campus) {
+    if (id) {
       campus = await campusService.getCampusById(Number(id))
     }
     return res.json(campus)

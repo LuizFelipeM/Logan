@@ -1,8 +1,8 @@
 import { IRule } from '../domain/interfaces/IRule'
-import { ruleRepository, RuleRpository } from '../repositories/ruleRepository'
+import { ruleRepository, RuleRepository } from '../repositories/ruleRepository'
 import { AbstractService } from './AbstractService'
 
-class RulesService extends AbstractService<IRule, RuleRpository> {
+export class RulesService extends AbstractService<IRule, RuleRepository> {
   constructor () {
     super(ruleRepository)
   }

@@ -1,5 +1,6 @@
-export interface IRegistry {
-  id: number
+import { IBaseEntity } from './IBaseEntity'
+
+export interface IRegistry extends IBaseEntity {
   status: number
   openRegistry: string
   endEstimate: string

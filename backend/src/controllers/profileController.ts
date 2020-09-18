@@ -1,24 +1,40 @@
-import { Router } from 'express'
-import { profileService } from '../services/profileService'
-import { IProfileDto } from '../domain/contracts/IProfileDto'
+import { ProfileService, profileService } from '../services/profileService'
+import { AbstractController } from './AbstractController'
+import { IProfile } from '../domain/interfaces/IProfile'
+import { Request, Response } from 'express'
 
-export const profileController = Router()
+class ProfileController extends AbstractController<IProfile, ProfileService> {
+  constructor () {
+    super(profileService)
 
-profileController.get('/get-all', async (req, res) => {
-  const profiles = await profileService.getAll()
-
-  return res.json(profiles)
-})
-
-profileController.get('/get', async (req, res) => {
-  const { id } = req.query
-
-  let profile: IProfileDto | undefined
-
-  if (id) {
-    const profileId = parseInt(id.toString())
-    profile = await profileService.getByIdWithRules(profileId)
+    this.controller.get('/rules/', this.getWithRules)
+    this.controller.get('/rules/:id', this.getByIdWithRules)
   }
 
-  return res.json(profile)
-})
+  getWithRules = async (req: Request, res: Response) => {
+    try {
+      const profiles = await this.service.getWithRules()
+
+      res.json(profiles)
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ error })
+    }
+  }
+
+  getByIdWithRules = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params
+      const profileId = parseInt(id)
+
+      const profiles = await this.service.getByIdWithRules(profileId)
+
+      res.json(profiles)
+    } catch (error) {
+      console.error(error)
+      res.status(400).json({ error })
+    }
+  }
+}
+
+export const profileController = new ProfileController()

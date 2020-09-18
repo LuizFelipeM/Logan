@@ -2,7 +2,7 @@ import { studentRepository, StudentsRepository } from '../repositories/studentRe
 import { IStudent } from '../domain/interfaces/IStudent'
 import { AbstractService } from './AbstractService'
 
-class StudentsService extends AbstractService<IStudent, StudentsRepository> {
+export class StudentService extends AbstractService<IStudent, StudentsRepository> {
   constructor () {
     super(studentRepository)
   }
@@ -10,4 +10,4 @@ class StudentsService extends AbstractService<IStudent, StudentsRepository> {
   getByUserId = async (id: number): Promise<IStudent> => await studentRepository.getByUserId(id)
 }
 
-export const studentService = new StudentsService()
+export const studentService = new StudentService()

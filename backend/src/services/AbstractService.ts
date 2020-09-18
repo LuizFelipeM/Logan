@@ -1,10 +1,29 @@
-import { AbstractRepository } from '../repositories/AbstractRepository'
+import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
+import { AbstractRepository, Filters } from '../repositories/AbstractRepository'
+import { ParsedQs } from 'qs'
+import { FilterTypes } from '../domain/FilterTypes'
 
-export abstract class AbstractService<T, R extends AbstractRepository<T>> {
+export abstract class AbstractService<T extends IBaseEntity, R extends AbstractRepository<T>> {
   protected constructor (private repository: R) {}
 
   getById = async (id: number): Promise<T> => await this.repository.getById(id)
   getAll = async (): Promise<T[]> => await this.repository.getAll()
-  create = (data: Omit<T, 'id'>): Promise<void> => this.repository.insert(data)
-  remove = (id: number): Promise<void> => this.repository.delete(id)
+  create = (data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>): Promise<void> => this.repository.insert(data)
+  remove = (data: T): Promise<void> => this.repository.delete(data.id)
+
+  filter = async (type: FilterTypes, queryString: ParsedQs): Promise<T[]> => {
+    const filters: Filters = {}
+
+    for (const key in queryString) {
+      if (Object.prototype.hasOwnProperty.call(queryString, key)) {
+        const value = queryString[key]
+
+        if (value) {
+          filters[key] = value as string
+        }
+      }
+    }
+
+    return await this.repository.getByFilter(type, filters)
+  }
 }

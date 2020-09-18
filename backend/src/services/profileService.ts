@@ -9,7 +9,13 @@ export class ProfileService extends AbstractService<IProfile, ProfileRepository>
   }
 
   getWithRules = async (): Promise<IProfileDto[]> => await profileRepository.getProfilesWithRules()
-  getByIdWithRules = async (id: number): Promise<IProfileDto> => await profileRepository.getProfileWithRules(id)
+  getByIdWithRules = async (id: number): Promise<IProfileDto> => {
+    if (id) {
+      return await profileRepository.getProfileWithRules(id)
+    } else {
+      throw new Error('Id is not a number')
+    }
+  }
 }
 
 export const profileService = new ProfileService()

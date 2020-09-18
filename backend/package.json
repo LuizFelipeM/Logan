@@ -28,6 +28,7 @@
     "@types/cors": "^2.8.6",
     "@types/jest": "^26.0.4",
     "@types/knex": "^0.16.1",
+    "@types/object-mapper": "^6.2.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "eslint": "^7.4.0",
@@ -48,6 +49,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.2",
+    "object-mapper": "^6.2.0",
     "pg": "^8.3.0"
   },
   "nodemonConfig": {

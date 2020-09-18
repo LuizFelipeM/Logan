@@ -6,6 +6,6 @@ import { studentController } from './controllers/studentController'
 
 export const routes = Router()
 
-routes.use('/user', secureRoute(1, 2), userController)
-routes.use('/profile', secureRoute(1, 2), profileController)
-routes.use('/student', studentController)
+routes.use('/user', secureRoute(1, 2), userController.router)
+routes.use('/profile', secureRoute(1, 2), profileController.router)
+routes.use('/student', studentController.router)

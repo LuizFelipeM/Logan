@@ -5,12 +5,12 @@ import { profileRepository } from '../repositories/profileRepository'
 import { toUserDto } from '../domain/mappers/userMapper'
 import { AbstractService } from './AbstractService'
 
-class UserService extends AbstractService<IUser, UserRepository> {
+export class UserService extends AbstractService<IUser, UserRepository> {
   constructor () {
     super(userRepository)
   }
 
-  getUsersWithProfile = async (id: number): Promise<IUserDto> => {
+  getByIdWithProfile = async (id: number): Promise<IUserDto> => {
     const user = await userRepository.getById(id)
     const userDto: IUserDto = toUserDto(user)
 

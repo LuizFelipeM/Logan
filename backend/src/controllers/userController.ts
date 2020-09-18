@@ -1,26 +1,11 @@
-import { Router } from 'express'
-import { userService } from '../services/userService'
+import { IUser } from '../domain/interfaces/IUser'
+import { UserService, userService } from '../services/userService'
+import { AbstractController } from './AbstractController'
 
-export const userController = Router()
+class UserController extends AbstractController<IUser, UserService> {
+  constructor () {
+    super(userService)
+  }
+}
 
-userController.get('/get', async (req, res) => {
-  const { id } = req.query
-
-  const user = await userService.getById(Number(id))
-
-  return res.json(user)
-})
-
-userController.get('/get-all', async (req, res) => {
-  const users = await userService.getAll()
-
-  return res.json(users)
-})
-
-userController.delete('/', (req, res) => {
-  const { id } = req.body
-
-  userService.remove(id)
-
-  res.status(204).send()
-})
+export const userController = new UserController()

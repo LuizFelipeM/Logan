@@ -7,6 +7,7 @@ import { classController } from './controllers/classesController'
 import { noteFoulsController } from './controllers/noteFoulsController'
 import { disciplineController } from './controllers/disciplineController'
 import { calendarController } from './controllers/calendarController'
+import { campusController } from './controllers/campusController'
 
 export const routes = Router()
 
@@ -17,3 +18,4 @@ routes.use('/class', classController)
 routes.use('/noteFouls', noteFoulsController)
 routes.use('/discipline', disciplineController)
 routes.use('/calendar', calendarController)
+routes.use('/campus', campusController)

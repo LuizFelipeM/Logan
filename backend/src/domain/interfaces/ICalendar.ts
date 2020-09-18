@@ -1,4 +1,4 @@
-export interface ICalender {
+export interface ICalendar {
     id: number
     startNotesP1: Date
     finalNotesP1: Date

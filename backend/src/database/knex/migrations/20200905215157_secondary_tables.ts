@@ -28,7 +28,7 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(currentSemesterTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('calender').notNullable()
+      table.integer('calendar').notNullable()
       table.integer('discipline').notNullable()
 
       table.timestamp('evalP1Start', { precision: 6 }).notNullable()
@@ -46,7 +46,7 @@ export async function up (knex: Knex): Promise<void> {
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
-      table.foreign('calender').references('id').inTable(calendarTableName)
+      table.foreign('calendar').references('id').inTable(calendarTableName)
       table.foreign('discipline').references('id').inTable(disciplineTableName)
     })
 

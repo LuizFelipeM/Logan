@@ -4,7 +4,7 @@ import { calendarService } from '../services/calendarService'
 
 export const calendarController = Router()
 
-calendarController.get('get-all', async (req: Request, res: Response) => {
+calendarController.get('/get-all', async (req: Request, res: Response) => {
   try {
     const calendar = await calendarService.getCalendar()
 
@@ -15,7 +15,7 @@ calendarController.get('get-all', async (req: Request, res: Response) => {
   }
 })
 
-calendarController.get('get', async (req: Request, res: Response) => {
+calendarController.get('/get', async (req: Request, res: Response) => {
   try {
     const { id } = req.query
 

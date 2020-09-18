@@ -1,5 +1,4 @@
 import { calendarTable } from '../database/common/calendarTable'
-import { disciplineTable } from '../database/common/disciplineTable'
 import { knex } from '../database/knex/dbConnection'
 import { ICalendar } from '../domain/interfaces/ICalendar'
 
@@ -11,7 +10,7 @@ const getCalendarById = async (id: number): Promise<ICalendar> => await knex(cal
   .where({ id })
   .first()
 
-const insertCalendar = async (data: Omit<ICalendar, 'id'>): Promise<ICalendar> => await knex(disciplineTable)
+const insertCalendar = async (data: Omit<ICalendar, 'id'>): Promise<ICalendar> => await knex(calendarTable)
   .insert(data)
   .returning<ICalendar>('*')
 

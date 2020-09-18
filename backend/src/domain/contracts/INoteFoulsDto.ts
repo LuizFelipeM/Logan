@@ -1,11 +1,11 @@
 import { Override } from '../../@types/override'
 import { INoteFouls } from '../interfaces/INoteFouls'
 import { IStudentDto } from './IStudentDto'
-import { IdisciplineDto } from './IdisciplineDto'
 import { ISemesterDto } from './ISemesterDto'
+import { IDisciplineDto } from './IDiciplineDto'
 
 export type INoteFoulsDto = Override<INoteFouls, {
-    discipline: IdisciplineDto
+    discipline: IDisciplineDto
     students: IStudentDto
     semester: ISemesterDto
 }>

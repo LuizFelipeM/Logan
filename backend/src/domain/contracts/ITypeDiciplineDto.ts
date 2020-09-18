@@ -1,3 +1,3 @@
-import { ITypediscipline } from '../interfaces/ITypediscipline'
+import { ITypeDiscipline } from '../interfaces/ITypeDicipline'
 
-export type ITypedisciplineDto = ITypediscipline
+export type ITypeDisciplineDto = ITypeDiscipline

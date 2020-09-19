@@ -1,8 +1,11 @@
 import { IRule } from '../domain/interfaces/IRule'
-import { ruleRepository } from '../repositories/ruleRepository'
+import { ruleRepository, RuleRepository } from '../repositories/ruleRepository'
+import { AbstractService } from './AbstractService'
 
-const createRule = async (rule: Omit<IRule, 'id'>): Promise<IRule> => await ruleRepository.insertRule(rule)
-
-export const ruleService = {
-  createRule
+export class RulesService extends AbstractService<IRule, RuleRepository> {
+  constructor () {
+    super(ruleRepository)
+  }
 }
+
+export const ruleService = new RulesService()

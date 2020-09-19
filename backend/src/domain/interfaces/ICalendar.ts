@@ -1,4 +1,6 @@
-export interface ICalendar {
+import { IBaseEntity } from './IBaseEntity'
+
+export interface ICalendar extends IBaseEntity {
     id: number
     startNotesP1: Date
     finalNotesP1: Date

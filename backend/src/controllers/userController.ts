@@ -1,13 +1,12 @@
-import { Router } from 'express'
-import { userService } from '../services/userService'
 
-export const userController = Router()
+import { IUser } from '../domain/interfaces/IUser'
+import { UserService, userService } from '../services/userService'
+import { AbstractController } from './AbstractController'
 
-userController.get('/get-all', async (req, res) => {
-  const limit = req.query.limit?.toString()
-  const convertedLimit = limit ? parseInt(limit) : undefined
+class UserController extends AbstractController<IUser, UserService> {
+  constructor () {
+    super(userService)
+  }
+}
 
-  const users = await userService.getUsers(convertedLimit)
-
-  return res.json(users)
-})
+export const userController = new UserController()

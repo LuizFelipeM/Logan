@@ -7,6 +7,8 @@ export function toUserDto<T extends IUser> (data: T): IUserDto {
     firstName: data.firstName,
     lastName: data.lastName,
     gender: data.gender,
-    birthDate: data.birthDate
+    birthDate: data.birthDate,
+    createdAt: data.createdAt,
+    lastUpdate: data.lastUpdate
   }
 }

@@ -1,39 +1,40 @@
-import { Router } from 'express'
-import { profileService } from '../services/profileService'
-import { IProfileDto } from '../domain/contracts/IProfileDto'
+import { ProfileService, profileService } from '../services/profileService'
+import { IProfile } from '../domain/interfaces/IProfile'
+import { Request, Response } from 'express'
+import { AbstractController } from './AbstractController'
 
-export const profileController = Router()
+class ProfileController extends AbstractController<IProfile, ProfileService> {
+  constructor () {
+    super(profileService)
 
-profileController.get('/get-all',
-  async (req, res) => {
+    this.controller.get('/rules/', this.getWithRules)
+    this.controller.get('/rules/:id', this.getByIdWithRules)
+  }
+
+  private getWithRules = async (req: Request, res: Response) => {
     try {
-      const limit = req.query.limit?.toString()
-      const convertedLimit = limit ? parseInt(limit) : undefined
+      const profiles = await this.service.getWithRules()
 
-      const profiles = await profileService.getProfiles(convertedLimit)
-
-      return res.json(profiles)
+      res.json(profiles)
     } catch (error) {
       console.error(error)
-      return res.status(404).json({ error })
+      res.status(500).json({ error })
     }
   }
-)
 
-profileController.get('/get',
-  async (req, res) => {
+  private getByIdWithRules = async (req: Request, res: Response) => {
     try {
-      const { id } = req.query
+      const { id } = req.params
+      const profileId = parseInt(id)
 
-      let profile: IProfileDto | undefined
+      const profiles = await this.service.getByIdWithRules(profileId)
 
-      if (id) {
-        const profileId = parseInt(id.toString())
-        profile = await profileService.getProfile(profileId)
-      }
-
-      return res.json(profile)
-    } catch (ex) {
-      console.error(ex)
+      res.json(profiles)
+    } catch (error) {
+      console.error(error)
+      res.status(400).json({ error })
     }
-  })
+  }
+}
+
+export const profileController = new ProfileController()

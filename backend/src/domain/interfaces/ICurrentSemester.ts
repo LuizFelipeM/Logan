@@ -1,4 +1,6 @@
-export interface ICurrentSemester {
+import { IBaseEntity } from './IBaseEntity'
+
+export interface ICurrentSemester extends IBaseEntity {
     id: number
     calendar: Date
     discipline: Date

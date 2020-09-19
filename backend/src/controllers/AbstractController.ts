@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from 'express'
+import { RouterOptions, NextFunction, Request, Response, Router } from 'express'
 import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
@@ -6,9 +6,11 @@ import { ParsedQs } from 'qs'
 import { FilterTypes } from '../domain/FilterTypes'
 
 export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> {
-  protected controller = Router()
+  protected readonly controller: Router
 
-  protected constructor (protected service: Service) {
+  protected constructor (protected readonly service: Service, config?: RouterOptions) {
+    this.controller = Router(config)
+
     this.controller.get('/', this.getAll)
     this.controller.get('/:id', this.getById)
     this.controller.get('/filter/:type', this.getWithFilter)

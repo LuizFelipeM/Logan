@@ -1,5 +1,6 @@
 import { knex } from '../database/knex/dbConnection'
 import { FilterTypes } from '../domain/FilterTypes'
+import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
 
 type Table = string | { t1: string }
 
@@ -36,20 +37,22 @@ function teste (t: number): string {
   return res
 }
 
-export abstract class AbstractRepository<T> {
-  protected constructor (protected table: Table) {}
+export abstract class AbstractRepository<T extends IBaseEntity> {
+  protected constructor (protected readonly table: Table) {}
 
-  getAll = async (): Promise<T[]> => await knex(this.table).select('*')
+  selectAll = async (): Promise<T[]> => await knex(this.table)
+    .select('*')
 
-  getById = async (id: number): Promise<T> => await knex(this.table)
+  selectById = async (id: number): Promise<T> => await knex(this.table)
     .select('*')
     .where({ id })
     .first()
 
-  getByFilter = async (type: FilterTypes, filters: Filters): Promise<T[]> => {
+  selectByFilter = async (type: FilterTypes, filters: Filters): Promise<T[]> => {
     const query = convertFiltersToSql(type, filters)
 
-    const a = await knex(this.table).select('*')
+    const a = await knex(this.table)
+      .select('*')
       .where(knex.raw(query.queryString, query.values))
       .toSQL()
 
@@ -58,7 +61,12 @@ export abstract class AbstractRepository<T> {
       .select('*')
   }
 
-  insert = async (data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>): Promise<void> => await knex(this.table).insert(data)
+  insert = async (data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>): Promise<void> => await knex(this.table)
+    .insert(data)
+
+  updateById = async (data: T): Promise<void> => await knex(this.table)
+    .where({ id: data.id })
+    .update(data)
 
   delete = async (id: number): Promise<void> => await knex(this.table)
     .where({ id })

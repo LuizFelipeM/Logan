@@ -11,7 +11,7 @@ class ProfileController extends AbstractController<IProfile, ProfileService> {
     this.controller.get('/rules/:id', this.getByIdWithRules)
   }
 
-  getWithRules = async (req: Request, res: Response) => {
+  private getWithRules = async (req: Request, res: Response) => {
     try {
       const profiles = await this.service.getWithRules()
 
@@ -22,7 +22,7 @@ class ProfileController extends AbstractController<IProfile, ProfileService> {
     }
   }
 
-  getByIdWithRules = async (req: Request, res: Response) => {
+  private getByIdWithRules = async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const profileId = parseInt(id)

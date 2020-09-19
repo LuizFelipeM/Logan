@@ -4,7 +4,7 @@ import { AbstractController } from './AbstractController'
 
 class CoursesController extends AbstractController<ICourse, CourseService> {
   constructor () {
-    super(courseService)
+    super(CourseService)
   }
 }
 

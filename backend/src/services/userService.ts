@@ -7,6 +7,7 @@ import { ProfileRepository } from '../repositories/profileRepository'
 
 export class UserService extends AbstractService<IUser, UserRepository> {
   private readonly profileRepository = new ProfileRepository()
+  static getById: any
 
   constructor () {
     super(UserRepository)

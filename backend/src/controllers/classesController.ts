@@ -8,4 +8,4 @@ class ClassesController extends AbstractController<IClass, ClassesService> {
   }
 }
 
-export const classesController = new ClassesController()
+export const classeController = new ClassesController()

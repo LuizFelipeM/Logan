@@ -1,7 +1,6 @@
 import { IBaseEntity } from './IBaseEntity'
 
 export interface INoteFouls extends IBaseEntity {
-    id: number
     students: number
     discipline: number
     semester: number

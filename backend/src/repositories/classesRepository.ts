@@ -1,6 +1,11 @@
-import { IClass } from "../domain/interfaces/IClass";
-import { AbstractRepository } from "./AbstractRepository";
+import { classesTable } from '../database/common/classesTable'
+import { IClass } from '../domain/interfaces/IClass'
+import { AbstractRepository } from './AbstractRepository'
 
-export class ClassesRepository extends AbstractRepository<IClass> {
-  constructor 
+export class ClasseRepository extends AbstractRepository<IClass> {
+  constructor () {
+    super(classesTable)
+  }
 }
+
+export const classesRepository = new ClasseRepository()

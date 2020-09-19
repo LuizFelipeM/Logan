@@ -7,9 +7,12 @@ import { FilterTypes } from '../domain/FilterTypes'
 
 export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> {
   protected readonly controller: Router
+  protected readonly service: Service
 
-  protected constructor (protected readonly service: Service, config?: RouterOptions) {
+  protected constructor (Service: new () => Service, config?: RouterOptions) {
     this.controller = Router(config)
+
+    this.service = new Service()
 
     this.controller.get('/', this.getAll)
     this.controller.get('/:id', this.getById)

@@ -1,7 +1,6 @@
 import { IBaseEntity } from './IBaseEntity'
 
 export interface ICurrentSemester extends IBaseEntity {
-    id: number
     calendar: Date
     discipline: Date
     evalP1Start: Date
@@ -12,5 +11,4 @@ export interface ICurrentSemester extends IBaseEntity {
     evalSubEnd: Date
     evalExamStart: Date
     evalExamEnd: Date
-
 }

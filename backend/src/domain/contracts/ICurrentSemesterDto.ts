@@ -1,10 +1,10 @@
 import { Override } from '../../@types/override'
 import { ICurrentSemester } from '../interfaces/ICurrentSemester'
-import { ICalenderDto } from './ICalenderDto'
-import { IDiciplineDto } from './IDiciplineDto'
+import { IcalendarDto } from './ICalenderDto'
+import { IDisciplineDto } from './IDiciplineDto'
 
 export type ICurrentSemesterDto = Override<ICurrentSemester, {
     currentSemester: ICurrentSemesterDto
-    calender: ICalenderDto
-    dicipline: IDiciplineDto
+    calendar: IcalendarDto
+    discipline: IDisciplineDto
 }>

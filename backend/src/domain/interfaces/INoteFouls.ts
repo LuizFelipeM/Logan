@@ -1,7 +1,7 @@
 export interface INoteFouls {
     id: number
     students: number
-    dicipline: number
+    discipline: number
     semester: number
     noteP1: number
     noteP2: number

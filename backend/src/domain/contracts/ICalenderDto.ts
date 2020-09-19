@@ -1,3 +1,3 @@
-import { ICalender } from '../interfaces/ICalender'
+import { ICalendar } from '../interfaces/ICalendar'
 
-export type ICalenderDto = ICalender
+export type IcalendarDto = ICalendar

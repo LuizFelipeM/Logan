@@ -1,10 +1,10 @@
 import { Override } from '../../@types/override'
-import { IDicipline } from '../interfaces/IDicipline'
+import { IDiscipline } from '../interfaces/IDiscipline'
 import { ICourseDto } from './ICourseDto'
-import { ITypeDiciplineDto } from './ITypeDiciplineDto'
+import { ITypeDisciplineDto } from './ITypeDiciplineDto'
 
-export type IDiciplineDto = Override<IDicipline, {
+export type IDisciplineDto = Override<IDiscipline, {
     course: ICourseDto
-    dicipline: IDiciplineDto
-    typeDicipline: ITypeDiciplineDto
+    discipline: IDisciplineDto
+    typediscipline: ITypeDisciplineDto
 }>

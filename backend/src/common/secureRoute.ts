@@ -1,5 +1,7 @@
-import { userService } from '../services/userService'
+import { UserService } from '../services/userService'
 import { Request, Response, NextFunction } from 'express'
+
+const userService = new UserService()
 
 export const secureRoute = (...permissionsIds: number[]) =>
   async (req: Request, res: Response, next: NextFunction): Promise<unknown> => {

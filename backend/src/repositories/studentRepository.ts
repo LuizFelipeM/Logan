@@ -8,7 +8,7 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     super(studentsTable)
   }
 
-  getByUserId = async (user: number): Promise<IStudent> => await knex(this.table)
+  selectByUserId = async (user: number): Promise<IStudent> => await knex(this.table)
     .select('*')
     .where({ user })
     .first()

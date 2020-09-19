@@ -3,8 +3,12 @@ import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
 import { AbstractRepository, Filters } from '../repositories/AbstractRepository'
 import { FilterTypes } from '../domain/FilterTypes'
 
-export abstract class AbstractService<T extends IBaseEntity, R extends AbstractRepository<T>> {
-  protected constructor (private repository: R) {}
+export abstract class AbstractService<T extends IBaseEntity, Repository extends AbstractRepository<T>> {
+  protected readonly repository: Repository
+
+  protected constructor (Repository: new () => Repository) {
+    this.repository = new Repository()
+  }
 
   getById = async (id: number): Promise<T> => await this.repository.selectById(id)
   getAll = async (): Promise<T[]> => await this.repository.selectAll()

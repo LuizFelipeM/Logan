@@ -38,7 +38,7 @@ function teste (t: number): string {
 }
 
 export abstract class AbstractRepository<T extends IBaseEntity> {
-  protected constructor (protected readonly table: Table) {}
+  constructor (protected readonly table: Table) {}
 
   selectAll = async (): Promise<T[]> => await knex(this.table)
     .select('*')

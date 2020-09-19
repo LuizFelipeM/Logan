@@ -1,7 +1,7 @@
 import { ProfileService, profileService } from '../services/profileService'
-import { AbstractController } from './AbstractController'
 import { IProfile } from '../domain/interfaces/IProfile'
 import { Request, Response } from 'express'
+import { AbstractController } from './AbstractController'
 
 class ProfileController extends AbstractController<IProfile, ProfileService> {
   constructor () {

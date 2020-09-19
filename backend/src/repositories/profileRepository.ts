@@ -32,5 +32,3 @@ export class ProfileRepository extends AbstractRepository<IProfile> {
     )
     .groupBy('t1.id')
 }
-
-export const profileRepository = new ProfileRepository()

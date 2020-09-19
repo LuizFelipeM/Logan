@@ -1,11 +1,11 @@
-import { ProfileService, profileService } from '../services/profileService'
+import { ProfileService } from '../services/profileService'
 import { IProfile } from '../domain/interfaces/IProfile'
 import { Request, Response } from 'express'
 import { AbstractController } from './AbstractController'
 
 class ProfileController extends AbstractController<IProfile, ProfileService> {
   constructor () {
-    super(profileService)
+    super(ProfileService)
 
     this.controller.get('/rules/', this.getWithRules)
     this.controller.get('/rules/:id', this.getByIdWithRules)

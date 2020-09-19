@@ -7,5 +7,3 @@ export class RuleRepository extends AbstractRepository<IRule> {
     super(rulesTable)
   }
 }
-
-export const ruleRepository = new RuleRepository()

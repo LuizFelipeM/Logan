@@ -9,5 +9,3 @@ export class StudentService extends AbstractService<IStudent, StudentsRepository
 
   getByUserId = async (id: number): Promise<IStudent> => await this.repository.getByUserId(id)
 }
-
-export const studentService = new StudentService()

@@ -26,7 +26,7 @@ classController.get('/get', async (req: Request, res: Response) => {
     }
     return res.json(classes)
   } catch (error) {
-    console.error()
+    console.error(error)
     return res.status(404).json({ error })
   }
 })

@@ -12,7 +12,6 @@ const getClass = async (): Promise<IClass[]> => await knex(classesTableName)
 
 const insertClass = async (data: Omit<IClass, 'id'>): Promise<IClass> => await knex(classesTableName)
   .insert(data)
-  .returning('*')
-  .first()
+  .returning<IClass>('*')
 
 export const classesRepository = { getClassById, getClass, insertClass }

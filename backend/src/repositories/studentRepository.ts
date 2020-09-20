@@ -1,10 +1,9 @@
-import { IStudent } from '../domain/interfaces/IStudent'
+
 import { studentsTable } from '../database/common/studentsTable'
 import { knex } from '../database/knex/dbConnection'
 import { AbstractRepository } from './AbstractRepository'
-import { injectable } from 'inversify'
+import { IStudent } from '../domain/interfaces/entities/IStudent'
 
-@injectable()
 export class StudentsRepository extends AbstractRepository<IStudent> {
   protected readonly table = studentsTable
 

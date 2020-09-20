@@ -1,5 +1,5 @@
 import { ParsedQs } from 'qs'
-import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
+import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository, Filters } from '../repositories/AbstractRepository'
 import { FilterTypes } from '../domain/FilterTypes'
 import { injectable } from 'inversify'

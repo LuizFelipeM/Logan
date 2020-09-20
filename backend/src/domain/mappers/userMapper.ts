@@ -1,5 +1,5 @@
 import { IUserDto } from '../contracts/IUserDto'
-import { IUser } from '../interfaces/IUser'
+import { IUser } from '../interfaces/entities/IUser'
 
 export function toUserDto<T extends IUser> (data: T): IUserDto {
   return {

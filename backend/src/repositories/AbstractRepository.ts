@@ -1,7 +1,7 @@
 import { injectable } from 'inversify'
 import { knex } from '../database/knex/dbConnection'
 import { FilterTypes } from '../domain/FilterTypes'
-import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
+import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 
 type Table = string | { t1: string }
 

@@ -1,12 +1,12 @@
 import { Container } from 'inversify'
-import { ProfileRepository } from './repositories/profileRepository'
-import { RuleRepository } from './repositories/ruleRepository'
-import { StudentsRepository } from './repositories/studentRepository'
-import { UserRepository } from './repositories/userRepository'
-import { ProfileService } from './services/profileService'
-import { RulesService } from './services/ruleService'
-import { StudentService } from './services/studentService'
-import { UserService } from './services/userService'
+import { ProfileRepository } from './repositories/ProfileRepository'
+import { RuleRepository } from './repositories/RuleRepository'
+import { StudentsRepository } from './repositories/StudentRepository'
+import { UserRepository } from './repositories/UserRepository'
+import { ProfileService } from './services/ProfileService'
+import { RuleService } from './services/RuleService'
+import { StudentService } from './services/StudentService'
+import { UserService } from './services/UserService'
 
 export const DIContainer = new Container()
 
@@ -23,5 +23,5 @@ DIContainer.bind<StudentsRepository>(StudentsRepository).toSelf()
  */
 DIContainer.bind<StudentService>(StudentService).toSelf()
 DIContainer.bind<ProfileService>(ProfileService).toSelf()
-DIContainer.bind<RulesService>(RulesService).toSelf()
+DIContainer.bind<RuleService>(RuleService).toSelf()
 DIContainer.bind<UserService>(UserService).toSelf()

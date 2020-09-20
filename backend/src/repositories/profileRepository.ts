@@ -1,4 +1,3 @@
-import { IProfile } from '../domain/interfaces/IProfile'
 import { profilesTable } from '../database/common/profilesTable'
 import { rulesInProfilesTableName } from '../database/common/rulesInProfilesTable'
 import { knex } from '../database/knex/dbConnection'
@@ -6,9 +5,8 @@ import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
 import { AbstractRepository } from './AbstractRepository'
-import { injectable } from 'inversify'
+import { IProfile } from '../domain/interfaces/entities/IProfile'
 
-@injectable()
 export class ProfileRepository extends AbstractRepository<IProfile> {
   protected readonly table = profilesTable
 

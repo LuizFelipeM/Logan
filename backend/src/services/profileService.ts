@@ -1,8 +1,8 @@
-import { IProfile } from '../domain/interfaces/IProfile'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
-import { ProfileRepository } from '../repositories/profileRepository'
+import { ProfileRepository } from '../repositories/ProfileRepository'
 import { AbstractService } from './AbstractService'
 import { inject } from 'inversify'
+import { IProfile } from '../domain/interfaces/entities/IProfile'
 
 export class ProfileService extends AbstractService<IProfile, ProfileRepository> {
   constructor (

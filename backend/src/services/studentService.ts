@@ -1,9 +1,8 @@
-import { StudentsRepository } from '../repositories/studentRepository'
-import { IStudent } from '../domain/interfaces/IStudent'
+import { StudentsRepository } from '../repositories/StudentRepository'
 import { AbstractService } from './AbstractService'
-import { inject, injectable } from 'inversify'
+import { inject } from 'inversify'
+import { IStudent } from '../domain/interfaces/entities/IStudent'
 
-@injectable()
 export class StudentService extends AbstractService<IStudent, StudentsRepository> {
   constructor (
     @inject(StudentsRepository)

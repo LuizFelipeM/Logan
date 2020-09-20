@@ -2,10 +2,14 @@ import { IProfile } from '../domain/interfaces/IProfile'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
 import { ProfileRepository } from '../repositories/profileRepository'
 import { AbstractService } from './AbstractService'
+import { inject } from 'inversify'
 
 export class ProfileService extends AbstractService<IProfile, ProfileRepository> {
-  constructor () {
-    super(ProfileRepository)
+  constructor (
+    @inject(ProfileRepository)
+    protected readonly repository: ProfileRepository
+  ) {
+    super()
   }
 
   getWithRules = async (): Promise<IProfileDto[]> => await this.repository.getProfilesWithRules()

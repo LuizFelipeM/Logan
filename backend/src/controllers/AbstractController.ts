@@ -4,15 +4,17 @@ import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
 import { ParsedQs } from 'qs'
 import { FilterTypes } from '../domain/FilterTypes'
+import { injectable } from 'inversify'
 
+@injectable()
 export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> {
   protected readonly controller: Router
-  protected readonly service: Service
+  protected abstract readonly service: Service
 
-  protected constructor (Service: new () => Service, config?: RouterOptions) {
+  protected constructor (
+    config?: RouterOptions
+  ) {
     this.controller = Router(config)
-
-    this.service = new Service()
 
     this.controller.get('/', this.getAll)
     this.controller.get('/:id', this.getById)

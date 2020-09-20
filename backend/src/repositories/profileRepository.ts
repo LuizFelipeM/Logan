@@ -6,11 +6,11 @@ import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
 import { AbstractRepository } from './AbstractRepository'
+import { injectable } from 'inversify'
 
+@injectable()
 export class ProfileRepository extends AbstractRepository<IProfile> {
-  constructor () {
-    super(profilesTable)
-  }
+  protected readonly table = profilesTable
 
   getProfileWithRules = async (id: number): Promise<IProfileDto> => await knex(profilesTable)
     .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.profile')

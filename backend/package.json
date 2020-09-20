@@ -48,9 +48,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
     "knex": "^0.21.2",
-    "object-mapper": "^6.2.0",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13"
   },
   "nodemonConfig": {
     "ignore": [

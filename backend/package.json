@@ -26,6 +26,7 @@
   "homepage": "https://github.com/LuizFelipeM/Logan#readme",
   "devDependencies": {
     "@types/cors": "^2.8.6",
+    "@types/glob": "^7.1.3",
     "@types/jest": "^26.0.4",
     "@types/knex": "^0.16.1",
     "@types/object-mapper": "^6.2.0",

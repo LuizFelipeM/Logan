@@ -1,5 +1,5 @@
 import { injectable } from 'inversify'
-import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces } from 'inversify-express-utils'
+import { httpGet, httpPost, httpDelete, queryParam, requestParam, requestBody, interfaces } from 'inversify-express-utils'
 import { ParsedQs } from 'qs'
 import { FilterTypes } from '../domain/FilterTypes'
 import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
@@ -11,8 +11,8 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   protected abstract readonly service: Service
 
   @httpGet('/')
-  private async getAll () {
-    return await this.service.getAll()
+  private async getAll (@queryParam('filters') filters: string) {
+    return filters ? await this.service.getAll() : await this.getWithFilters(filters)
   }
 
   @httpGet('/:id')
@@ -30,5 +30,17 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   @httpDelete('/')
   private async delete (@requestBody() body: T) {
     this.service.remove(body)
+  }
+
+  private async getWithFilters (filtersString: string) {
+    const filters = filtersString.split('$')
+      .map(filter => {
+        const keyValue = filter.split('=')
+
+        return {
+          filter: keyValue[0],
+          value: keyValue[1]
+        }
+      })
   }
 }

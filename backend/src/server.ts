@@ -1,14 +1,15 @@
-import express from 'express'
-import cors from 'cors'
-import { routes } from './routes'
+import { join } from 'path'
+import { glob } from 'glob'
+import { startup } from './startup'
 
-const app = express()
+const path = join(__dirname, 'controllers')
 
-app.use(cors())
-app.use(express.json())
-
-app.use('/api', routes)
-
-app.listen(process.env.PORT, () => {
-  console.log('\x1b[36m%s\x1b[0m', '\n\nServer is now running on port:', `${process.env.HOST}:${process.env.PORT}/api\n\n`)
+glob(`${path}/**/[!Abstract]*Controller.{ts,js}`, (err, files) => {
+  if (!err) {
+    Promise
+      .all(files.map(file => import(file)))
+      .then(startup)
+  } else {
+    console.error(err)
+  }
 })

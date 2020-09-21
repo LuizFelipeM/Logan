@@ -1,16 +1,19 @@
-import { IUser } from '../domain/interfaces/IUser'
+import { inject } from 'inversify'
 import { IUserDto } from '../domain/contracts/IUserDto'
-import { UserRepository } from '../repositories/userRepository'
+import { UserRepository } from '../repositories/UserRepository'
 import { toUserDto } from '../domain/mappers/userMapper'
 import { AbstractService } from './AbstractService'
-import { ProfileRepository } from '../repositories/profileRepository'
+import { ProfileRepository } from '../repositories/ProfileRepository'
+import { IUser } from '../domain/interfaces/entities/IUser'
 
 export class UserService extends AbstractService<IUser, UserRepository> {
-  private readonly profileRepository = new ProfileRepository()
+  constructor (
+    @inject(UserRepository)
+    protected readonly repository: UserRepository,
 
-  constructor () {
-    super(UserRepository)
-  }
+    @inject(ProfileRepository)
+    private readonly profileRepository: ProfileRepository
+  ) { super() }
 
   getUsersWithProfile = async (id: number): Promise<IUserDto> => {
     const user = await this.repository.selectById(id)

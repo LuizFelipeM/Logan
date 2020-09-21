@@ -1,14 +1,12 @@
 import { ParsedQs } from 'qs'
-import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
+import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository, Filters } from '../repositories/AbstractRepository'
 import { FilterTypes } from '../domain/FilterTypes'
+import { injectable } from 'inversify'
 
+@injectable()
 export abstract class AbstractService<T extends IBaseEntity, Repository extends AbstractRepository<T>> {
-  protected readonly repository: Repository
-
-  protected constructor (Repository: new () => Repository) {
-    this.repository = new Repository()
-  }
+  protected abstract readonly repository: Repository
 
   getById = async (id: number): Promise<T> => await this.repository.selectById(id)
   getAll = async (): Promise<T[]> => await this.repository.selectAll()

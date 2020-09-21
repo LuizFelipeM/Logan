@@ -1,4 +1,3 @@
-import { IProfile } from '../domain/interfaces/IProfile'
 import { profilesTable } from '../database/common/profilesTable'
 import { rulesInProfilesTableName } from '../database/common/rulesInProfilesTable'
 import { knex } from '../database/knex/dbConnection'
@@ -6,11 +5,10 @@ import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
 import { IProfileDto } from '../domain/contracts/IProfileDto'
 import { AbstractRepository } from './AbstractRepository'
+import { IProfile } from '../domain/interfaces/entities/IProfile'
 
 export class ProfileRepository extends AbstractRepository<IProfile> {
-  constructor () {
-    super(profilesTable)
-  }
+  protected readonly table = profilesTable
 
   getProfileWithRules = async (id: number): Promise<IProfileDto> => await knex(profilesTable)
     .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.profile')

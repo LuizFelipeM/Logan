@@ -1,12 +1,14 @@
 
-import { IUser } from '../domain/interfaces/IUser'
-import { UserService } from '../services/userService'
+import { inject } from 'inversify'
+import { controller } from 'inversify-express-utils'
+import { IUser } from '../domain/interfaces/entities/IUser'
+import { UserService } from '../services/UserService'
 import { AbstractController } from './AbstractController'
 
-class UserController extends AbstractController<IUser, UserService> {
-  constructor () {
-    super(UserService)
-  }
+@controller('/user')
+export class UserController extends AbstractController<IUser, UserService> {
+  constructor (
+    @inject(UserService)
+    protected readonly service: UserService
+  ) { super() }
 }
-
-export const userController = new UserController()

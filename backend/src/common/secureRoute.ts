@@ -1,5 +1,8 @@
-import { userService } from '../services/userService'
+import { UserService } from '../services/UserService'
 import { Request, Response, NextFunction } from 'express'
+import { DIContainer } from '../DIContainer'
+
+const userService = DIContainer.resolve<UserService>(UserService)
 
 export const secureRoute = (...permissionsIds: number[]) =>
   async (req: Request, res: Response, next: NextFunction): Promise<unknown> => {

@@ -1,15 +1,16 @@
-import { ProfileService, profileService } from '../services/profileService'
-import { IProfile } from '../domain/interfaces/IProfile'
+import { ProfileService } from '../services/ProfileService'
 import { Request, Response } from 'express'
 import { AbstractController } from './AbstractController'
+import { inject } from 'inversify'
+import { controller } from 'inversify-express-utils'
+import { IProfile } from '../domain/interfaces/entities/IProfile'
 
-class ProfileController extends AbstractController<IProfile, ProfileService> {
-  constructor () {
-    super(profileService)
-
-    this.controller.get('/rules/', this.getWithRules)
-    this.controller.get('/rules/:id', this.getByIdWithRules)
-  }
+@controller('/profile')
+export class ProfileController extends AbstractController<IProfile, ProfileService> {
+  constructor (
+    @inject(ProfileService)
+    protected readonly service: ProfileService
+  ) { super() }
 
   private getWithRules = async (req: Request, res: Response) => {
     try {
@@ -36,5 +37,3 @@ class ProfileController extends AbstractController<IProfile, ProfileService> {
     }
   }
 }
-
-export const profileController = new ProfileController()

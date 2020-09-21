@@ -1,6 +1,7 @@
+import { injectable } from 'inversify'
 import { knex } from '../database/knex/dbConnection'
 import { FilterTypes } from '../domain/FilterTypes'
-import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
+import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 
 type Table = string | { t1: string }
 
@@ -37,8 +38,9 @@ function teste (t: number): string {
   return res
 }
 
+@injectable()
 export abstract class AbstractRepository<T extends IBaseEntity> {
-  constructor (protected readonly table: Table) {}
+  protected abstract readonly table: Table
 
   selectAll = async (): Promise<T[]> => await knex(this.table)
     .select('*')

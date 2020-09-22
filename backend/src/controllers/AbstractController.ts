@@ -1,94 +1,46 @@
-import { RouterOptions, NextFunction, Request, Response, Router } from 'express'
-import { IBaseEntity } from '../domain/interfaces/IBaseEntity'
-import { AbstractRepository } from '../repositories/AbstractRepository'
-import { AbstractService } from '../services/AbstractService'
+import { injectable } from 'inversify'
+import { httpGet, httpPost, httpDelete, queryParam, requestParam, requestBody, interfaces } from 'inversify-express-utils'
 import { ParsedQs } from 'qs'
 import { FilterTypes } from '../domain/FilterTypes'
+import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
+import { AbstractRepository } from '../repositories/AbstractRepository'
+import { AbstractService } from '../services/AbstractService'
 
-export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> {
-  protected readonly controller: Router
-  protected readonly service: Service
+@injectable()
+export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> implements interfaces.Controller {
+  protected abstract readonly service: Service
 
-  protected constructor (Service: new () => Service, config?: RouterOptions) {
-    this.controller = Router(config)
-
-    this.service = new Service()
-
-    this.controller.get('/', this.getAll)
-    this.controller.get('/:id', this.getById)
-    this.controller.get('/filter/:type', this.getWithFilter)
-    this.controller.post('/', this.post)
-    this.controller.delete('/', this.delete)
+  @httpGet('/')
+  private async getAll (@queryParam('filters') filters: string) {
+    return filters ? await this.service.getAll() : await this.getWithFilters(filters)
   }
 
-  public get router (): Router {
-    return this.controller
+  @httpGet('/:id')
+  private async getById (@requestParam('id') id: number) {
+    const data = await this.service.getById(id)
+
+    return data
   }
 
-  private getAll = async (req: Request, res: Response) => {
-    try {
-      const data: T[] = await this.service.getAll()
-
-      return res.json(data)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({ error })
-    }
+  @httpPost('/')
+  private post (@requestBody() body: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>) {
+    this.service.create(body)
   }
 
-  private getWithFilter = async (req: Request, res: Response) => {
-    try {
-      const queryString: ParsedQs = req.query
-      const { type } = req.params
-
-      const data: T[] = await this.service.filter(type as FilterTypes, queryString)
-      return res.json(data)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({ error })
-    }
+  @httpDelete('/')
+  private async delete (@requestBody() body: T) {
+    this.service.remove(body)
   }
 
-  private getById = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { id } = req.params
+  private async getWithFilters (filtersString: string) {
+    const filters = filtersString.split('$')
+      .map(filter => {
+        const keyValue = filter.split('=')
 
-      let data: T | undefined
-
-      if (parseInt(id)) {
-        data = await this.service.getById(parseInt(id))
-      } else {
-        return next()
-      }
-
-      return res.json(data)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({ error })
-    }
-  }
-
-  private post = (req: Request, res: Response) => {
-    try {
-      const data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'> = req.body
-
-      this.service.create(data)
-
-      return res.status(204).send()
-    } catch (error) {
-      console.error(error)
-      return res.status(400).json({ error })
-    }
-  }
-
-  private delete = (req: Request, res: Response) => {
-    try {
-      const data: T = req.body
-      this.service.remove(data)
-      return res.status(204).send()
-    } catch (error) {
-      console.error(error)
-      return res.status(400).json({ error })
-    }
+        return {
+          filter: keyValue[0],
+          value: keyValue[1]
+        }
+      })
   }
 }

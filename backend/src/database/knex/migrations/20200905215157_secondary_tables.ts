@@ -64,7 +64,7 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(studentsTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('user').notNullable()
+      table.integer('user').notNullable().unique()
       table.integer('ra').notNullable()
       table.integer('course').notNullable()
       table.integer('class').notNullable()

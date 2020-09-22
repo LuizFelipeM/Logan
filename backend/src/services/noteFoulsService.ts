@@ -1,5 +1,4 @@
 import { inject } from 'inversify'
-import { INoteFoulsDto } from '../domain/contracts/INoteFoulsDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
 import { NoteFoulsRepository, testeDTO } from '../repositories/NoteFoulsRepository'
 import { AbstractService } from './AbstractService'

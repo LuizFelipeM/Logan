@@ -2,8 +2,8 @@ import { noteFoulsTable } from '../database/common/noteFoulsTable'
 import { AbstractRepository } from './AbstractRepository'
 import { knex } from '../database/knex/dbConnection'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
-import { studentsTable, studentsTableName } from '../database/common/studentsTable'
-import { usersTable, usersTableName } from '../database/common/usersTable'
+import { studentsTableName } from '../database/common/studentsTable'
+import { usersTableName } from '../database/common/usersTable'
 
 export interface testeDTO {
   students : number,

@@ -1,15 +1,23 @@
-import { INoteFouls } from '../domain/interfaces/INoteFouls'
-import { NoteFoulsService, noteFoulsService } from '../services/noteFoulsService'
+import { inject } from 'inversify'
+import { controller, httpGet, requestParam } from 'inversify-express-utils'
+import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
+import { NoteFoulsService } from '../services/NoteFoulsService'
 import { AbstractController } from './AbstractController'
 
-class NoteFoulsController extends AbstractController<INoteFouls, NoteFoulsService> {
-  constructor () {
-    super(noteFoulsService)
+@controller('/noteFouls')
+export class NoteFoulsController extends AbstractController<INoteFouls, NoteFoulsService> {
+  constructor (
+    @inject(NoteFoulsService)
+    protected readonly service: NoteFoulsService
+  ) { super() }
+
+  @httpGet('/students/:ra')
+  private async getByRaStudent (@requestParam('ra') ra: number) {
+    const raStudent = await this.service.getByRa(ra)
+
+    return raStudent
   }
 }
-
-export const noteFoulsController = new NoteFoulsController()
-
 // export const noteFoulsController = Router()
 
 // noteFoulsController.get('/get-all', async (req: Request, res: Response) => {

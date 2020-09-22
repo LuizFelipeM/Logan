@@ -1,12 +1,24 @@
+import { inject } from 'inversify'
 import { INoteFoulsDto } from '../domain/contracts/INoteFoulsDto'
-import { INoteFouls } from '../domain/interfaces/INoteFouls'
-import { NoteFoulsRepository, noteFoulsRepository } from '../repositories/noteFoulsRepository'
+import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
+import { NoteFoulsRepository, testeDTO } from '../repositories/NoteFoulsRepository'
 import { AbstractService } from './AbstractService'
 
 export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepository> {
-  constructor () {
-    super(noteFoulsRepository)
+  constructor (
+    @inject(NoteFoulsRepository)
+    protected readonly repository: NoteFoulsRepository
+  ) {
+    super()
   }// needs mapper to complete
+
+  getByRa = async (id: number): Promise<testeDTO[]> => {
+    if (id) {
+      return await this.repository.getByRaStudent(id)
+    } else {
+      throw new Error('TA ERRADO PORRA')
+    }
+  }
 }
 
 // const getNoteFouls = async (): Promise<INoteFouls[]> => await noteFoulsRepository.getNoteFouls()
@@ -19,5 +31,3 @@ export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepos
 //   // getNoteFoulsByStudentId,
 //   createNoteFouls
 // }
-
-export const noteFoulsService = new NoteFoulsService()

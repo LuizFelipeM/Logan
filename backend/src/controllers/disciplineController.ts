@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { IDiscipline } from '../domain/interfaces/IDiscipline'
+import { IDiscipline } from '../domain/interfaces/entities/IDiscipline'
 import { disciplineService } from '../services/disciplineService'
 
 export const disciplineController = Router()

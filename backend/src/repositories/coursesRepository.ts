@@ -1,11 +1,7 @@
 import { coursesTable } from '../database/common/coursesTable'
-import { ICourse } from '../domain/interfaces/ICourse'
+import { ICourse } from '../domain/interfaces/entities/ICourse'
 import { AbstractRepository } from './AbstractRepository'
 
 export class CoursesRepository extends AbstractRepository<ICourse> {
-  constructor () {
-    super(coursesTable)
-  }
+   protected readonly table = coursesTable
 }
-
-export const coursesRepository = new CoursesRepository()

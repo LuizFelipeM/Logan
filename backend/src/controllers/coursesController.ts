@@ -1,11 +1,15 @@
-import { ICourse } from '../domain/interfaces/ICourse'
-import { courseService, CourseService } from '../services/coursesService'
+import { inject } from 'inversify'
+import { controller } from 'inversify-express-utils'
+import { ICourse } from '../domain/interfaces/entities/ICourse'
+import { CourseService } from '../services/coursesService'
 import { AbstractController } from './AbstractController'
 
-class CoursesController extends AbstractController<ICourse, CourseService> {
-  constructor () {
-    super(CourseService)
+@controller('/course')
+export class CourseController extends AbstractController<ICourse, CourseService> {
+  constructor (
+    @inject(CourseService)
+    protected readonly service: CourseService
+  ) {
+    super()
   }
 }
-
-export const courseController = new CoursesController()

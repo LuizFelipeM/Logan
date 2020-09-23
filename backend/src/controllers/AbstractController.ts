@@ -11,8 +11,8 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   protected abstract readonly service: Service
 
   @httpGet('/')
-  private async getAll (@queryParam('filters') filters: string) {
-    return filters ? await this.service.getAll() : await this.getWithFilters(filters)
+  private async getAll () {
+    return await this.service.getAll()
   }
 
   @httpGet('/:id')

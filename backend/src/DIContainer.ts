@@ -1,5 +1,4 @@
 import { Container } from 'inversify'
-
 import { ClasseRepository } from './repositories/classesRepository'
 import { CoursesRepository } from './repositories/coursesRepository'
 import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
@@ -18,6 +17,8 @@ import { CampusService } from './services/CampusService'
 import { DisciplineRepository } from './repositories/DisciplineRepository'
 import { NoteFoulsService } from './services/NoteFoulsService'
 import { DisciplineService } from './services/DisciplineService'
+import { CalendarRepository } from './repositories/CalendarRepository'
+import { CalendarService } from './services/CalendarService'
 
 export const DIContainer = new Container()
 
@@ -33,6 +34,7 @@ DIContainer.bind<ClasseRepository>(ClasseRepository).toSelf()
 DIContainer.bind<NoteFoulsRepository>(NoteFoulsRepository).toSelf()
 DIContainer.bind<DisciplineRepository>(DisciplineRepository).toSelf()
 DIContainer.bind<CampusRepository>(CampusRepository).toSelf()
+DIContainer.bind<CalendarRepository>(CalendarRepository).toSelf()
 
 /**
  * Container SERVICES configuration binding
@@ -46,3 +48,4 @@ DIContainer.bind<ClassesService>(ClassesService).toSelf()
 DIContainer.bind<NoteFoulsService>(NoteFoulsService).toSelf()
 DIContainer.bind<DisciplineService>(DisciplineService).toSelf()
 DIContainer.bind<CampusService>(CampusService).toSelf()
+DIContainer.bind<CalendarService>(CalendarService).toSelf()

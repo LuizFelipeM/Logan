@@ -1,5 +1,5 @@
 import { injectable } from 'inversify'
-import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces } from 'inversify-express-utils'
+import { httpGet, httpPost, httpDelete, queryParam, requestParam, requestBody, interfaces } from 'inversify-express-utils'
 import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'

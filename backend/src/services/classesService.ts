@@ -1,13 +1,13 @@
-import { classesRepository } from '../repositories/classesRepository'
-import { IClass } from '../domain/interfaces/IClass'
+import { inject } from 'inversify'
+import { IClass } from '../domain/interfaces/entities/IClass'
+import { ClasseRepository } from '../repositories/classesRepository'
+import { AbstractService } from './AbstractService'
 
-const getClass = async (): Promise<IClass[]> => await classesRepository.getClass()
-const getClassById = async (id: number): Promise<IClass> => await classesRepository.getClassById(id)
-
-const createClass = async (Class: IClass): Promise<IClass> => await classesRepository.insertClass(Class)
-
-export const classService = {
-  getClass,
-  getClassById,
-  createClass
+export class ClassesService extends AbstractService<IClass, ClasseRepository> {
+  constructor (
+    @inject(ClasseRepository)
+    protected readonly repository: ClasseRepository
+  ) {
+    super()
+  }
 }

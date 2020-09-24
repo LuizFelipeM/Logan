@@ -1,21 +1,15 @@
 import { Container } from 'inversify'
-<<<<<<< HEAD
 import { DisciplineRepository } from './repositories/DisciplineRepository'
-=======
 import { ClasseRepository } from './repositories/classesRepository'
 import { CoursesRepository } from './repositories/coursesRepository'
->>>>>>> develop
 import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
 import { RuleRepository } from './repositories/RuleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
 import { UserRepository } from './repositories/UserRepository'
-<<<<<<< HEAD
 import { DisciplineService } from './services/DisciplineService'
-=======
 import { ClassesService } from './services/classesService'
 import { CourseService } from './services/coursesService'
->>>>>>> develop
 import { NoteFoulsService } from './services/NoteFoulsService'
 import { ProfileService } from './services/ProfileService'
 import { RuleService } from './services/RuleService'

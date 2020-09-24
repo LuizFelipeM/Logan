@@ -9,8 +9,8 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   protected abstract readonly service: Service
 
   @httpGet('/')
-  private async getAll (@queryParam('filters') filters: string) {
-    return filters ? await this.service.getAll() : await this.getWithFilters(filters)
+  private async getAll () {
+    return await this.service.getAll()
   }
 
   @httpGet('/:id')
@@ -28,17 +28,5 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   @httpDelete('/')
   private async delete (@requestBody() body: T) {
     this.service.remove(body)
-  }
-
-  private async getWithFilters (filtersString: string) {
-    const filters = filtersString.split('$')
-      .map(filter => {
-        const keyValue = filter.split('=')
-
-        return {
-          filter: keyValue[0],
-          value: keyValue[1]
-        }
-      })
   }
 }

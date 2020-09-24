@@ -1,12 +1,14 @@
 import { Container } from 'inversify'
 import { ClasseRepository } from './repositories/classesRepository'
 import { CoursesRepository } from './repositories/coursesRepository'
+import { CurrentsemesterRepository } from './repositories/currentsemesterRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
 import { RuleRepository } from './repositories/RuleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
 import { UserRepository } from './repositories/UserRepository'
 import { ClassesService } from './services/classesService'
 import { CourseService } from './services/coursesService'
+import { CurrentsemesterService } from './services/currentsemesterService'
 import { ProfileService } from './services/ProfileService'
 import { RuleService } from './services/RuleService'
 import { StudentService } from './services/StudentService'
@@ -23,7 +25,7 @@ DIContainer.bind<ProfileRepository>(ProfileRepository).toSelf()
 DIContainer.bind<StudentsRepository>(StudentsRepository).toSelf()
 DIContainer.bind<CoursesRepository>(CoursesRepository).toSelf()
 DIContainer.bind<ClasseRepository>(ClasseRepository).toSelf()
-
+DIContainer.bind<CurrentsemesterRepository>(CurrentsemesterRepository).toSelf()
 /**
  * Container SERVICES configuration binding
  */
@@ -33,3 +35,4 @@ DIContainer.bind<RuleService>(RuleService).toSelf()
 DIContainer.bind<UserService>(UserService).toSelf()
 DIContainer.bind<CourseService>(CourseService).toSelf()
 DIContainer.bind<ClassesService>(ClassesService).toSelf()
+DIContainer.bind<CurrentsemesterService>(CurrentsemesterService).toSelf()

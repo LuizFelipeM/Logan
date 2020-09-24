@@ -1,4 +1,3 @@
-
 import { inject } from 'inversify'
 import { controller } from 'inversify-express-utils'
 import { IUser } from '../domain/interfaces/entities/IUser'

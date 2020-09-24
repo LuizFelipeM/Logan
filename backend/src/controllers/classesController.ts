@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
+import { IClass } from '../domain/interfaces/entities/IClass'
 import { classService } from '../services/classesService'
-import { IClass } from '../domain/interfaces/IClass'
 
 export const classController = Router()
 

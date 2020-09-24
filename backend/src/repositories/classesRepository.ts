@@ -1,6 +1,6 @@
-import { IClass } from '../domain/interfaces/IClass'
 import { knex } from '../database/knex/dbConnection'
 import { classesTableName } from '../database/common/classesTable'
+import { IClass } from '../domain/interfaces/entities/IClass'
 
 const getClassById = async (id: number): Promise<IClass> => await knex(classesTableName)
   .select('*')

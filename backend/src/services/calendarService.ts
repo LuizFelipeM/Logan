@@ -1,5 +1,5 @@
 
-import { ICalendar } from '../domain/interfaces/ICalendar'
+import { ICalendar } from '../domain/interfaces/entities/ICalendar'
 import { calendarRepository } from '../repositories/calendarRepository'
 
 const getCalendarById = async (id: number): Promise<ICalendar> => await calendarRepository.getCalendarById(id)

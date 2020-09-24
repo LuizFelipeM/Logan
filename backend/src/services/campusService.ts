@@ -1,4 +1,5 @@
-import { ICampus } from '../domain/interfaces/ICampus'
+
+import { ICampus } from '../domain/interfaces/entities/ICampus'
 import { campusRepository } from '../repositories/campusRepository'
 
 const getCampus = async (): Promise<ICampus[]> => await campusRepository.getCampus()

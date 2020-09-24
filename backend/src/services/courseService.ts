@@ -1,4 +1,4 @@
-import { ICourse } from '../domain/interfaces/ICourse'
+import { ICourse } from '../domain/interfaces/entities/ICourse'
 import { courseRepository } from '../repositories/courseRepository'
 
 const getCourse = async (): Promise<ICourse[]> => courseRepository.getCourse()

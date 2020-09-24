@@ -1,6 +1,6 @@
 import { coursesTable } from '../database/common/coursesTable'
 import { knex } from '../database/knex/dbConnection'
-import { ICourse } from '../domain/interfaces/ICourse'
+import { ICourse } from '../domain/interfaces/entities/ICourse'
 
 const getCourseById = async (id: number): Promise<ICourse> => await knex(coursesTable)
   .select('*')

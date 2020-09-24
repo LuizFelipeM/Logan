@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { ICourse } from '../domain/interfaces/ICourse'
+import { ICourse } from '../domain/interfaces/entities/ICourse'
 import { courseService } from '../services/courseService'
 
 export const courseController = Router()

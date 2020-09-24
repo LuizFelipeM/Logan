@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { ICalendar } from '../domain/interfaces/ICalendar'
+import { ICalendar } from '../domain/interfaces/entities/ICalendar'
 import { calendarService } from '../services/calendarService'
 
 export const calendarController = Router()

@@ -1,14 +1,11 @@
+import { inject } from 'inversify'
 import { IDiscipline } from '../domain/interfaces/entities/IDiscipline'
-import { disciplineRepository } from '../repositories/disciplineRepository'
+import { DiciplineRepository } from '../repositories/DisciplineRepository'
+import { AbstractService } from './AbstractService'
 
-const getDisciplineById = async (id: number): Promise<IDiscipline> => await disciplineRepository.getdisciplineById(id)
-
-const getDiscipline = async (): Promise<IDiscipline[]> => await disciplineRepository.getdiscipline()
-
-const insertDiscipline = async (discipline: Omit<IDiscipline, 'id'>): Promise<IDiscipline> => await disciplineRepository.insertdiscipline(discipline)
-
-export const disciplineService = {
-  getDiscipline,
-  getDisciplineById,
-  insertDiscipline
+export class DiciplineService extends AbstractService<IDiscipline, DiciplineRepository> {
+  constructor (
+  @inject(DiciplineRepository)
+  protected readonly repository: DiciplineRepository
+  ) { super() }
 }

@@ -1,5 +1,5 @@
+import { IClass } from '../domain/interfaces/entities/IClass'
 import { classesRepository } from '../repositories/classesRepository'
-import { IClass } from '../domain/interfaces/IClass'
 
 const getClass = async (): Promise<IClass[]> => await classesRepository.getClass()
 const getClassById = async (id: number): Promise<IClass> => await classesRepository.getClassById(id)

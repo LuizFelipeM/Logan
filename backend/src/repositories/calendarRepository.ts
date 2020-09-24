@@ -1,6 +1,6 @@
 import { calendarTable } from '../database/common/calendarTable'
 import { knex } from '../database/knex/dbConnection'
-import { ICalendar } from '../domain/interfaces/ICalendar'
+import { ICalendar } from '../domain/interfaces/entities/ICalendar'
 
 const getCalendar = async (): Promise<ICalendar[]> => await knex(calendarTable)
   .select('*')

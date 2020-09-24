@@ -1,6 +1,6 @@
 import { campusTable } from '../database/common/campusTable'
 import { knex } from '../database/knex/dbConnection'
-import { ICampus } from '../domain/interfaces/ICampus'
+import { ICampus } from '../domain/interfaces/entities/ICampus'
 
 const getCampusById = async (id: number): Promise<ICampus> => await knex(campusTable)
   .select('*')

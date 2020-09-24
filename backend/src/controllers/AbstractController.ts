@@ -1,7 +1,5 @@
 import { injectable } from 'inversify'
 import { httpGet, httpPost, httpDelete, queryParam, requestParam, requestBody, interfaces } from 'inversify-express-utils'
-import { ParsedQs } from 'qs'
-import { FilterTypes } from '../domain/FilterTypes'
 import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
@@ -30,17 +28,5 @@ export abstract class AbstractController<T extends IBaseEntity, Service extends 
   @httpDelete('/')
   private async delete (@requestBody() body: T) {
     this.service.remove(body)
-  }
-
-  private async getWithFilters (filtersString: string) {
-    const filters = filtersString.split('$')
-      .map(filter => {
-        const keyValue = filter.split('=')
-
-        return {
-          filter: keyValue[0],
-          value: keyValue[1]
-        }
-      })
   }
 }

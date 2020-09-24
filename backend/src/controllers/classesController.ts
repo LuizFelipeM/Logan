@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Router, Request, Response } from 'express'
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { classService } from '../services/classesService'
@@ -43,3 +44,18 @@ classController.post('/', async (req: Request, res: Response) => {
     return res.status(404).json({ error })
   }
 })
+=======
+import { inject } from 'inversify'
+import { controller } from 'inversify-express-utils'
+import { IClass } from '../domain/interfaces/entities/IClass'
+import { ClassesService } from '../services/classesService'
+import { AbstractController } from './AbstractController'
+
+@controller('/class')
+export class ClassController extends AbstractController<IClass, ClassesService> {
+  constructor (
+    @inject(ClassesService)
+    protected readonly service: ClassesService
+  ) { super() }
+}
+>>>>>>> develop

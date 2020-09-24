@@ -14,11 +14,11 @@ import { StudentService } from './services/StudentService'
 import { UserService } from './services/UserService'
 import { CampusRepository } from './repositories/CampusRepository'
 import { CampusService } from './services/CampusService'
-import { DisciplineRepository } from './repositories/DisciplineRepository'
-import { NoteFoulsService } from './services/NoteFoulsService'
 import { DisciplineService } from './services/DisciplineService'
 import { CalendarRepository } from './repositories/CalendarRepository'
 import { CalendarService } from './services/CalendarService'
+import { DisciplineRepository } from './repositories/DisciplineRepository'
+import { NoteFoulsService } from './services/NoteFoulsService'
 
 export const DIContainer = new Container()
 

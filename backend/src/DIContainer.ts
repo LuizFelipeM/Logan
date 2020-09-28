@@ -5,6 +5,7 @@ import { CurrentsemesterRepository } from './repositories/currentsemesterReposit
 import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
 import { ProfessorRepository } from './repositories/professorRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
+import { RegistryRepository } from './repositories/registryRepository'
 import { RuleRepository } from './repositories/RuleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
 import { UserRepository } from './repositories/UserRepository'
@@ -14,6 +15,7 @@ import { CurrentsemesterService } from './services/currentsemesterService'
 import { NoteFoulsService } from './services/NoteFoulsService'
 import { ProfessorService } from './services/professorService'
 import { ProfileService } from './services/ProfileService'
+import { RegistryService } from './services/registryService'
 import { RuleService } from './services/RuleService'
 import { StudentService } from './services/StudentService'
 import { UserService } from './services/UserService'
@@ -32,6 +34,7 @@ DIContainer.bind<ClasseRepository>(ClasseRepository).toSelf()
 DIContainer.bind<CurrentsemesterRepository>(CurrentsemesterRepository).toSelf()
 DIContainer.bind<NoteFoulsRepository>(NoteFoulsRepository).toSelf()
 DIContainer.bind<ProfessorRepository>(ProfessorRepository).toSelf()
+DIContainer.bind<RegistryRepository>(RegistryRepository).toSelf()
 /**
  * Container SERVICES configuration binding
  */
@@ -44,3 +47,4 @@ DIContainer.bind<ClassesService>(ClassesService).toSelf()
 DIContainer.bind<CurrentsemesterService>(CurrentsemesterService).toSelf()
 DIContainer.bind<NoteFoulsService>(NoteFoulsService).toSelf()
 DIContainer.bind<ProfessorService>(ProfessorService).toSelf()
+DIContainer.bind<RegistryService>(RegistryService).toSelf()

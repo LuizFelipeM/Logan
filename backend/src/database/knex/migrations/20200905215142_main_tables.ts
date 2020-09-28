@@ -58,18 +58,18 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(statusRegistryTableName, function (table) {
       table.increments('id').primary()
 
-      table.string('statusRegistry', 50).notNullable()
+      table.string('name', 50).notNullable()
     })
 
     .createTableIfNotExists(registryTableName, function (table) {
       table.increments('id').primary()
 
       table.integer('status').notNullable()
-      table.timestamp('openRegistry', { precision: 6 }).defaultTo(knex.fn.now(6))
+      table.timestamp('startRegistry', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('endEstimate', { precision: 6 }).notNullable()
       table.string('periodStudy', 20)
       table.text('observation')
-      table.string('familiarIncome', 50)
+      table.decimal('familiarIncome')
       table.text('originInstitution')
 
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))

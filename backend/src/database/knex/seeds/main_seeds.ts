@@ -1,5 +1,7 @@
 import * as Knex from 'knex'
 
+import { campusTableName } from '../../common/campusTable'
+import { coursesTableName } from '../../common/coursesTable'
 import { profilesTableName } from '../../common/profilesTable'
 import { registryTableName } from '../../common/registryTable'
 import { rulesTableName } from '../../common/rulesTable'
@@ -14,6 +16,8 @@ export async function seed (knex: Knex): Promise<void> {
   const type = await typeDiscipline(knex)
   const status = await statusRegistry(knex)
   await registry(knex, status)
+  const campusId = await campus(knex)
+  await courses(knex, campusId)
 }
 async function users (knex: Knex): Promise<void> {
   await knex(usersTableName).del()
@@ -133,6 +137,48 @@ async function registry (knex:Knex, status: number[]): Promise<void> {
       familiarIncome: 1968.44,
       originInstitution: 'Bacelar',
       status: status[1]
+    }
+  ])
+}
+
+async function campus (knex:Knex):Promise<number[]> {
+  await knex(campusTableName).del()
+
+  const id = await knex(campusTableName).insert([
+    {
+      name: 'Anchieta',
+      uf: 'SP'
+    },
+    {
+      name: 'Bacelar',
+      uf: 'SP'
+    },
+    {
+      name: 'Jundiaí',
+      uf: 'MG'
+    }
+  ]).returning('id')
+  return id
+}
+
+async function courses (knex:Knex, campus:number[]): Promise<void> {
+  await knex(coursesTableName).del()
+
+  await knex(coursesTableName).insert([
+    {
+      campus: campus[0],
+      totalSemester: 6,
+      name: 'Fisica'
+    },
+    {
+      campus: campus[2],
+      totalSemester: 10,
+      name: 'Eng. da Computação'
+    },
+    {
+      campus: campus[1],
+      totalSemester: 4,
+      name: 'Artes'
     }
   ])
 }

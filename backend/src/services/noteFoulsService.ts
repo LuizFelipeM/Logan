@@ -7,9 +7,7 @@ export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepos
   constructor (
     @inject(NoteFoulsRepository)
     protected readonly repository: NoteFoulsRepository
-  ) {
-    super()
-  }// needs mapper to complete
+  ) { super() }// needs mapper to complete
 
   getByRa = async (id: number): Promise<testeDTO[]> => {
     if (id) {

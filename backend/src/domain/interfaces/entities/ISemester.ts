@@ -4,12 +4,12 @@ export interface ISemester extends IBaseEntity {
     currentSemester: number
     calendar: number
     discipline: number
-    evalP1Start: Date
-    evalP1end: Date
-    evalP2Start: Date
-    evalP2end: Date
-    evalSubStart: Date
-    evalSubEnd: Date
-    evalExamStart: Date
-    evalExamEnd: Date
+    evalP1Start: string
+    evalP1end: string
+    evalP2Start: string
+    evalP2end: string
+    evalSubStart: string
+    evalSubEnd: string
+    evalExamStart: string
+    evalExamEnd: string
 }

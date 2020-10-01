@@ -1,5 +1,5 @@
 import { Override } from '../../@types/override'
-import { IDiscipline } from '../interfaces/IDiscipline'
+import { IDiscipline } from '../interfaces/entities/IDiscipline'
 import { ICourseDto } from './ICourseDto'
 import { ITypeDisciplineDto } from './ITypeDiciplineDto'
 

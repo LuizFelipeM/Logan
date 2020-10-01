@@ -79,10 +79,10 @@ export async function up (knex: Knex): Promise<void> {
     })
 
     .createTableIfNotExists(professorTableName, function (table) {
-      table.integer('id').primary()
-      table.integer('usuario')
+      table.increments('id').primary()
+      table.integer('user')
 
-      table.foreign('usuario').references('id').inTable(usersTableName)
+      table.foreign('user').references('id').inTable(usersTableName)
     })
 
     .createTableIfNotExists(subjectsTableName, function (table) {
@@ -103,10 +103,10 @@ export async function up (knex: Knex): Promise<void> {
       table.integer('discipline').notNullable()
       table.integer('semester').notNullable()
 
-      table.decimal('noteP1', 2, 2).notNullable()
-      table.decimal('noteP2', 2, 2).notNullable()
-      table.decimal('noteSub', 2, 2).notNullable()
-      table.decimal('noteExam', 2, 2).notNullable()
+      table.decimal('noteP1', 4, 2).notNullable()
+      table.decimal('noteP2', 4, 2).notNullable()
+      table.decimal('noteSub', 4, 2).notNullable()
+      table.decimal('noteExam', 4, 2).notNullable()
       table.integer('finalNote').notNullable()
       table.integer('fouls').notNullable()
 

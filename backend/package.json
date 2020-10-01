@@ -8,10 +8,12 @@
     "start": "node --inspect=5858 -r ts-node/register -r dotenv/config ./src/server.ts",
     "dev": "nodemon",
     "test": "jest",
-    "knex:make": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:make -x ts",
-    "knex:up": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:up",
-    "knex:latest": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:latest",
-    "knex:rollback": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:rollback"
+    "migrate:make": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:make -x ts",
+    "migrate:up": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:up",
+    "migrate:latest": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:latest",
+    "migrate:rollback": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:rollback",
+    "seed:run": "npx knex --knexfile ./src/database/knex/knexfile.ts seed:run",
+    "seed:make": "npx knex --knexfile ./src/database/knex/knexfile.ts seed:make"
   },
   "repository": {
     "type": "git",

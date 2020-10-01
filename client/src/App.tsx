@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { Container } from 'react-bootstrap';
+import { Routes } from './Router';
+import { UserProvider } from './contexts/UserContext';
+import { WrapperProvider } from './contexts/WrapperContext';
+
+import './styles/App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="body-container">
+      <UserProvider>
+        <WrapperProvider>
+          <Routes/>
+        </WrapperProvider>
+      </UserProvider>
+    </Container>
   );
 }
 

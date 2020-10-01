@@ -1,0 +1,14 @@
+@import 'src/styles/colorPalette.scss';
+
+.app-card {
+    border-radius: 8px !important;
+    max-width: 35vw;
+    min-height: 450px;
+    overflow: auto;
+
+    .app-card-header {
+        color: white;
+        background-color: $primary-color !important;
+        border-radius: 8px 8px 0 0 !important;
+    }
+}

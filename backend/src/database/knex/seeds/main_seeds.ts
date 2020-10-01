@@ -19,6 +19,7 @@ import { typeDisciplineTableName } from '../../common/typeDisciplineTable'
 import { usersTableName } from '../../common/usersTable'
 
 export async function seed (knex: Knex): Promise<void> {
+  await delAll(knex)
   const rul = await rules(knex)
   const profi = await profiles(knex)
   const status = await statusRegistry(knex)
@@ -39,10 +40,28 @@ export async function seed (knex: Knex): Promise<void> {
   const studen = await students(knex, user, ra, courId, clas)
   await noteFouls(knex, studen, disId, semester)
 }
+async function delAll (knex:Knex): Promise<void> {
+  await knex(noteFoulsTableName).del()
+  await knex(studentsTableName).del()
+  await knex(rulesInProfilesTableName).del()
+  await knex(subjectsTableName).del()
+  await knex(currentSemesterTableName).del()
+  await knex(disciplineTableName).del()
 
-async function users (knex: Knex, profi:number[]): Promise<number[]> {
+  await knex(professorTableName).del()
+  await knex(classesTableName).del()
+  await knex(coursesTableName).del()
+  await knex(registryTableName).del()
   await knex(usersTableName).del()
 
+  await knex(campusTableName).del()
+  await knex(calendarTableName).del()
+  await knex(typeDisciplineTableName).del()
+  await knex(statusRegistryTableName).del()
+  await knex(profilesTableName).del()
+  await knex(rulesTableName).del()
+}
+async function users (knex: Knex, profi:number[]): Promise<number[]> {
   const id = await knex(usersTableName).insert([
     {
       firstName: 'Lucas',
@@ -77,8 +96,6 @@ async function users (knex: Knex, profi:number[]): Promise<number[]> {
 }
 
 async function profiles (knex:Knex): Promise<number[]> {
-  await knex(profilesTableName).del()
-
   const id = await knex(profilesTableName).insert([
     {
       name: 'Coordenador'
@@ -98,8 +115,6 @@ async function profiles (knex:Knex): Promise<number[]> {
 }
 
 async function rules (knex:Knex): Promise<number[]> {
-  await knex(rulesTableName).del()
-
   const id = await knex(rulesTableName).insert([
     {
       name: 'Acesso Total',
@@ -114,8 +129,6 @@ async function rules (knex:Knex): Promise<number[]> {
 }
 
 async function typeDiscipline (knex:Knex): Promise<number[]> {
-  await knex(typeDisciplineTableName).del()
-
   const id = await knex(typeDisciplineTableName).insert([
     {
       name: 'EAD'
@@ -128,8 +141,6 @@ async function typeDiscipline (knex:Knex): Promise<number[]> {
 }
 
 async function statusRegistry (knex:Knex): Promise<number[]> {
-  await knex(statusRegistryTableName).del()
-
   const ids = await knex(statusRegistryTableName).insert([
     {
       name: 'Ativado'
@@ -145,8 +156,6 @@ async function statusRegistry (knex:Knex): Promise<number[]> {
 }
 
 async function registry (knex:Knex, status: number[]): Promise<number[]> {
-  await knex(registryTableName).del()
-
   const id = await knex(registryTableName).insert([
     {
       startRegistry: new Date(2014, 2, 3).toISOString(),
@@ -177,8 +186,6 @@ async function registry (knex:Knex, status: number[]): Promise<number[]> {
 }
 
 async function campus (knex:Knex):Promise<number[]> {
-  await knex(campusTableName).del()
-
   const id = await knex(campusTableName).insert([
     {
       name: 'Anchieta',
@@ -197,8 +204,6 @@ async function campus (knex:Knex):Promise<number[]> {
 }
 
 async function courses (knex:Knex, campus:number[]): Promise<number[]> {
-  await knex(coursesTableName).del()
-
   const id = await knex(coursesTableName).insert([
     {
       campus: campus[0],
@@ -221,8 +226,6 @@ async function courses (knex:Knex, campus:number[]): Promise<number[]> {
 }
 
 async function calendar (knex:Knex): Promise<number[]> {
-  await knex(calendarTableName).del()
-
   const id = await knex(calendarTableName).insert([
     {
       startAcademicYear: new Date(2014, 2, 3).toISOString(),
@@ -241,8 +244,6 @@ async function calendar (knex:Knex): Promise<number[]> {
 }
 
 async function discipline (knex:Knex, courses: number[], typeDis: number[]): Promise<number[]> {
-  await knex(disciplineTableName).del()
-
   const id = await knex(disciplineTableName).insert([
     {
       courses: courses[0],
@@ -267,8 +268,6 @@ async function discipline (knex:Knex, courses: number[], typeDis: number[]): Pro
 }
 
 async function rulesInProfile (knex:Knex, rul: number[], profi: number[]): Promise<void> {
-  await knex(rulesInProfilesTableName).del()
-
   await knex(rulesInProfilesTableName).insert([
     {
       profile: profi[2],
@@ -282,8 +281,6 @@ async function rulesInProfile (knex:Knex, rul: number[], profi: number[]): Promi
 }
 
 async function currentSemester (knex: Knex, disId: number[], calen:number[]): Promise<number[]> {
-  await knex(currentSemesterTableName).del()
-
   const id = await knex(currentSemesterTableName).insert([
     {
       discipline: disId[0],
@@ -302,8 +299,6 @@ async function currentSemester (knex: Knex, disId: number[], calen:number[]): Pr
 }
 
 async function classes (knex:Knex, cour:number[]): Promise<number[]> {
-  await knex(classesTableName).del()
-
   const id = await knex(classesTableName).insert([
     {
       course: cour[0]
@@ -319,12 +314,10 @@ async function classes (knex:Knex, cour:number[]): Promise<number[]> {
 }
 
 async function students (knex:Knex, user:number[], ra:number[], cour: number[], clas:number[]): Promise<number[]> {
-  await knex(studentsTableName).del()
-
   const id = await knex(studentsTableName).insert([
     {
       user: user[0],
-      ra: ra[0],
+      ra: ra[1],
       course: cour[1],
       class: clas[1]
     },
@@ -336,7 +329,7 @@ async function students (knex:Knex, user:number[], ra:number[], cour: number[], 
     },
     {
       user: user[1],
-      ra: ra[0],
+      ra: ra[2],
       course: cour[1],
       class: clas[1]
     }
@@ -345,8 +338,6 @@ async function students (knex:Knex, user:number[], ra:number[], cour: number[], 
 }
 
 async function professor (knex:Knex, user:number[]): Promise<number[]> {
-  await knex(professorTableName).del()
-
   const id = await knex(professorTableName).insert([
     {
       user: user[3]
@@ -356,8 +347,6 @@ async function professor (knex:Knex, user:number[]): Promise<number[]> {
 }
 
 async function subject (knex:Knex, profes:number[], disId:number[], clas:number[]): Promise<void> {
-  await knex(subjectsTableName).del()
-
   await knex(subjectsTableName).insert([
     {
       professor: profes[0],
@@ -368,8 +357,6 @@ async function subject (knex:Knex, profes:number[], disId:number[], clas:number[
 }
 
 async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:number[]): Promise<void> {
-  await knex(noteFoulsTableName).del()
-
   await knex(noteFoulsTableName).insert([
     {
       students: studen[1],

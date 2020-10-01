@@ -1,4 +1,4 @@
-import { Override } from '../../@types/override'
+import { Override } from '../../../@types/override'
 import { IRegistry } from '../interfaces/IRegistry'
 import { IStatusRegistryDto } from './IStatusRegistryDto'
 

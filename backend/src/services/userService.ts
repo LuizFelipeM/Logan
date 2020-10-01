@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { IUserDto } from '../domain/contracts/IUserDto'
+import { IUserDto } from '../domain/interfaces/contracts/IUserDto'
 import { UserRepository } from '../repositories/UserRepository'
 import { toUserDto } from '../domain/mappers/userMapper'
 import { AbstractService } from './AbstractService'

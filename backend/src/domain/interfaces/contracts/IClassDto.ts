@@ -1,4 +1,4 @@
-import { Override } from '../../@types/override'
+import { Override } from '../../../@types/override'
 import { IClass } from '../interfaces/IClass'
 import { ICourseDto } from './ICourseDto'
 

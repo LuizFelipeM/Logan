@@ -1,5 +1,5 @@
-import { Override } from '../../@types/override'
-import { ISubject } from '../interfaces/entities/ISubject'
+import { Override } from '../../../@types/override'
+import { ISubject } from '../entities/ISubject'
 import { IClassDto } from './IClassDto'
 import { IDisciplineDto } from './IDiciplineDto'
 import { IProfessorDto } from './IProfessorDto'

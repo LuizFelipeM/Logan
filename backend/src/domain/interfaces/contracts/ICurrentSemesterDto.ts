@@ -1,4 +1,4 @@
-import { Override } from '../../@types/override'
+import { Override } from '../../../@types/override'
 import { ICurrentSemester } from '../interfaces/ICurrentSemester'
 import { IcalendarDto } from './ICalenderDto'
 import { IDisciplineDto } from './IDiciplineDto'

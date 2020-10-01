@@ -1,4 +1,4 @@
-import { Override } from '../../@types/override'
+import { Override } from '../../../@types/override'
 import { IRule } from '../interfaces/IRule'
 import { IProfileDto } from './IProfileDto'
 

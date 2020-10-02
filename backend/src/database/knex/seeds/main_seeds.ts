@@ -246,19 +246,19 @@ async function calendar (knex:Knex): Promise<number[]> {
 async function discipline (knex:Knex, courses: number[], typeDis: number[]): Promise<number[]> {
   const id = await knex(disciplineTableName).insert([
     {
-      courses: courses[0],
+      course: courses[0],
       typeDiscipline: typeDis[0],
       name: 'Fisica I',
       workload: 50
     },
     {
-      courses: courses[2],
+      course: courses[2],
       typeDiscipline: typeDis[1],
       name: 'Isometria',
       workload: 120
     },
     {
-      courses: courses[2],
+      course: courses[2],
       typeDiscipline: typeDis[1],
       name: 'Calculo',
       workload: 150

@@ -1,3 +1,3 @@
-import { ICampus } from '../interfaces/ICampus'
+import { ICampus } from '../entities/ICampus'
 
 export type ICampusDto = ICampus

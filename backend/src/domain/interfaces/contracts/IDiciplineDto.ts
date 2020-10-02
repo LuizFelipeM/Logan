@@ -5,5 +5,5 @@ import { ITypeDisciplineDto } from './ITypeDiciplineDto'
 
 export type IDisciplineDto = Override<IDiscipline, {
     course: ICourseDto
-    typediscipline: ITypeDisciplineDto
+    typeDiscipline: ITypeDisciplineDto
 }>

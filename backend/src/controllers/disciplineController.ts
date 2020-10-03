@@ -11,8 +11,12 @@ export class DisciplineController extends AbstractController<IDiscipline, Discip
     protected readonly service: DisciplineService
   ) { super() }
 
+  // @httpGet('/typeWorkload')
+  // private async getTypeWorkload () {
+  //   return await this.service.getAllDisciplineWithTypeAndWorkload()
+  // }
   @httpGet('/typeWorkload')
   private async getTypeWorkload () {
-    return await this.service.getAllDisciplineWithTypeAndWorkload()
+    return await this.service.getDisciplineWithTypeandWorkload()
   }
 }

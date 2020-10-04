@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import AppCard, { AppCardProps } from '../AppCard'
+import AppCard, { AppCardProps } from '../StandardCard'
 
 import './style.scss'
 
@@ -15,19 +15,21 @@ interface TableCardProps {
   dataSource: any[]
 }
 
-const DataGridCard: React.FC<TableCardProps & AppCardProps> = (props) => (
+const DataGridCard: React.FC<TableCardProps & AppCardProps> = ({
+  header, img, title, footer, columnConfig, dataSource
+}) => (
   <AppCard
-    header={props.header}
-    footer={props.footer}
-    title={props.title}
-    img={props.img}
+    header={header}
+    footer={footer}
+    title={title}
+    img={img}
   >
     <Table striped borderless hover>
       <thead>
         <tr>
-          {props.columnConfig.map((column, i) => (
+          {columnConfig.map((column, index) => (
             <th
-              key={i}
+              key={index}
               className={`table-header identifier-${column.key}`}
             >
               {column.name}
@@ -36,9 +38,9 @@ const DataGridCard: React.FC<TableCardProps & AppCardProps> = (props) => (
         </tr>
       </thead>
       <tbody>
-        {props.dataSource.map((val, i) => (
-          <tr key={i}>
-            {props.columnConfig.map((config, index) => <td key={`${config.key}-${index}`}>{val[config.key]}</td>)}
+        {dataSource.map((val, index) => (
+          <tr key={index}>
+            {columnConfig.map((config, i) => <td key={`${config.key}-${i}`}>{val[config.key]}</td>)}
           </tr>
         ))}
       </tbody>
@@ -46,4 +48,4 @@ const DataGridCard: React.FC<TableCardProps & AppCardProps> = (props) => (
   </AppCard>
 )
 
-export default DataGridCard;
+export default DataGridCard

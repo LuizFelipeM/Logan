@@ -1,0 +1,41 @@
+@import "src/styles/colorPalette.scss";
+
+.side-menu-item {
+  font-size: 20px;
+  margin: 12px 0;
+
+  &:hover {
+    * {
+      color: $primary-color;
+    }
+  }
+
+  * {
+    color: $text-color;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &.selected {
+    border-right: 3px solid $primary-color;
+
+    * {
+      color: $primary-color;
+    }
+  }
+
+  &.logo {
+    font-size: 30px;
+
+    * {
+      color: $not-selected-color;
+    }
+  }
+
+  .side-menu-icon {
+    width: 1.125em;
+    margin-right: 10px;
+  }
+}

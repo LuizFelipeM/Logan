@@ -1,8 +1,8 @@
-import React from 'react';
-import DataGridCard from '../../components/DataGridCard';
+import React from 'react'
+import DataGridCard from '../../../../components/DataGridCard'
 
-const AcademicCalendar: React.FC = () => {
-  return <DataGridCard
+const AcademicCalendar: React.FC = () => (
+  <DataGridCard
     header="Teste"
     columnConfig={[
       {
@@ -14,13 +14,14 @@ const AcademicCalendar: React.FC = () => {
       }, {
         name: 'Custo',
         key: 'val'
-      }]}
-    dataSource={[ {
+      }
+    ]}
+    dataSource={[{
       id: 1,
       name: 'caneta',
       value: 1.99
     }]}
-  />;
-}
+  />
+)
 
-export default AcademicCalendar;
+export default AcademicCalendar

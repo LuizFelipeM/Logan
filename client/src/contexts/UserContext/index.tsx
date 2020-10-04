@@ -1,5 +1,5 @@
-import React, { createContext, ReactNode, useState } from 'react';
-import { IUser } from '../../interfaces/IUser';
+import React, { createContext, ReactNode, useState } from 'react'
+import { IUser } from '../../interfaces/IUser'
 
 interface UserContextProps {
     children: ReactNode
@@ -11,16 +11,16 @@ interface Context {
 }
 
 const UserContext = createContext<Context>({ currentUser: undefined, setCurrentUser: () => {} })
-const Provider = UserContext.Provider
+const { Provider } = UserContext
 
-const UserProvider: React.FC<UserContextProps> = (props) => {
-    const [currentUser, setCurrentUser] = useState<Partial<IUser> | undefined>(undefined)
+const UserProvider: React.FC<UserContextProps> = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState<Partial<IUser> | undefined>(undefined)
 
-    return (
-        <Provider value={{ currentUser, setCurrentUser }}>
-            {props.children}
-        </Provider>
-    );
+  return (
+    <Provider value={{ currentUser, setCurrentUser }}>
+      {children}
+    </Provider>
+  )
 }
 
-export { UserProvider };
+export { UserContext, UserProvider }

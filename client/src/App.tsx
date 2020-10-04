@@ -1,21 +1,23 @@
-import * as React from 'react';
-import { Container } from 'react-bootstrap';
-import { Routes } from './Router';
-import { UserProvider } from './contexts/UserContext';
-import { WrapperProvider } from './contexts/WrapperContext';
+import React from 'react'
+import { Container, Row } from 'react-bootstrap'
+import Routes from './panels/admin/Routes'
+import { UserProvider } from './contexts/UserContext'
+import { WrapperProvider } from './contexts/WrapperContext'
 
-import './styles/App.scss';
+import './styles/App.scss'
 
 function App() {
   return (
-    <Container className="body-container">
+    <Container className="body-wrapper" fluid>
       <UserProvider>
         <WrapperProvider>
-          <Routes/>
+          <Row>
+            <Routes />
+          </Row>
         </WrapperProvider>
       </UserProvider>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App

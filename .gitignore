@@ -3,7 +3,6 @@
 # dependencies
 **/node_modules
 **/.pnp
-**/assets
 **/.pnp.js
 **/package-lock.json
 
@@ -14,7 +13,6 @@
 /build
 
 # misc
-**/.vscode
 **/.env
 .DS_Store
 .env.local

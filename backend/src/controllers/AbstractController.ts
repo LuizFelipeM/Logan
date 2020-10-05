@@ -8,12 +8,12 @@ import { AbstractService } from '../services/AbstractService'
 export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> implements interfaces.Controller {
   protected abstract readonly service: Service
 
-  @httpGet('/')
+  @httpGet('/getAll')
   private async getAll () {
     return await this.service.getAll()
   }
 
-  @httpGet('/:id')
+  @httpGet('/getById/:id')
   private async getById (@requestParam('id') id: number) {
     const data = await this.service.getById(id)
 

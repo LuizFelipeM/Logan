@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { controller } from 'inversify-express-utils'
+import { controller, httpGet } from 'inversify-express-utils'
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { ClassesService } from '../services/classesService'
 import { AbstractController } from './AbstractController'
@@ -10,4 +10,10 @@ export class ClassController extends AbstractController<IClass, ClassesService> 
     @inject(ClassesService)
     protected readonly service: ClassesService
   ) { super() }
+
+  @httpGet('/filterClass')
+  private async filterClass () {
+    const data = await this.service.getClassWithCourse()
+    return data
+  }
 }

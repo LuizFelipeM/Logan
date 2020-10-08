@@ -1,14 +1,19 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
-export default function BaseService<T>(path: string) {
-  const api = axios.create({
-    baseURL: 'http://localhost:8080'
-  })
+export default abstract class BaseService<T> {
+  protected api: AxiosInstance
 
-  return {
-    getAll: () => api.get(path),
-    getById: (id: number) => api.get(path, { params: id }),
-    create: (data: T) => api.post(path, data),
-    delete: (id: number) => api.delete(path, { params: id })
+  constructor(path: string) {
+    this.api = axios.create({
+      baseURL: `http://localhost:8080/${path}`
+    })
   }
+
+  getAll = async (): Promise<T[]> => (await this.api.get('/getAll')).data
+
+  getById = async (id: number): Promise<T> => (await this.api.get('/getById', { params: id })).data
+
+  create = (data: T): Promise<void> => this.api.post('/', data)
+
+  delete = (id: number): Promise<void> => this.api.delete('/', { params: id })
 }

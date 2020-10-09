@@ -3,6 +3,8 @@ import { Container } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import RoutesConfig from '../../@types/RoutesConfig'
 
+import './style.scss'
+
 const DisplayContainer: React.FC<{ config: RoutesConfig }> = ({ config }) => {
   const configs = Object.entries(config)
 

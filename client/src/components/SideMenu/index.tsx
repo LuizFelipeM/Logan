@@ -33,12 +33,13 @@ const SideMenu: React.FC<SideMenuProps> = ({ config }) => {
           return (
             <Item
               key={route[0]}
-              className={`side-menu-item ${name.toLowerCase().replace(/ /gm, '-')} ${isSelected ? 'selected' : ''}`}
+              className={`side-menu-item ${route[0]} ${isSelected ? 'selected' : ''}`}
             >
               <Link className="side-menu-link" to={path}>
                 {icon && <FontAwesomeIcon className="side-menu-icon" icon={icon} size="lg" />}
-                {name}
+                <span className="side-menu-name">{name}</span>
               </Link>
+              {isSelected && <span className="side-menu-selectedbar" />}
             </Item>
           )
         })}

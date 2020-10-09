@@ -11,7 +11,7 @@ function App() {
     <Container className="body-wrapper" fluid>
       <UserProvider>
         <WrapperProvider>
-          <Row>
+          <Row className="body-content">
             <Routes />
           </Row>
         </WrapperProvider>

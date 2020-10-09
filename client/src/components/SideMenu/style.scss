@@ -1,6 +1,7 @@
 @import "src/styles/colorPalette.scss";
 
 .side-menu-item {
+  position: relative;
   font-size: 20px;
   margin: 12px 0;
 
@@ -19,7 +20,7 @@
   }
 
   &.selected {
-    border-right: 3px solid $primary-color;
+    // border-right: 3px solid $primary-color;
 
     * {
       color: $primary-color;
@@ -27,6 +28,7 @@
   }
 
   &.logo {
+    text-align: center;
     font-size: 30px;
 
     * {
@@ -35,12 +37,24 @@
   }
 
   .side-menu-icon {
+    margin: auto 10px auto 0;
     width: 1.125em;
-    margin-right: 10px;
   }
 
   .side-menu-link {
+    display: flex !important;
     width: auto;
     display: block;
+  }
+
+  .side-menu-selectedbar {
+    display: block;
+    width: 3px;
+    position: absolute;
+    height: 100%;
+    background-color: #618dff;
+    top: -50%;
+    transform: translate(0px, 50%);
+    right: -7.5%;
   }
 }

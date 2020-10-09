@@ -1,13 +1,28 @@
 @import "~bootstrap/scss/bootstrap";
+@import "src/styles/colorPalette.scss";
 @import "node_modules/react-vis/dist/style";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;900&display=swap");
 
 .body-wrapper {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 100vh;
 
   * {
     transition: 0.2s all;
     font-family: "Roboto", sans-serif;
+  }
+
+  .body-content {
+    height: 100vh;
+
+    .display-col {
+      background-color: $background-color;
+    }
+    // width: fit-content!important;
+    // margin: 0 10%;
+
+    .side-menu-col,
+    .display-col {
+      padding: 20px;
+    }
   }
 }

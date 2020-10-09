@@ -7,10 +7,10 @@ import DisplayContainer from '../../../components/DisplayContainer'
 
 const Routes: React.FC = () => (
   <BrowserRouter>
-    <Col xs={2}>
+    <Col xs={3} className="side-menu-col">
       <SideMenu config={routesConfig} />
     </Col>
-    <Col>
+    <Col className="display-col">
       <DisplayContainer config={routesConfig} />
     </Col>
   </BrowserRouter>

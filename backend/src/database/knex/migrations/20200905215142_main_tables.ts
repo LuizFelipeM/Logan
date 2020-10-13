@@ -88,7 +88,7 @@ export async function up (knex: Knex): Promise<void> {
       table.increments('id').primary()
 
       table.integer('campus')
-      table.integer('totalSemester')
+      table.integer('total_semester')
       table.string('name', 50)
 
       table.foreign('campus').references('id').inTable(campusTableName)

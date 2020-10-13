@@ -207,17 +207,17 @@ async function courses (knex:Knex, campus:number[]): Promise<number[]> {
   const id = await knex(coursesTableName).insert([
     {
       campus: campus[0],
-      totalSemester: 6,
+      total_semester: 6,
       name: 'Fisica'
     },
     {
       campus: campus[2],
-      totalSemester: 10,
+      total_semester: 10,
       name: 'Eng. da Computação'
     },
     {
       campus: campus[1],
-      totalSemester: 4,
+      total_semester: 4,
       name: 'Artes'
     }
   ]).returning('id')

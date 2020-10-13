@@ -1,2 +1,4 @@
+import { Table } from '../../@types/Table'
+
 export const statusRegistryTableName = 'status_registry'
-export const statusRegistryTable = { t1: statusRegistryTableName }
+export const statusRegistryTable: Table = { t1: statusRegistryTableName }

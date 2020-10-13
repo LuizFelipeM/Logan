@@ -367,7 +367,7 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       noteP2: 7.00,
       noteSub: 0,
       noteExam: 8.00,
-      finalNote: 7.00,
+      finalnote: 7.00,
       fouls: 4
     },
     {
@@ -379,7 +379,7 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       noteP2: 7.00,
       noteSub: 0,
       noteExam: 0,
-      finalNote: 7.00,
+      finalnote: 7.00,
       fouls: 1
     },
     {
@@ -391,7 +391,7 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       noteP2: 6.50,
       noteSub: 0,
       noteExam: 0,
-      finalNote: 7.00,
+      finalnote: 7.00,
       fouls: 7
     }
   ])

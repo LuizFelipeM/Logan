@@ -107,7 +107,7 @@ export async function up (knex: Knex): Promise<void> {
       table.decimal('noteP2', 4, 2).notNullable()
       table.decimal('noteSub', 4, 2).notNullable()
       table.decimal('noteExam', 4, 2).notNullable()
-      table.integer('finalNote').notNullable()
+      table.decimal('finalnote', 4, 2).notNullable()
       table.integer('fouls').notNullable()
 
       table.foreign('students').references('id').inTable(studentsTableName)

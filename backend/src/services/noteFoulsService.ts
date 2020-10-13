@@ -1,19 +1,33 @@
 import { inject } from 'inversify'
+import { ISpecificCourseDto } from '../domain/interfaces/contracts/ISpecificCourseDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
-import { NoteFoulsRepository, testeDTO } from '../repositories/NoteFoulsRepository'
+import { ClasseRepository } from '../repositories/classesRepository'
+import { CurrentsemesterRepository } from '../repositories/currentsemesterRepository'
+import { NoteFoulsRepository } from '../repositories/NoteFoulsRepository'
+import { ProfessorRepository } from '../repositories/professorRepository'
 import { AbstractService } from './AbstractService'
 
 export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepository> {
   constructor (
     @inject(NoteFoulsRepository)
-    protected readonly repository: NoteFoulsRepository
+    protected readonly repository: NoteFoulsRepository,
+
+    @inject(ClasseRepository)
+    protected readonly classRepository: ClasseRepository,
+
+    @inject(CurrentsemesterRepository)
+    protected readonly semesterRepository: CurrentsemesterRepository,
+
+    @inject(ProfessorRepository)
+    protected readonly professorRepository: ProfessorRepository
   ) { super() }// needs mapper to complete
 
-  getByRa = async (id: number): Promise<testeDTO[]> => {
-    if (id) {
-      return await this.repository.getByRaStudent(id)
-    } else {
-      throw new Error('TA ERRADO PORRA')
-    }
+  getSpecificCourse = async (): Promise<ISpecificCourseDto[]> => {
+    const classe = await this.classRepository.selectAll()
+    const semester = await this.semesterRepository.selectAll()
+    const professor = await this.professorRepository.selectAll()
+    const frequency = await this.repository.getAvgNumberOfStudentsAndFrequency()
+
+    return frequency
   }
 }

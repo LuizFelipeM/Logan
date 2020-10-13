@@ -8,6 +8,7 @@ export class ProfileService extends AbstractService<IProfile, ProfileRepository>
   constructor (
     @inject(ProfileRepository)
     protected readonly repository: ProfileRepository
+
   ) { super() }
 
   getWithRules = async (): Promise<IProfileDto[]> => await this.repository.getProfilesWithRules()

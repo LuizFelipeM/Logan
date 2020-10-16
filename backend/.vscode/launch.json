@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch by NPM",
+            "type": "node",
+            "request": "launch",
+            "skipFiles": [
+                "/**/@types/**",
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/server.ts",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "restart": true,
+            "autoAttachChildProcesses": true,
+            "runtimeExecutable": "npm run dev"
+        }
+    ]
+}

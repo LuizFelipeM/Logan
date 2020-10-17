@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
-import Routes from './panels/admin/Routes'
 import { UserProvider } from './contexts/UserContext'
 import { WrapperProvider } from './contexts/WrapperContext'
+import Routes from './Routes'
 
 import './styles/App.scss'
 

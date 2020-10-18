@@ -1,5 +1,5 @@
 
-export type ITypeAndWorkloadDto = {
+export type ITypeDisciplineAndWorkloadDto = {
     id: number
     typeName: string | undefined
     workload: number

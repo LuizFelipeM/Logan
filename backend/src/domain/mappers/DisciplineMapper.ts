@@ -1,8 +1,8 @@
-import { ITypeAndWorkloadDto } from '../interfaces/contracts/ITypeAndWorkloadDto'
+import { ITypeDisciplineAndWorkloadDto } from '../interfaces/contracts/ITypeDisciplineAndWorkloadDto'
 import { IDiscipline } from '../interfaces/entities/IDiscipline'
 import { ITypeDiscipline } from '../interfaces/entities/ITypeDicipline'
 
-export function toTypeAndWorkload (data: IDiscipline, typeDiscipline: ITypeDiscipline | undefined): ITypeAndWorkloadDto {
+export function toTypeDisciplineAndWorkload (data: IDiscipline, typeDiscipline: ITypeDiscipline | undefined): ITypeDisciplineAndWorkloadDto {
   return {
     id: data.id,
     typeName: typeDiscipline?.name,

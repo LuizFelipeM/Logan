@@ -1,7 +1,7 @@
 import { inject } from 'inversify'
-import { ITypeAndWorkloadDto } from '../domain/interfaces/contracts/ITypeAndWorkloadDto'
+import { ITypeDisciplineAndWorkloadDto } from '../domain/interfaces/contracts/ITypeDisciplineAndWorkloadDto'
 import { IDiscipline } from '../domain/interfaces/entities/IDiscipline'
-import { toTypeAndWorkload } from '../domain/mappers/DisciplineMapper'
+import { toTypeDisciplineAndWorkload } from '../domain/mappers/DisciplineMapper'
 import { CoursesRepository } from '../repositories/coursesRepository'
 import { DisciplineRepository } from '../repositories/DisciplineRepository'
 import { TypeDisciplineRepository } from '../repositories/typeDisciplineRepository'
@@ -20,13 +20,10 @@ export class DisciplineService extends AbstractService<IDiscipline, DisciplineRe
   protected readonly courseRepository: CoursesRepository
   ) { super() }
 
-  getDisciplineWithTypeandWorkload = async (): Promise<ITypeAndWorkloadDto[]> => {
+  getDisciplineWithTypeandWorkload = async (): Promise<ITypeDisciplineAndWorkloadDto[]> => {
     const disciplines = await this.repository.selectAll()
     const typeDiscipline = await this.typeDisciplineRepository.selectAll()
-    const disTypeAndWorkload = disciplines.map(dis => {
-      const type = typeDiscipline.find(type => type.id === dis.typeDiscipline)
-      return toTypeAndWorkload(dis, type)
-    })
+    const disTypeAndWorkload = disciplines.map(dis => toTypeDisciplineAndWorkload(dis, typeDiscipline.find(type => type.id === dis.typeDiscipline)))
 
     return disTypeAndWorkload
   }

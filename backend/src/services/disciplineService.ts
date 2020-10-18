@@ -23,7 +23,10 @@ export class DisciplineService extends AbstractService<IDiscipline, DisciplineRe
   getDisciplineWithTypeandWorkload = async (): Promise<ITypeAndWorkloadDto[]> => {
     const disciplines = await this.repository.selectAll()
     const typeDiscipline = await this.typeDisciplineRepository.selectAll()
-    const disTypeAndWorkload = disciplines.map(dis => toTypeAndWorkload(dis, typeDiscipline.find(type => type.id === dis.typeDiscipline)))
+    const disTypeAndWorkload = disciplines.map(dis => {
+      const type = typeDiscipline.find(type => type.id === dis.typeDiscipline)
+      return toTypeAndWorkload(dis, type)
+    })
 
     return disTypeAndWorkload
   }

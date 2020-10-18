@@ -1,5 +1,8 @@
 export type ISpecificCourseDto = {
     class: number
+    students: number
     semester: number
-    professor: number
+    frequency: number
+    avgNotes: number
+    professor: string
 }

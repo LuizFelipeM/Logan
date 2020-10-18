@@ -1,11 +1,9 @@
-import { noteFoulsTable, noteFoulsTableName } from '../database/common/noteFoulsTable'
+import { noteFoulsTable } from '../database/common/noteFoulsTable'
 import { AbstractRepository } from './AbstractRepository'
 import { knex } from '../database/knex/dbConnection'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
 import { studentsTableName } from '../database/common/studentsTable'
 import { usersTableName } from '../database/common/usersTable'
-import { SpecificCourseService } from '../services/SpecificCourseService'
-import { ISpecificCourseDto } from '../domain/interfaces/contracts/ISpecificCourseDto'
 import { classesTableName } from '../database/common/classesTable'
 
 export interface testeDTO {
@@ -26,12 +24,12 @@ export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
     )
     .where('s.ra', ra)
 
-  getAvgNumberOfStudentsAndFrequency = async () : Promise<ISpecificCourseDto[]> => await knex(noteFoulsTable)
+  getAvgNumberOfStudentsAndFrequency = async () : Promise<{frequency: number, avg: number}[]> => await knex(noteFoulsTable)
     .innerJoin(`${studentsTableName} as s`, 't1.students', 's.id')
     .innerJoin(`${classesTableName} as c`, 's.class', 'c.id')
     .count('s.id as N_de_Alunos')
     .select(
-      knex.raw('round((cast(sum(fouls) as decimal) / (count(s.id) * 80)),2) as frequencia'),
-      knex.raw('round(avg(finalnote),2)')
+      knex.raw('round((cast(sum(fouls) as decimal) / (count(s.id) * 80)),2) as frequency'),
+      knex.raw('round(avg(finalnote),2) as avg')
     )
 }

@@ -1,6 +1,7 @@
 import { inject } from 'inversify'
 import { ISpecificCourseDto } from '../domain/interfaces/contracts/ISpecificCourseDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
+import { toSpecifCourseDto } from '../domain/mappers/CourseMapper'
 import { ClasseRepository } from '../repositories/classesRepository'
 import { CurrentsemesterRepository } from '../repositories/currentsemesterRepository'
 import { NoteFoulsRepository } from '../repositories/NoteFoulsRepository'
@@ -20,14 +21,16 @@ export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepos
 
     @inject(ProfessorRepository)
     protected readonly professorRepository: ProfessorRepository
-  ) { super() }// needs mapper to complete
+  ) { super() }
 
-  getSpecificCourse = async (): Promise<ISpecificCourseDto[]> => {
-    const classe = await this.classRepository.selectAll()
-    const semester = await this.semesterRepository.selectAll()
-    const professor = await this.professorRepository.selectAll()
-    const frequency = await this.repository.getAvgNumberOfStudentsAndFrequency()
-
-    return frequency
-  }
+  // getSpecificationsCourse = async (): Promise<ISpecificCourseDto[]> => {
+  //   const teste2 = await this.repository.selectAll()
+  //   const profs = await this.professorRepository.getProfessorsDisciplinesAndClasses()
+  //   const numberFrequency = await this.repository.getAvgNumberOfStudentsAndFrequency()
+  //   const semes = await this.semesterRepository.getSemester()
+  //   const specifCourse = profs.map(prof => {
+  //     const teste = numberFrequency.find(nf =>)
+  //     toSpecifCourseDto(prof.classId)
+  //   })
+  // }
 }

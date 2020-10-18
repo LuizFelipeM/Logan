@@ -90,6 +90,20 @@ async function users (knex: Knex, profi:number[]): Promise<number[]> {
       gender: 'Female',
       birthDate: '10/04/1999',
       profile: profi[1]
+    },
+    {
+      firstName: 'Ricardo',
+      lastName: 'Moreira',
+      gender: 'Male',
+      birthDate: '10/04/1970',
+      profile: profi[1]
+    },
+    {
+      firstName: 'Roberto',
+      lastName: 'Justus',
+      gender: 'Indefinido',
+      birthDate: '10/04/1968',
+      profile: profi[1]
     }
   ]).returning('id')
   return id
@@ -238,7 +252,20 @@ async function calendar (knex:Knex): Promise<number[]> {
       finalNotesSub: new Date(2014, 6, 20).toISOString(),
       startNotesExam: new Date(2014, 6, 22).toISOString(),
       finalNotesExam: new Date(2014, 6, 27).toISOString()
+    },
+    {
+      startAcademicYear: new Date(2014, 2, 3).toISOString(),
+      academicYearEnd: new Date(2014, 12, 10).toISOString(),
+      startNotesP1: new Date(2014, 8, 10).toISOString(),
+      finalNotesP1: new Date(2014, 8, 20).toISOString(),
+      startNotesP2: new Date(2014, 11, 11).toISOString(),
+      finalNotesP2: new Date(2014, 11, 22).toISOString(),
+      startNotesSub: new Date(2014, 12, 15).toISOString(),
+      finalNotesSub: new Date(2014, 12, 20).toISOString(),
+      startNotesExam: new Date(2014, 12, 21).toISOString(),
+      finalNotesExam: new Date(2014, 12, 24).toISOString()
     }
+
   ]).returning('id')
   return id
 }
@@ -293,6 +320,30 @@ async function currentSemester (knex: Knex, disId: number[], calen:number[]): Pr
       evalSubEnd: new Date(2014, 6, 20).toISOString(),
       evalExamStart: new Date(2014, 6, 22).toISOString(),
       evalExamEnd: new Date(2014, 6, 27).toISOString()
+    },
+    {
+      discipline: disId[0],
+      calendar: calen[1],
+      evalP1Start: new Date(2014, 8, 10).toISOString(),
+      evalP1End: new Date(2014, 8, 20).toISOString(),
+      evalP2Start: new Date(2014, 11, 11).toISOString(),
+      evalP2End: new Date(2014, 11, 22).toISOString(),
+      evalSubStart: new Date(2014, 11, 24).toISOString(),
+      evalSubEnd: new Date(2014, 11, 28).toISOString(),
+      evalExamStart: new Date(2014, 12, 7).toISOString(),
+      evalExamEnd: new Date(2014, 6, 14).toISOString()
+    },
+    {
+      discipline: disId[1],
+      calendar: calen[0],
+      evalP1Start: new Date(2015, 4, 10).toISOString(),
+      evalP1End: new Date(2015, 4, 20).toISOString(),
+      evalP2Start: new Date(2015, 5, 11).toISOString(),
+      evalP2End: new Date(2015, 5, 22).toISOString(),
+      evalSubStart: new Date(2015, 6, 15).toISOString(),
+      evalSubEnd: new Date(2015, 6, 20).toISOString(),
+      evalExamStart: new Date(2015, 6, 22).toISOString(),
+      evalExamEnd: new Date(2015, 6, 27).toISOString()
     }
   ]).returning('id')
   return id
@@ -341,6 +392,12 @@ async function professor (knex:Knex, user:number[]): Promise<number[]> {
   const id = await knex(professorTableName).insert([
     {
       user: user[3]
+    },
+    {
+      user: user[4]
+    },
+    {
+      user: user[5]
     }
   ]).returning('id')
   return id
@@ -352,6 +409,16 @@ async function subject (knex:Knex, profes:number[], disId:number[], clas:number[
       professor: profes[0],
       discipline: disId[1],
       classes: clas[2]
+    },
+    {
+      professor: profes[1],
+      discipline: disId[0],
+      classes: clas[0]
+    },
+    {
+      professor: profes[2],
+      discipline: disId[2],
+      classes: clas[1]
     }
   ])
 }
@@ -372,8 +439,8 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
     },
     {
       students: studen[0],
-      discipline: disId[2],
-      semester: semes[0],
+      discipline: disId[1],
+      semester: semes[2],
 
       noteP1: 7.00,
       noteP2: 7.00,
@@ -384,8 +451,8 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
     },
     {
       students: studen[2],
-      discipline: disId[2],
-      semester: semes[0],
+      discipline: disId[0],
+      semester: semes[1],
 
       noteP1: 8.00,
       noteP2: 6.50,

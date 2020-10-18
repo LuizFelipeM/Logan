@@ -13,6 +13,6 @@ export class NoteFoulsController extends AbstractController<INoteFouls, NoteFoul
 
   @httpGet('/frequency')
   private async getSpecifcCourse () {
-    return await this.service.getSpecificCourse()
+    return await this.service.getSpecificationsCourse()
   }
 }

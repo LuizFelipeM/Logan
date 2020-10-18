@@ -1,7 +1,5 @@
 import { inject } from 'inversify'
-import { ISpecificCourseDto } from '../domain/interfaces/contracts/ISpecificCourseDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
-import { toSpecifCourseDto } from '../domain/mappers/CourseMapper'
 import { ClasseRepository } from '../repositories/classesRepository'
 import { CurrentsemesterRepository } from '../repositories/currentsemesterRepository'
 import { NoteFoulsRepository } from '../repositories/NoteFoulsRepository'

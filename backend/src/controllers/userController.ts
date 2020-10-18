@@ -1,13 +1,13 @@
-import { Router } from 'express'
-import { userService } from '../services/userService'
+import { inject } from 'inversify'
+import { controller } from 'inversify-express-utils'
+import { IUser } from '../domain/interfaces/entities/IUser'
+import { UserService } from '../services/UserService'
+import { AbstractController } from './AbstractController'
 
-export const userController = Router()
-
-userController.get('/get-all', async (req, res) => {
-  const limit = req.query.limit?.toString()
-  const convertedLimit = limit ? parseInt(limit) : undefined
-
-  const users = await userService.getUsers(convertedLimit)
-
-  return res.json(users)
-})
+@controller('/user')
+export class UserController extends AbstractController<IUser, UserService> {
+  constructor (
+    @inject(UserService)
+    protected readonly service: UserService
+  ) { super() }
+}

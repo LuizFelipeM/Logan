@@ -8,10 +8,12 @@
     "start": "node --inspect=5858 -r ts-node/register -r dotenv/config ./src/server.ts",
     "dev": "nodemon",
     "test": "jest",
-    "knex:make": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:make -x ts",
-    "knex:up": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:up",
-    "knex:latest": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:latest",
-    "knex:rollback": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:rollback"
+    "migrate:make": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:make -x ts",
+    "migrate:up": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:up",
+    "migrate:latest": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:latest",
+    "migrate:rollback": "npx knex --knexfile ./src/database/knex/knexfile.ts migrate:rollback",
+    "seed:run": "npx knex --knexfile ./src/database/knex/knexfile.ts seed:run",
+    "seed:make": "npx knex --knexfile ./src/database/knex/knexfile.ts seed:make"
   },
   "repository": {
     "type": "git",
@@ -25,9 +27,11 @@
   },
   "homepage": "https://github.com/LuizFelipeM/Logan#readme",
   "devDependencies": {
-    "@types/cors": "^2.8.6",
+    "@types/cors": "^2.8.7",
+    "@types/glob": "^7.1.3",
     "@types/jest": "^26.0.4",
     "@types/knex": "^0.16.1",
+    "@types/object-mapper": "^6.2.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "eslint": "^7.4.0",
@@ -47,8 +51,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
     "knex": "^0.21.2",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13"
   },
   "nodemonConfig": {
     "ignore": [

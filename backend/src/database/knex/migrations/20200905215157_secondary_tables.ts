@@ -28,8 +28,8 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(currentSemesterTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('calender').notNullable()
-      table.integer('dicipline').notNullable()
+      table.integer('calendar').notNullable()
+      table.integer('discipline').notNullable()
 
       table.timestamp('evalP1Start', { precision: 6 }).notNullable()
       table.timestamp('evalP1End', { precision: 6 }).notNullable()
@@ -46,8 +46,8 @@ export async function up (knex: Knex): Promise<void> {
       table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
 
-      table.foreign('calender').references('id').inTable(calendarTableName)
-      table.foreign('dicipline').references('id').inTable(disciplineTableName)
+      table.foreign('calendar').references('id').inTable(calendarTableName)
+      table.foreign('discipline').references('id').inTable(disciplineTableName)
     })
 
     .createTableIfNotExists(classesTableName, function (table) {
@@ -64,7 +64,7 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(studentsTableName, function (table) {
       table.increments('id').primary()
 
-      table.integer('user').notNullable()
+      table.integer('user').notNullable().unique()
       table.integer('ra').notNullable()
       table.integer('course').notNullable()
       table.integer('class').notNullable()
@@ -79,10 +79,10 @@ export async function up (knex: Knex): Promise<void> {
     })
 
     .createTableIfNotExists(professorTableName, function (table) {
-      table.integer('id').primary()
-      table.integer('usuario')
+      table.increments('id').primary()
+      table.integer('user')
 
-      table.foreign('usuario').references('id').inTable(usersTableName)
+      table.foreign('user').references('id').inTable(usersTableName)
     })
 
     .createTableIfNotExists(subjectsTableName, function (table) {
@@ -98,20 +98,20 @@ export async function up (knex: Knex): Promise<void> {
       table.foreign('classes').references('id').inTable(classesTableName)
     })
 
-    .createTable('note_fouls', function (table) {
+    .createTableIfNotExists(noteFoulsTableName, function (table) {
       table.integer('students').notNullable()
-      table.integer('dicipline').notNullable()
+      table.integer('discipline').notNullable()
       table.integer('semester').notNullable()
 
-      table.decimal('noteP1', 2, 2).notNullable()
-      table.decimal('noteP2', 2, 2).notNullable()
-      table.decimal('noteSub', 2, 2).notNullable()
-      table.decimal('noteExam', 2, 2).notNullable()
+      table.decimal('noteP1', 4, 2).notNullable()
+      table.decimal('noteP2', 4, 2).notNullable()
+      table.decimal('noteSub', 4, 2).notNullable()
+      table.decimal('noteExam', 4, 2).notNullable()
       table.integer('finalNote').notNullable()
       table.integer('fouls').notNullable()
 
       table.foreign('students').references('id').inTable(studentsTableName)
-      table.foreign('dicipline').references('id').inTable(disciplineTableName)
+      table.foreign('discipline').references('id').inTable(disciplineTableName)
       table.foreign('semester').references('id').inTable(currentSemesterTableName)
     })
 }

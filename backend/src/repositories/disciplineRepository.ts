@@ -6,6 +6,6 @@ import { AbstractRepository } from './AbstractRepository'
 export class DisciplineRepository extends AbstractRepository<IDiscipline> {
   protected readonly table = disciplineTable
 
-  getDisciplineName = async () :Promise<IDiscipline[]> => knex(this.table)
+  getDisciplineName = () :Promise<IDiscipline[]> => knex(this.table)
     .select('name')
 }

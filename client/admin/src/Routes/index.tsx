@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { SideMenu, DisplayContainer } from 'bootstrap-based-components'
 import routesConfig from './routesConfig'
 
-import { ReactComponent as Logo } from '../../../assets/imgs/logo.svg'
+import { ReactComponent as Logo } from '../assets/imgs/logo.svg'
 
 const Routes: React.FC = () => (
   <BrowserRouter>

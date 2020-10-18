@@ -1,22 +1,60 @@
 import React from 'react'
-import { LineSeries, XYPlot } from 'react-vis'
+import {
+  BarChart, CartesianGrid, Legend, Bar, Tooltip, XAxis, YAxis
+} from 'recharts'
 
 const CourseManagement: React.FC = () => (
-  <XYPlot height={300} width={300}>
-    <LineSeries data={[
-      { x: 0, y: 8 },
-      { x: 1, y: 5 },
-      { x: 2, y: 4 },
-      { x: 3, y: 9 },
-      { x: 4, y: 1 },
-      { x: 5, y: 7 },
-      { x: 6, y: 6 },
-      { x: 7, y: 3 },
-      { x: 8, y: 2 },
-      { x: 9, y: 0 }
-    ]}
-    />
-  </XYPlot>
+  <>
+    <BarChart
+      width={730}
+      height={250}
+      data={[
+        {
+          name: 'Page A',
+          uv: 4000,
+          pv: 2400
+        },
+        {
+          name: 'Page B',
+          uv: 3000,
+          pv: 1398
+        },
+        {
+          name: 'Page C',
+          uv: 2000,
+          pv: 9800
+        },
+        {
+          name: 'Page D',
+          uv: 2780,
+          pv: 3908
+        },
+        {
+          name: 'Page E',
+          uv: 1890,
+          pv: 4800
+        },
+        {
+          name: 'Page F',
+          uv: 2390,
+          pv: 3800
+        },
+        {
+          name: 'Page G',
+          uv: 3490,
+          pv: 4300
+        }
+      ]}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="pv" fill="#8884d8" />
+      <Bar dataKey="uv" fill="#82ca9d" />
+    </BarChart>
+  </>
 )
 
 export default CourseManagement

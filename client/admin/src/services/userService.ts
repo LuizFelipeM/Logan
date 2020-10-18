@@ -7,6 +7,4 @@ class UserService extends BaseService<IUser> {
   }
 }
 
-const userService = new UserService()
-
-export default userService
+export default new UserService()

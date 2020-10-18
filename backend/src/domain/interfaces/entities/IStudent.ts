@@ -5,6 +5,6 @@ export interface IStudent extends IBaseEntity {
   ra: number
   course: number
   class: number
-  createdAt: string
-  lastUpdate: string
+  created_at: string
+  last_update: string
 }

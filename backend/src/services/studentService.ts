@@ -11,5 +11,5 @@ export class StudentService extends AbstractService<IStudent, StudentsRepository
     super()
   }
 
-  getByUserId = async (id: number): Promise<IStudent> => await this.repository.selectByUserId(id)
+  getByUserId = async (id: number): Promise<IStudent | undefined> => await this.repository.selectByUserId(id)
 }

@@ -1,6 +1,6 @@
 import { inject } from 'inversify'
 import { ICurrentSemester } from '../domain/interfaces/entities/ICurrentSemester'
-import { CurrentsemesterRepository } from '../repositories/currentsemesterRepository'
+import { CurrentsemesterRepository } from '../repositories/CurrentsemesterRepository'
 import { AbstractService } from './AbstractService'
 
 export class CurrentsemesterService extends AbstractService<ICurrentSemester, CurrentsemesterRepository> {

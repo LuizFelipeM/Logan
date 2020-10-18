@@ -15,13 +15,10 @@ export class UserService extends AbstractService<IUser, UserRepository> {
     private readonly profileRepository: ProfileRepository
   ) { super() }
 
-  getUsersWithProfile = async (id: number): Promise<IUserDto> => {
+  getUserWithProfile = async (id: number): Promise<IUserDto> => {
     const user = await this.repository.selectById(id)
-    const userDto = toUserDto(user)
-
-    if (user) {
-      userDto.profile = user.profile ? await this.profileRepository.getProfileWithRules(user.profile) : undefined
-    }
+    const profileDto = user?.profile ? await this.profileRepository.getProfileWithRules(user.profile) : undefined
+    const userDto = toUserDto(user, profileDto)
 
     return userDto
   }

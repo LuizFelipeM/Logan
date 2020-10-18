@@ -7,10 +7,4 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
   constructor () {
     super(studentsTable)
   }
-
-  selectByUserId = async (user: number): Promise<IStudent | undefined> =>
-    await this.session
-      .select('*')
-      .where({ user })
-      .first()
 }

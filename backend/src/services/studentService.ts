@@ -7,9 +7,5 @@ export class StudentService extends AbstractService<IStudent, StudentsRepository
   constructor (
     @inject(StudentsRepository)
     protected readonly repository: StudentsRepository
-  ) {
-    super()
-  }
-
-  getByUserId = async (id: number): Promise<IStudent | undefined> => await this.repository.selectByUserId(id)
+  ) { super() }
 }

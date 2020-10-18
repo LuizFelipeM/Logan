@@ -1,0 +1,4 @@
+{
+    "debug.node.autoAttach": "off",
+    "debug.javascript.autoAttachFilter": "always"
+}

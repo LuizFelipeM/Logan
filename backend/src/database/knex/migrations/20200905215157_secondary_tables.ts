@@ -8,8 +8,7 @@ import { classesTableName } from '../../common/classesTable'
 import { rulesInProfilesTableName } from '../../common/rulesInProfilesTable'
 import { profilesTableName } from '../../common/profilesTable'
 import { rulesTableName } from '../../common/rulesTable'
-import { currentSemesterTableName } from '../../common/currentSemesterTable'
-import { calendarTableName } from '../../common/calendarTable'
+import { semesterTableName } from '../../common/semesterTable'
 import { studentsTableName } from '../../common/studentsTable'
 import { professorTableName } from '../../common/professorTable'
 import { subjectsTableName } from '../../common/subjectTable'
@@ -23,31 +22,6 @@ export async function up (knex: Knex): Promise<void> {
 
       table.foreign('profile').references('id').inTable(profilesTableName)
       table.foreign('rule').references('id').inTable(rulesTableName)
-    })
-
-    .createTableIfNotExists(currentSemesterTableName, function (table) {
-      table.increments('id').primary()
-
-      table.integer('calendar').notNullable()
-      table.integer('discipline').notNullable()
-
-      table.timestamp('evalP1Start', { precision: 6 }).notNullable()
-      table.timestamp('evalP1End', { precision: 6 }).notNullable()
-
-      table.timestamp('evalP2Start', { precision: 6 }).notNullable()
-      table.timestamp('evalP2End', { precision: 6 }).notNullable()
-
-      table.timestamp('evalSubStart', { precision: 6 }).notNullable()
-      table.timestamp('evalSubEnd', { precision: 6 }).notNullable()
-
-      table.timestamp('evalExamStart', { precision: 6 }).notNullable()
-      table.timestamp('evalExamEnd', { precision: 6 }).notNullable()
-
-      table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
-      table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
-
-      table.foreign('calendar').references('id').inTable(calendarTableName)
-      table.foreign('discipline').references('id').inTable(disciplineTableName)
     })
 
     .createTableIfNotExists(classesTableName, function (table) {
@@ -112,7 +86,7 @@ export async function up (knex: Knex): Promise<void> {
 
       table.foreign('students').references('id').inTable(studentsTableName)
       table.foreign('discipline').references('id').inTable(disciplineTableName)
-      table.foreign('semester').references('id').inTable(currentSemesterTableName)
+      table.foreign('semester').references('id').inTable(semesterTableName)
     })
 }
 
@@ -122,7 +96,7 @@ export async function down (knex: Knex): Promise<void> {
     .dropTableIfExists(noteFoulsTableName)
     .dropTableIfExists(subjectsTableName)
     .dropTableIfExists(classesTableName)
-    .dropTableIfExists(currentSemesterTableName)
+    .dropTableIfExists(semesterTableName)
     .dropTableIfExists(studentsTableName)
     .dropTableIfExists(professorTableName)
 }

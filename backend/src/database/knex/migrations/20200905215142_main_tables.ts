@@ -10,6 +10,7 @@ import { registryTableName } from '../../common/registryTable'
 import { calendarTableName } from '../../common/calendarTable'
 import { coursesTableName } from '../../common/coursesTable'
 import { disciplineTableName } from '../../common/disciplineTable'
+import { semesterTableName } from '../../common/semesterTable'
 
 export async function up (knex: Knex): Promise<void> {
   return knex.schema
@@ -116,8 +117,37 @@ export async function up (knex: Knex): Promise<void> {
       table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
     })
 
+    .createTableIfNotExists(semesterTableName, function (table) {
+      table.increments('id').primary()
+
+      table.integer('calendar').notNullable()
+      table.integer('semester_course').notNullable()
+      table.integer('semester_year').notNullable()
+
+      table.timestamp('year', { precision: 6 }).notNullable()
+
+      table.timestamp('evalP1Start', { precision: 6 }).notNullable()
+      table.timestamp('evalP1End', { precision: 6 }).notNullable()
+
+      table.timestamp('evalP2Start', { precision: 6 }).notNullable()
+      table.timestamp('evalP2End', { precision: 6 }).notNullable()
+
+      table.timestamp('evalSubStart', { precision: 6 }).notNullable()
+      table.timestamp('evalSubEnd', { precision: 6 }).notNullable()
+
+      table.timestamp('evalExamStart', { precision: 6 }).notNullable()
+      table.timestamp('evalExamEnd', { precision: 6 }).notNullable()
+
+      table.timestamp('createdAt', { precision: 6 }).defaultTo(knex.fn.now(6))
+      table.timestamp('lastUpdate', { precision: 6 }).defaultTo(knex.fn.now(6))
+
+      table.foreign('calendar').references('id').inTable(calendarTableName)
+    })
+
     .createTableIfNotExists(disciplineTableName, function (table) {
       table.increments('id').primary()
+
+      table.integer('semester')
 
       table.integer('course')
       table.integer('typeDiscipline')
@@ -126,6 +156,7 @@ export async function up (knex: Knex): Promise<void> {
 
       table.foreign('course').references('id').inTable(coursesTableName)
       table.foreign('typeDiscipline').references('id').inTable(typeDisciplineTableName)
+      table.foreign('semester').references('id').inTable(semesterTableName)
     })
 }
 

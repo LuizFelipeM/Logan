@@ -7,9 +7,7 @@ import { AbstractController } from './AbstractController'
 @controller('/professor')
 export class ProfessorController extends AbstractController<IProfessor, ProfessorService> {
   constructor (
-        @inject(ProfessorService)
-        protected readonly service: ProfessorService
-  ) {
-    super()
-  }
+    @inject(ProfessorService)
+    protected readonly professorService: ProfessorService
+  ) { super(professorService) }
 }

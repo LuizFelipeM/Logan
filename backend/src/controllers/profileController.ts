@@ -9,12 +9,12 @@ import { IProfile } from '../domain/interfaces/entities/IProfile'
 export class ProfileController extends AbstractController<IProfile, ProfileService> {
   constructor (
     @inject(ProfileService)
-    protected readonly service: ProfileService
-  ) { super() }
+    protected readonly profileService: ProfileService
+  ) { super(profileService) }
 
   private getWithRules = async (req: Request, res: Response) => {
     try {
-      const profiles = await this.service.getWithRules()
+      const profiles = await this.profileService.getWithRules()
 
       res.json(profiles)
     } catch (error) {
@@ -28,7 +28,7 @@ export class ProfileController extends AbstractController<IProfile, ProfileServi
       const { id } = req.params
       const profileId = parseInt(id)
 
-      const profiles = await this.service.getByIdWithRules(profileId)
+      const profiles = await this.profileService.getByIdWithRules(profileId)
 
       res.json(profiles)
     } catch (error) {

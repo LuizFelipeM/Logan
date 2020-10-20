@@ -8,6 +8,6 @@ import { AbstractController } from './AbstractController'
 export class CalendarController extends AbstractController<ICalendar, CalendarService> {
   constructor (
     @inject(CalendarService)
-    protected readonly service: CalendarService
-  ) { super() }
+    protected readonly calendarService: CalendarService
+  ) { super(calendarService) }
 }

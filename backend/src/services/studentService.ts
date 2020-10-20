@@ -6,6 +6,6 @@ import { IStudent } from '../domain/interfaces/entities/IStudent'
 export class StudentService extends AbstractService<IStudent, StudentsRepository> {
   constructor (
     @inject(StudentsRepository)
-    protected readonly repository: StudentsRepository
-  ) { super() }
+    protected readonly studentsRepository: StudentsRepository
+  ) { super(studentsRepository) }
 }

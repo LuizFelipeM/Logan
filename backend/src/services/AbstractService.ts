@@ -2,9 +2,11 @@ import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { injectable } from 'inversify'
 
+type Repository<T extends IBaseEntity> = AbstractRepository<T>
+
 @injectable()
-export abstract class AbstractService<T extends IBaseEntity, Repository extends AbstractRepository<T>> {
-  protected abstract readonly repository: Repository
+export abstract class AbstractService<T extends IBaseEntity, R extends Repository<T>> {
+  constructor (private readonly repository: R) {}
 
   getById = async (id: number): Promise<T> => await this.repository.selectById(id)
   getAll = async (): Promise<T[]> => await this.repository.selectAll()

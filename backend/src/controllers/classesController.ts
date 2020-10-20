@@ -8,6 +8,6 @@ import { AbstractController } from './AbstractController'
 export class ClassController extends AbstractController<IClass, ClassesService> {
   constructor (
     @inject(ClassesService)
-    protected readonly service: ClassesService
-  ) { super() }
+    protected readonly classesService: ClassesService
+  ) { super(classesService) }
 }

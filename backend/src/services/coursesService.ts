@@ -6,8 +6,6 @@ import { AbstractService } from './AbstractService'
 export class CourseService extends AbstractService<ICourse, CoursesRepository> {
   constructor (
     @inject(CoursesRepository)
-    protected readonly repository: CoursesRepository
-  ) {
-    super()
-  }
+    protected readonly coursesRepository: CoursesRepository
+  ) { super(coursesRepository) }
 }

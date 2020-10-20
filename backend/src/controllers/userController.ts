@@ -8,11 +8,11 @@ import { AbstractController } from './AbstractController'
 export class UserController extends AbstractController<IUser, UserService> {
   constructor (
     @inject(UserService)
-    protected readonly service: UserService
-  ) { super() }
+    protected readonly userService: UserService
+  ) { super(userService) }
 
   @httpGet('/getWithProfile/:id')
   private async getWithProfile (@queryParam('id') id: number) {
-    return this.service.getUserWithProfile(id)
+    return this.userService.getUserWithProfile(id)
   }
 }

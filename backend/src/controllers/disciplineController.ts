@@ -8,6 +8,6 @@ import { AbstractController } from './AbstractController'
 export class DisciplineController extends AbstractController<IDiscipline, DisciplineService> {
   constructor (
     @inject(DisciplineService)
-    protected readonly service: DisciplineService
-  ) { super() }
+    protected readonly disciplineService: DisciplineService
+  ) { super(disciplineService) }
 }

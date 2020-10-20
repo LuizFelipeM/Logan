@@ -7,10 +7,7 @@ import { AbstractController } from './AbstractController'
 @controller('/registry')
 export class RegistryController extends AbstractController<IRegistry, RegistryService> {
   constructor (
-        @inject(RegistryService)
-        protected readonly service: RegistryService
-
-  ) {
-    super()
-  }
+    @inject(RegistryService)
+    protected readonly registryService: RegistryService
+  ) { super(registryService) }
 }

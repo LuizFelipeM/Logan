@@ -6,6 +6,6 @@ import { AbstractService } from './AbstractService'
 export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepository> {
   constructor (
     @inject(NoteFoulsRepository)
-    protected readonly repository: NoteFoulsRepository
-  ) { super() }
+    protected readonly noteFoulsRepository: NoteFoulsRepository
+  ) { super(noteFoulsRepository) }
 }

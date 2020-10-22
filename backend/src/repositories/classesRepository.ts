@@ -3,5 +3,7 @@ import { IClass } from '../domain/interfaces/entities/IClass'
 import { AbstractRepository } from './AbstractRepository'
 
 export class ClasseRepository extends AbstractRepository<IClass> {
-  protected readonly table = classesTable
+  constructor () {
+    super(classesTable)
+  }
 }

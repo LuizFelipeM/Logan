@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import cors from 'cors'
 import { urlencoded, json } from 'body-parser'
 import { InversifyExpressServer } from 'inversify-express-utils'
 import { DIContainer } from './DIContainer'
@@ -7,6 +8,7 @@ export function startup (): void {
   const server = new InversifyExpressServer(DIContainer)
 
   server.setConfig(app => {
+    app.use(cors())
     app.use(urlencoded({ extended: true }))
     app.use(json())
   })

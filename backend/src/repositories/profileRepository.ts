@@ -2,7 +2,7 @@ import { profilesTable } from '../database/common/profilesTable'
 import { rulesInProfilesTableName } from '../database/common/rulesInProfilesTable'
 import { rulesTableName } from '../database/common/rulesTable'
 import { jsonArray } from './utils/aggJson'
-import { IProfileDto } from '../domain/contracts/IProfileDto'
+import { IProfileDto } from '../domain/interfaces/contracts/IProfileDto'
 import { AbstractRepository } from './AbstractRepository'
 import { IProfile } from '../domain/interfaces/entities/IProfile'
 

@@ -1,4 +1,4 @@
-import { IProfileDto } from '../domain/contracts/IProfileDto'
+import { IProfileDto } from '../domain/interfaces/contracts/IProfileDto'
 import { ProfileRepository } from '../repositories/ProfileRepository'
 import { AbstractService } from './AbstractService'
 import { inject } from 'inversify'

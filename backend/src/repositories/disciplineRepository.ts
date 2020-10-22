@@ -6,4 +6,7 @@ export class DisciplineRepository extends AbstractRepository<IDiscipline> {
   constructor () {
     super(disciplineTable)
   }
+
+  getDisciplineName = async (): Promise<IDiscipline[]> => await this.session
+    .select('name')
 }

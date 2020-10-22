@@ -1,7 +1,7 @@
 import { IBaseEntity } from './IBaseEntity'
 
 export interface IDiscipline extends IBaseEntity {
-    courses: number
+    course: number
     typeDiscipline:number
     name: string
     workload: number

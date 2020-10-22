@@ -1,2 +1,4 @@
+import { Table } from '../../@types/Table'
+
 export const coursesTableName = 'courses'
-export const coursesTable = { t1: coursesTableName }
+export const coursesTable: Table = { t1: coursesTableName }

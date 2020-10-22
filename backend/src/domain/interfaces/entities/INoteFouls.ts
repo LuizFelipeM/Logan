@@ -4,10 +4,10 @@ export interface INoteFouls extends IBaseEntity {
     students: number
     discipline: number
     semester: number
-    noteP1: number
-    noteP2: number
-    noteSub: number
-    noteExam: number
-    finalNote: number
+    note_p1: number
+    note_p2: number
+    note_sub: number
+    note_exam: number
+    final_note: number
     fouls: number
 }

@@ -1,0 +1,62 @@
+.display-col {
+  padding: 0 !important;
+
+  .display-container {
+    padding: 0 !important;
+  }
+
+  .login-container {
+    height: 100vh;
+    margin: 0;
+    align-items: center;
+
+    .login-card-form {
+      width: 100vw;
+      min-width: 400px;
+      max-width: 500px;
+
+      height: 100vh;
+      min-height: 500px;
+      max-height: 700px;
+
+      text-align: center;
+    }
+
+    .card-header {
+      $padding-size: 30px;
+
+      padding-top: $padding-size;
+      padding-bottom: $padding-size;
+    }
+
+    .login-form {
+      padding: 40px;
+      text-align: left;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      * {
+        width: 100%;
+      }
+
+      & > div {
+        margin: auto;
+      }
+
+      .input {
+        margin-bottom: 25px;
+
+        &:last-child {
+          margin-bottom: 45px;
+        }
+      }
+
+      .password-recovery {
+        text-align: center;
+        display: block;
+        margin-top: 32px;
+      }
+    }
+  }
+}

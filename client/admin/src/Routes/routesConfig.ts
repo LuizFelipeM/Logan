@@ -6,12 +6,20 @@ import CourseManagement from '../pages/CourseManagement'
 import Registry from '../pages/Registry'
 import AcademicCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
+import PasswordRecovery from '../pages/PasswordRecovery'
 
 const routesConfig: RoutesConfig = {
   login: {
     path: 'login',
     name: 'Login',
     page: Login,
+    hideOnSideMenu: true
+  },
+
+  passwordRecovery: {
+    path: 'passwordRecovery',
+    name: 'Troca de senha',
+    page: PasswordRecovery,
     hideOnSideMenu: true
   },
 

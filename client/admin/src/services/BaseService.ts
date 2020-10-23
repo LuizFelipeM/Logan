@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-enum BaseEndpointsEnum {
+enum BaseServiceEndpointEnum {
   getAll = '/getAll',
   getById = '/getById',
   create = '/',
@@ -17,13 +17,20 @@ export default abstract class BaseService<T> {
   }
 
   protected GET = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => (await this.api.get(url, config)).data
+
   protected PUT = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.put(url, body, config)).data
+
   protected POST = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.post(url, body, config)).data
+
   protected PATCH = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.patch(url, body, config)).data
+
   protected DELETE = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => (await this.api.delete(url, config)).data
 
-  getAll = (): Promise<T[]> => this.GET(BaseEndpointsEnum.getAll)
-  getById = (id: number): Promise<T> => this.GET(BaseEndpointsEnum.getById, { params: id })
-  create = (data: T): Promise<void> => this.POST(BaseEndpointsEnum.create, data)
-  delete = (id: number): Promise<void> => this.DELETE(BaseEndpointsEnum.delete, { params: id })
+  getAll = (): Promise<T[]> => this.GET(BaseServiceEndpointEnum.getAll)
+
+  getById = (id: number): Promise<T> => this.GET(BaseServiceEndpointEnum.getById, { params: id })
+
+  create = (data: T): Promise<void> => this.POST(BaseServiceEndpointEnum.create, data)
+
+  delete = (id: number): Promise<void> => this.DELETE(BaseServiceEndpointEnum.delete, { params: id })
 }

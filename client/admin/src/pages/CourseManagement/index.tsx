@@ -1,17 +1,18 @@
-import { DataGridCard } from 'bootstrap-based-components'
+import { DataGridCard, Title } from 'bootstrap-based-components'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 import {
   BarChart, CartesianGrid, Legend, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer
 } from 'recharts'
-import Title from '../../components/Title'
 
 import './style.scss'
 
 const CourseManagement: React.FC = () => (
   <>
     <Row>
-      <Col><Title>Gerência de curso</Title></Col>
+      <Col>
+        <Title>Gerência de curso</Title>
+      </Col>
     </Row>
     <Row>
       <Col xs={4}>

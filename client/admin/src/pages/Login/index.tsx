@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '../../assets/imgs/logo.svg'
 import routesConfig from '../../Routes/routesConfig'
+import userService from '../../services/userService'
 
 import './style.scss'
 
@@ -24,6 +25,8 @@ const Login: React.FC = () => {
     event.preventDefault()
     event.stopPropagation()
 
+    userService.authenticate(email, password)
+
     setValidated(true)
   }
 
@@ -33,7 +36,7 @@ const Login: React.FC = () => {
         <Container>
           <Row className="justify-content-center">
             <Card className="login-card-form">
-              <Card.Header>
+              <Card.Header className="login-header">
                 <Logo title="Logan" />
                 <h1>Logan</h1>
               </Card.Header>

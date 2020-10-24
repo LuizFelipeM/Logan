@@ -1,7 +1,4 @@
-import { Override } from '../../../@types/override'
-import { IProfile } from '../interfaces/IProfile'
-import { IRuleDto } from './IRuleDto'
-
-export type IProfileDto = Override<IProfile, {
-  rules?: IRuleDto[]
-}>
+export type IProfileDto = {
+  name: string
+  rules?: number[]
+}

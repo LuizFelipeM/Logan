@@ -11,6 +11,8 @@ export function toUserDto<T extends IUser> (data: T, profile: IProfileDto | unde
     birth_date: data.birth_date,
     created_at: data.created_at,
     last_update: data.last_update,
+    email: data.email,
+    password: data.password,
     profile
   }
 }

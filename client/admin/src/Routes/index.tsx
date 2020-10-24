@@ -18,9 +18,9 @@ const Body: React.FC = () => {
   return (
     <>
       {!history.location.pathname.match('login') && (
-      <Col xs={3} className="side-menu-col">
-        <SideMenu config={routesConfig}><Logo title="Logan" /> Logan</SideMenu>
-      </Col>
+        <Col xs={3} className="side-menu-col">
+          <SideMenu config={routesConfig}><Logo title="Logan" /> Logan</SideMenu>
+        </Col>
       )}
       <Col className="display-col">
         <DisplayContainer config={routesConfig} />

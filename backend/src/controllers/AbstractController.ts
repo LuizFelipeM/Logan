@@ -1,5 +1,5 @@
 import { injectable } from 'inversify'
-import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces } from 'inversify-express-utils'
+import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces, BaseHttpController } from 'inversify-express-utils'
 import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
@@ -7,8 +7,8 @@ import { AbstractService } from '../services/AbstractService'
 type Service<T extends IBaseEntity> = AbstractService<T, AbstractRepository<T>>
 
 @injectable()
-export abstract class AbstractController<T extends IBaseEntity, S extends Service<T>> implements interfaces.Controller {
-  constructor (private readonly service: S) {}
+export abstract class AbstractController<T extends IBaseEntity, S extends Service<T>> extends BaseHttpController implements interfaces.Controller {
+  constructor (private readonly service: S) { super() }
 
   @httpGet('/getAll')
   private async getAll () {

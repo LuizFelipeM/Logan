@@ -9,10 +9,11 @@ import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
 import { ProfessorRepository } from './repositories/ProfessorRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
 import { RegistryRepository } from './repositories/RegistryRepository'
-import { RuleRepository } from './repositories/RuleRepository'
+import { RuleRepository } from './repositories/ruleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
 import { TypeDisciplineRepository } from './repositories/typeDisciplineRepository'
 import { UserRepository } from './repositories/UserRepository'
+import { AuthService } from './services/AuthService'
 import { CalendarService } from './services/CalendarService'
 import { CampusService } from './services/CampusService'
 import { ClassesService } from './services/ClassesService'
@@ -23,7 +24,7 @@ import { NoteFoulsService } from './services/NoteFoulsService'
 import { ProfessorService } from './services/ProfessorService'
 import { ProfileService } from './services/ProfileService'
 import { RegistryService } from './services/RegistryService'
-import { RuleService } from './services/RuleService'
+import { RuleService } from './services/ruleService'
 import { StudentService } from './services/StudentService'
 import { TypeDisciplineService } from './services/TypeDisciplineService'
 import { UserService } from './services/UserService'
@@ -47,9 +48,11 @@ DIContainer.bind<DisciplineRepository>(DisciplineRepository).toSelf()
 DIContainer.bind<CampusRepository>(CampusRepository).toSelf()
 DIContainer.bind<CalendarRepository>(CalendarRepository).toSelf()
 DIContainer.bind<TypeDisciplineRepository>(TypeDisciplineRepository).toSelf()
+
 /**
  * Container SERVICES configuration binding
  */
+DIContainer.bind<AuthService>(AuthService).toSelf()
 DIContainer.bind<StudentService>(StudentService).toSelf()
 DIContainer.bind<ProfileService>(ProfileService).toSelf()
 DIContainer.bind<RuleService>(RuleService).toSelf()

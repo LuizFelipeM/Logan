@@ -1,11 +1,11 @@
 import { inject } from 'inversify'
-import { ICurrentSemester } from '../domain/interfaces/entities/ICurrentSemester'
-import { CurrentsemesterRepository } from '../repositories/CurrentsemesterRepository'
+import { ISemester } from '../domain/interfaces/entities/ICurrentSemester'
+import { SemesterRepository } from '../repositories/CurrentsemesterRepository'
 import { AbstractService } from './AbstractService'
 
-export class CurrentsemesterService extends AbstractService<ICurrentSemester, CurrentsemesterRepository> {
+export class CurrentsemesterService extends AbstractService<ISemester, SemesterRepository> {
   constructor (
-    @inject(CurrentsemesterRepository)
-    protected readonly currentSemesterRepository: CurrentsemesterRepository
+    @inject(SemesterRepository)
+    protected readonly currentSemesterRepository: SemesterRepository
   ) { super(currentSemesterRepository) }
 }

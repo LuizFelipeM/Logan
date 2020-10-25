@@ -1,9 +1,9 @@
-import { currentSemesterTable } from '../database/common/currentSemesterTable'
-import { ICurrentSemester } from '../domain/interfaces/entities/ICurrentSemester'
+import { semestersTable } from '../database/common/semestersTable'
+import { ISemester } from '../domain/interfaces/entities/ICurrentSemester'
 import { AbstractRepository } from './AbstractRepository'
 
-export class CurrentsemesterRepository extends AbstractRepository<ICurrentSemester> {
+export class SemesterRepository extends AbstractRepository<ISemester> {
   constructor () {
-    super(currentSemesterTable)
+    super(semestersTable)
   }
 }

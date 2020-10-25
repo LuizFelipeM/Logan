@@ -1,8 +1,11 @@
 import { IBaseEntity } from './IBaseEntity'
 
-export interface ICurrentSemester extends IBaseEntity {
+export interface ISemester extends IBaseEntity {
+    course: number
     calendar: number
-    discipline: number
+    semester_course: number
+    semester_year: number
+    year: string
     eval_p1_start: string
     eval_p1_end: string
     eval_p2_start: string

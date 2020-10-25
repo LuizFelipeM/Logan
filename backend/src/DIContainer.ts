@@ -3,14 +3,15 @@ import { CalendarRepository } from './repositories/CalendarRepository'
 import { CampusRepository } from './repositories/CampusRepository'
 import { ClasseRepository } from './repositories/ClassesRepository'
 import { CoursesRepository } from './repositories/CoursesRepository'
-import { CurrentsemesterRepository } from './repositories/CurrentsemesterRepository'
+import { SemesterRepository } from './repositories/CurrentsemesterRepository'
 import { DisciplineRepository } from './repositories/DisciplineRepository'
 import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
 import { ProfessorRepository } from './repositories/ProfessorRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
 import { RegistryRepository } from './repositories/RegistryRepository'
-import { RuleRepository } from './repositories/RuleRepository'
+import { RuleRepository } from './repositories/ruleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
+import { SubjectRepository } from './repositories/SubjectRepository'
 import { TypeDisciplineRepository } from './repositories/typeDisciplineRepository'
 import { UserRepository } from './repositories/UserRepository'
 import { CalendarService } from './services/CalendarService'
@@ -23,8 +24,9 @@ import { NoteFoulsService } from './services/NoteFoulsService'
 import { ProfessorService } from './services/ProfessorService'
 import { ProfileService } from './services/ProfileService'
 import { RegistryService } from './services/RegistryService'
-import { RuleService } from './services/RuleService'
+import { RuleService } from './services/ruleService'
 import { StudentService } from './services/StudentService'
+import { SubjectService } from './services/SubjectService'
 import { TypeDisciplineService } from './services/TypeDisciplineService'
 import { UserService } from './services/UserService'
 
@@ -39,7 +41,7 @@ DIContainer.bind<ProfileRepository>(ProfileRepository).toSelf()
 DIContainer.bind<StudentsRepository>(StudentsRepository).toSelf()
 DIContainer.bind<CoursesRepository>(CoursesRepository).toSelf()
 DIContainer.bind<ClasseRepository>(ClasseRepository).toSelf()
-DIContainer.bind<CurrentsemesterRepository>(CurrentsemesterRepository).toSelf()
+DIContainer.bind<SemesterRepository>(SemesterRepository).toSelf()
 DIContainer.bind<NoteFoulsRepository>(NoteFoulsRepository).toSelf()
 DIContainer.bind<ProfessorRepository>(ProfessorRepository).toSelf()
 DIContainer.bind<RegistryRepository>(RegistryRepository).toSelf()
@@ -47,6 +49,7 @@ DIContainer.bind<DisciplineRepository>(DisciplineRepository).toSelf()
 DIContainer.bind<CampusRepository>(CampusRepository).toSelf()
 DIContainer.bind<CalendarRepository>(CalendarRepository).toSelf()
 DIContainer.bind<TypeDisciplineRepository>(TypeDisciplineRepository).toSelf()
+DIContainer.bind<SubjectRepository>(SubjectRepository).toSelf()
 /**
  * Container SERVICES configuration binding
  */
@@ -64,3 +67,4 @@ DIContainer.bind<DisciplineService>(DisciplineService).toSelf()
 DIContainer.bind<CampusService>(CampusService).toSelf()
 DIContainer.bind<CalendarService>(CalendarService).toSelf()
 DIContainer.bind<TypeDisciplineService>(TypeDisciplineService).toSelf()
+DIContainer.bind<SubjectService>(SubjectService).toSelf()

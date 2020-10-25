@@ -1,5 +1,5 @@
 import { Override } from '../../../@types/override'
-import { ICurrentSemester } from '../interfaces/ICurrentSemester'
+import { ICurrentSemester } from '../entities/ICurrentSemester'
 import { IcalendarDto } from './ICalenderDto'
 import { IDisciplineDto } from './IDiciplineDto'
 

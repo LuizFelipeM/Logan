@@ -40,6 +40,7 @@ export async function seed (knex: Knex): Promise<void> {
   const studen = await students(knex, user, ra, courId, clas)
   await noteFouls(knex, studen, disId, semester)
 }
+
 async function delAll (knex:Knex): Promise<void> {
   await knex(noteFoulsTableName).del()
   await knex(studentsTableName).del()
@@ -61,34 +62,35 @@ async function delAll (knex:Knex): Promise<void> {
   await knex(profilesTableName).del()
   await knex(rulesTableName).del()
 }
+
 async function users (knex: Knex, profi:number[]): Promise<number[]> {
   const id = await knex(usersTableName).insert([
     {
-      firstName: 'Lucas',
-      lastName: 'Daniel',
+      first_name: 'Lucas',
+      last_name: 'Daniel',
       gender: 'Male',
-      birthDate: '17/11/1999',
+      birth_date: '17/11/1999',
       profile: profi[2]
     },
     {
-      firstName: 'Pedro',
-      lastName: 'Henrique',
+      first_name: 'Pedro',
+      last_name: 'Henrique',
       gender: 'Male',
-      birthDate: '25/09/1999',
+      birth_date: '25/09/1999',
       profile: profi[2]
     },
     {
-      firstName: 'Luiz',
-      lastName: 'Felipe',
+      first_name: 'Luiz',
+      last_name: 'Felipe',
       gender: 'Male',
-      birthDate: '11/09/1999',
+      birth_date: '11/09/1999',
       profile: profi[2]
     },
     {
-      firstName: 'Maria',
-      lastName: 'Da Siva',
+      first_name: 'Maria',
+      last_name: 'Da Siva',
       gender: 'Female',
-      birthDate: '10/04/1999',
+      birth_date: '10/04/1999',
       profile: profi[1]
     },
     {
@@ -172,27 +174,27 @@ async function statusRegistry (knex:Knex): Promise<number[]> {
 async function registry (knex:Knex, status: number[]): Promise<number[]> {
   const id = await knex(registryTableName).insert([
     {
-      startRegistry: new Date(2014, 2, 3).toISOString(),
-      endEstimate: new Date(2017, 12, 15).toISOString(),
-      periodStudy: 'Noturno',
-      familiarIncome: 8000,
-      originInstitution: 'Bacelar',
+      start_registry: new Date(2014, 2, 3).toISOString(),
+      end_estimate: new Date(2017, 12, 15).toISOString(),
+      period_study: 'Noturno',
+      familiar_income: 8000,
+      origin_institution: 'Bacelar',
       status: status[0]
     },
     {
-      startRegistry: new Date(2017, 2, 14).toISOString(),
-      endEstimate: new Date(2021, 12, 20).toISOString(),
-      periodStudy: 'Vespertino',
-      familiarIncome: 3500.15,
-      originInstitution: 'Anchieta',
+      start_registry: new Date(2017, 2, 14).toISOString(),
+      end_estimate: new Date(2021, 12, 20).toISOString(),
+      period_study: 'Vespertino',
+      familiar_income: 3500.15,
+      origin_institution: 'Anchieta',
       status: status[2]
     },
     {
-      startRegistry: new Date(2011, 2, 3).toISOString(),
-      endEstimate: new Date(2015, 11, 28).toISOString(),
-      periodStudy: 'Matutino',
-      familiarIncome: 1968.44,
-      originInstitution: 'Bacelar',
+      start_registry: new Date(2011, 2, 3).toISOString(),
+      end_estimate: new Date(2015, 11, 28).toISOString(),
+      period_study: 'Matutino',
+      familiar_income: 1968.44,
+      origin_institution: 'Bacelar',
       status: status[1]
     }
   ]).returning('id')
@@ -221,17 +223,17 @@ async function courses (knex:Knex, campus:number[]): Promise<number[]> {
   const id = await knex(coursesTableName).insert([
     {
       campus: campus[0],
-      totalSemester: 6,
+      total_semester: 6,
       name: 'Fisica'
     },
     {
       campus: campus[2],
-      totalSemester: 10,
+      total_semester: 10,
       name: 'Eng. da Computação'
     },
     {
       campus: campus[1],
-      totalSemester: 4,
+      total_semester: 4,
       name: 'Artes'
     }
   ]).returning('id')
@@ -242,30 +244,29 @@ async function courses (knex:Knex, campus:number[]): Promise<number[]> {
 async function calendar (knex:Knex): Promise<number[]> {
   const id = await knex(calendarTableName).insert([
     {
-      startAcademicYear: new Date(2014, 2, 3).toISOString(),
-      academicYearEnd: new Date(2014, 12, 10).toISOString(),
-      startNotesP1: new Date(2014, 4, 10).toISOString(),
-      finalNotesP1: new Date(2014, 4, 20).toISOString(),
-      startNotesP2: new Date(2014, 5, 11).toISOString(),
-      finalNotesP2: new Date(2014, 5, 22).toISOString(),
-      startNotesSub: new Date(2014, 6, 15).toISOString(),
-      finalNotesSub: new Date(2014, 6, 20).toISOString(),
-      startNotesExam: new Date(2014, 6, 22).toISOString(),
-      finalNotesExam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2014, 2, 3).toISOString(),
+      academic_year_end: new Date(2014, 12, 10).toISOString(),
+      start_notes_p1: new Date(2014, 4, 10).toISOString(),
+      final_notes_p1: new Date(2014, 4, 20).toISOString(),
+      start_notes_p2: new Date(2014, 5, 11).toISOString(),
+      final_notes_p2: new Date(2014, 5, 22).toISOString(),
+      start_notes_sub: new Date(2014, 6, 15).toISOString(),
+      final_notes_sub: new Date(2014, 6, 20).toISOString(),
+      start_notes_exam: new Date(2014, 6, 22).toISOString(),
+      final_notes_exam: new Date(2014, 6, 27).toISOString()
     },
     {
-      startAcademicYear: new Date(2014, 2, 3).toISOString(),
-      academicYearEnd: new Date(2014, 12, 10).toISOString(),
-      startNotesP1: new Date(2014, 8, 10).toISOString(),
-      finalNotesP1: new Date(2014, 8, 20).toISOString(),
-      startNotesP2: new Date(2014, 11, 11).toISOString(),
-      finalNotesP2: new Date(2014, 11, 22).toISOString(),
-      startNotesSub: new Date(2014, 12, 15).toISOString(),
-      finalNotesSub: new Date(2014, 12, 20).toISOString(),
-      startNotesExam: new Date(2014, 12, 21).toISOString(),
-      finalNotesExam: new Date(2014, 12, 24).toISOString()
+      start_academic_year: new Date(2014, 2, 3).toISOString(),
+      academic_year_end: new Date(2014, 12, 10).toISOString(),
+      start_notes_p1: new Date(2014, 4, 10).toISOString(),
+      final_notes_p1: new Date(2014, 4, 20).toISOString(),
+      start_notes_p2: new Date(2014, 5, 11).toISOString(),
+      final_notes_p2: new Date(2014, 5, 22).toISOString(),
+      start_notes_sub: new Date(2014, 6, 15).toISOString(),
+      final_notes_sub: new Date(2014, 6, 20).toISOString(),
+      start_notes_exam: new Date(2014, 6, 22).toISOString(),
+      final_notes_exam: new Date(2014, 6, 27).toISOString()
     }
-
   ]).returning('id')
   return id
 }
@@ -274,28 +275,28 @@ async function discipline (knex:Knex, courses: number[], typeDis: number[], seme
   const id = await knex(disciplineTableName).insert([
     {
       course: courses[0],
-      typeDiscipline: typeDis[0],
+      type_discipline: typeDis[0],
       semester: semester[0],
       name: 'Termodinamica',
       workload: 50
     },
     {
       course: courses[2],
-      typeDiscipline: typeDis[1],
+      type_discipline: typeDis[1],
       semester: semester[1],
       name: 'Caricatura',
       workload: 120
     },
     {
       course: courses[2],
-      typeDiscipline: typeDis[1],
+      type_discipline: typeDis[1],
       semester: semester[1],
       name: 'Sombreamento',
       workload: 150
     },
     {
       course: courses[1],
-      typeDiscipline: typeDis[1],
+      type_discipline: typeDis[1],
       semester: semester[2],
       name: 'Mecanica',
       workload: 150
@@ -324,42 +325,42 @@ async function currentSemester (knex: Knex, calen:number[]): Promise<number[]> {
       semester_course: 1,
       semester_year: 1,
       year: new Date(2014).toISOString(),
-      evalP1Start: new Date(2014, 4, 10).toISOString(),
-      evalP1End: new Date(2014, 4, 20).toISOString(),
-      evalP2Start: new Date(2014, 5, 11).toISOString(),
-      evalP2End: new Date(2014, 5, 22).toISOString(),
-      evalSubStart: new Date(2014, 6, 15).toISOString(),
-      evalSubEnd: new Date(2014, 6, 20).toISOString(),
-      evalExamStart: new Date(2014, 6, 22).toISOString(),
-      evalExamEnd: new Date(2014, 6, 27).toISOString()
+      eval_p1_start: new Date(2014, 4, 10).toISOString(),
+      eval_p1_end: new Date(2014, 4, 20).toISOString(),
+      eval_p2_start: new Date(2014, 5, 11).toISOString(),
+      eval_p2_end: new Date(2014, 5, 22).toISOString(),
+      eval_sub_start: new Date(2014, 6, 15).toISOString(),
+      eval_sub_end: new Date(2014, 6, 20).toISOString(),
+      eval_exam_start: new Date(2014, 6, 22).toISOString(),
+      eval_exam_end: new Date(2014, 6, 27).toISOString()
     },
     {
       calendar: calen[1],
       semester_course: 2,
       semester_year: 2,
       year: new Date(2014).toISOString(),
-      evalP1Start: new Date(2014, 8, 10).toISOString(),
-      evalP1End: new Date(2014, 8, 20).toISOString(),
-      evalP2Start: new Date(2014, 11, 11).toISOString(),
-      evalP2End: new Date(2014, 11, 22).toISOString(),
-      evalSubStart: new Date(2014, 11, 24).toISOString(),
-      evalSubEnd: new Date(2014, 11, 28).toISOString(),
-      evalExamStart: new Date(2014, 12, 7).toISOString(),
-      evalExamEnd: new Date(2014, 6, 14).toISOString()
+      eval_p1_start: new Date(2014, 8, 10).toISOString(),
+      eval_p1_end: new Date(2014, 8, 20).toISOString(),
+      eval_p2_start: new Date(2014, 11, 11).toISOString(),
+      eval_p2_end: new Date(2014, 11, 22).toISOString(),
+      eval_sub_start: new Date(2014, 11, 24).toISOString(),
+      eval_sub_end: new Date(2014, 11, 28).toISOString(),
+      eval_exam_start: new Date(2014, 12, 7).toISOString(),
+      eval_exam_end: new Date(2014, 6, 14).toISOString()
     },
     {
       calendar: calen[0],
       semester_course: 3,
       semester_year: 1,
       year: new Date(2015).toISOString(),
-      evalP1Start: new Date(2015, 4, 10).toISOString(),
-      evalP1End: new Date(2015, 4, 20).toISOString(),
-      evalP2Start: new Date(2015, 5, 11).toISOString(),
-      evalP2End: new Date(2015, 5, 22).toISOString(),
-      evalSubStart: new Date(2015, 6, 15).toISOString(),
-      evalSubEnd: new Date(2015, 6, 20).toISOString(),
-      evalExamStart: new Date(2015, 6, 22).toISOString(),
-      evalExamEnd: new Date(2015, 6, 27).toISOString()
+      eval_p1_start: new Date(2015, 4, 10).toISOString(),
+      eval_p1_end: new Date(2015, 4, 20).toISOString(),
+      eval_p2_start: new Date(2015, 5, 11).toISOString(),
+      eval_p2_end: new Date(2015, 5, 22).toISOString(),
+      eval_sub_start: new Date(2015, 6, 15).toISOString(),
+      eval_sub_end: new Date(2015, 6, 20).toISOString(),
+      eval_exam_start: new Date(2015, 6, 22).toISOString(),
+      eval_exam_end: new Date(2015, 6, 27).toISOString()
     }
   ]).returning('id')
   return id
@@ -451,11 +452,11 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       discipline: disId[1],
       semester: semes[0],
 
-      noteP1: 5.00,
-      noteP2: 7.00,
-      noteSub: 0,
-      noteExam: 8.00,
-      finalnote: 7.00,
+      note_p1: 5.00,
+      note_p2: 7.00,
+      note_sub: 0,
+      note_exam: 8.00,
+      final_note: 7.00,
       fouls: 4
     },
     {
@@ -475,11 +476,11 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       discipline: disId[0],
       semester: semes[2],
 
-      noteP1: 7.00,
-      noteP2: 7.00,
-      noteSub: 0,
-      noteExam: 0,
-      finalnote: 7.00,
+      note_p1: 7.00,
+      note_p2: 7.00,
+      note_sub: 0,
+      note_exam: 0,
+      final_note: 7.00,
       fouls: 1
     },
     {
@@ -487,11 +488,11 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
       discipline: disId[3],
       semester: semes[1],
 
-      noteP1: 8.00,
-      noteP2: 6.50,
-      noteSub: 0,
-      noteExam: 0,
-      finalnote: 7.00,
+      note_p1: 8.00,
+      note_p2: 6.50,
+      note_sub: 0,
+      note_exam: 0,
+      final_note: 7.00,
       fouls: 7
     }
   ])

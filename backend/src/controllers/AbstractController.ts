@@ -4,9 +4,11 @@ import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
 
+type Service<T extends IBaseEntity> = AbstractService<T, AbstractRepository<T>>
+
 @injectable()
-export abstract class AbstractController<T extends IBaseEntity, Service extends AbstractService<T, AbstractRepository<T>>> implements interfaces.Controller {
-  protected abstract readonly service: Service
+export abstract class AbstractController<T extends IBaseEntity, S extends Service<T>> implements interfaces.Controller {
+  constructor (private readonly service: S) {}
 
   @httpGet('/getAll')
   private async getAll () {

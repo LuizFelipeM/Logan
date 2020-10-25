@@ -6,6 +6,6 @@ import { AbstractService } from './AbstractService'
 export class TypeDisciplineService extends AbstractService<ITypeDiscipline, TypeDisciplineRepository> {
   constructor (
     @inject(TypeDisciplineRepository)
-    protected readonly repository: TypeDisciplineRepository
-  ) { super() }
+    protected readonly typeDisciplineRepository: TypeDisciplineRepository
+  ) { super(typeDisciplineRepository) }
 }

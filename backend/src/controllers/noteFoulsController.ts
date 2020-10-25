@@ -8,11 +8,11 @@ import { AbstractController } from './AbstractController'
 export class NoteFoulsController extends AbstractController<INoteFouls, NoteFoulsService> {
   constructor (
     @inject(NoteFoulsService)
-    protected readonly service: NoteFoulsService
-  ) { super() }
+    protected readonly noteFoulsService: NoteFoulsService
+  ) { super(noteFoulsService) }
 
   @httpGet('/frequency')
   private async getSpecifcCourse () {
-    return await this.service.getSpecificationsCourse()
+    return await this.noteFoulsService.getSpecificationsCourse()
   }
 }

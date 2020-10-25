@@ -1,2 +1,4 @@
+import { Table } from '../../@types/Table'
+
 export const typeDisciplineTableName = 'type_discipline'
-export const typeDisciplineTable = { t1: typeDisciplineTableName }
+export const typeDisciplineTable: Table = { t1: typeDisciplineTableName }

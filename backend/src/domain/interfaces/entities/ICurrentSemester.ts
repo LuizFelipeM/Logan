@@ -3,12 +3,12 @@ import { IBaseEntity } from './IBaseEntity'
 export interface ICurrentSemester extends IBaseEntity {
     calendar: number
     discipline: number
-    evalP1Start: string
-    evalP1End: string
-    evalP2Start: string
-    evalP2End: string
-    evalSubStart: string
-    evalSubEnd: string
-    evalExamStart: string
-    evalExamEnd: string
+    eval_p1_start: string
+    eval_p1_end: string
+    eval_p2_start: string
+    eval_p2_end: string
+    eval_sub_start: string
+    eval_sub_end: string
+    eval_exam_start: string
+    eval_exam_end: string
 }

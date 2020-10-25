@@ -1,5 +1,5 @@
 export interface IBaseEntity {
   id: number
-  createdAt?: string
-  lastUpdate?: string
+  created_at?: string
+  last_update?: string
 }

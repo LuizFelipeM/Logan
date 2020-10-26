@@ -1,19 +1,33 @@
 import { inject } from 'inversify'
+import { IAvaregeCouseDto } from '../domain/contracts/IAvaregeCourseDto'
+import { IFrequencyDto } from '../domain/contracts/IFrequencyDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
-import { NoteFoulsRepository, testeDTO } from '../repositories/NoteFoulsRepository'
+import { CoursesRepository } from '../repositories/coursesRepository'
+import { DisciplineRepository } from '../repositories/DisciplineRepository'
+import { NoteFoulsRepository } from '../repositories/NoteFoulsRepository'
+import { StudentsRepository } from '../repositories/StudentRepository'
 import { AbstractService } from './AbstractService'
 
 export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepository> {
   constructor (
     @inject(NoteFoulsRepository)
-    protected readonly repository: NoteFoulsRepository
+    protected readonly repository: NoteFoulsRepository,
+
+    @inject(CoursesRepository)
+    protected readonly coursesRepository: CoursesRepository,
+
+    @inject(DisciplineRepository)
+    protected readonly disciplineRepository:DisciplineRepository,
+
+    @inject(StudentsRepository)
+    protected readonly studentsRepository:StudentsRepository
   ) { super() }// needs mapper to complete
 
-  getByRa = async (id: number): Promise<testeDTO[]> => {
-    if (id) {
-      return await this.repository.getByRaStudent(id)
-    } else {
-      throw new Error('TA ERRADO PORRA')
-    }
+  AvaregeWithCourse = async (): Promise<IAvaregeCouseDto[]> => {
+    return this.repository.getFinalNoteWithCourse()
+  }
+
+  FrequencyOfCourse = async (): Promise<IFrequencyDto[]> => {
+    return this.repository.getFrequencyOfNoteSandFouls()
   }
 }

@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { controller, httpGet, requestParam } from 'inversify-express-utils'
+import { controller, httpGet } from 'inversify-express-utils'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
 import { NoteFoulsService } from '../services/NoteFoulsService'
 import { AbstractController } from './AbstractController'
@@ -11,10 +11,13 @@ export class NoteFoulsController extends AbstractController<INoteFouls, NoteFoul
     protected readonly service: NoteFoulsService
   ) { super() }
 
-  @httpGet('/students/:ra')
-  private async getByRaStudent (@requestParam('ra') ra: number) {
-    const raStudent = await this.service.getByRa(ra)
+  @httpGet('/graphicAvarageNotes')
+  private async graphicAvarageNotes () {
+    return await this.service.AvaregeWithCourse()
+  }
 
-    return raStudent
+ @httpGet('/frequencyNoteFouls')
+  private async frequencyNoteFouls () {
+    return await this.service.FrequencyOfCourse()
   }
 }

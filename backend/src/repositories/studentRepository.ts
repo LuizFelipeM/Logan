@@ -13,7 +13,7 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .where({ user })
     .first()
 
-CountStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await knex(this.table)
+countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await knex(this.table)
   .select('class')
   .count('class')
   .groupBy('class')

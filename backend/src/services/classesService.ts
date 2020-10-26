@@ -25,13 +25,13 @@ export class ClassesService extends AbstractService<IClass, ClasseRepository> {
   getClassWithCourse = async (): Promise<IClassStudentCountDto[]> => {
     const classes = await this.repository.selectAll()
     const courses = await this.courseRepository.selectAll()
-    const students = await this.studentRepository.ContagemDeStudentsEmTurmas()
+    const students = await this.studentRepository.countStudentsInClass()
 
-    const TakeClassCoursesAndStudents = classes.map(clas => {
+    const getClassCoursesAndStudents = classes.map(clas => {
       const course = courses.find(c => c.id === clas.course)
       const student = students.find(s => s.class === clas.id)
       return toClassesDto(clas, course, student)
     })
-    return TakeClassCoursesAndStudents
+    return getClassCoursesAndStudents
   }
 }

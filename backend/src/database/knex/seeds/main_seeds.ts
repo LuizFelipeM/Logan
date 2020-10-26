@@ -252,7 +252,7 @@ async function discipline (knex:Knex, courses: number[], typeDis: number[]): Pro
       workload: 50
     },
     {
-      courses: courses[2],
+      courses: courses[1],
       typeDiscipline: typeDis[1],
       name: 'Isometria',
       workload: 120
@@ -360,14 +360,14 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
   await knex(noteFoulsTableName).insert([
     {
       students: studen[1],
-      discipline: disId[2],
+      discipline: disId[0],
       semester: semes[0],
 
       noteP1: 5.00,
       noteP2: 7.00,
       noteSub: 0,
       noteExam: 8.00,
-      finalNote: 7.00,
+      finalNote: 8.00,
       fouls: 4
     },
     {
@@ -384,14 +384,14 @@ async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:numb
     },
     {
       students: studen[2],
-      discipline: disId[2],
+      discipline: disId[1],
       semester: semes[0],
 
       noteP1: 8.00,
       noteP2: 6.50,
       noteSub: 0,
       noteExam: 0,
-      finalNote: 7.00,
+      finalNote: 6.00,
       fouls: 7
     }
   ])

@@ -132,14 +132,12 @@ export async function up (knex: Knex): Promise<void> {
     .createTableIfNotExists(disciplinesTableName, function (table) {
       table.increments('id').primary()
 
-      // table.integer('semester')
       table.integer('course')
       table.integer('type_discipline')
 
       table.string('name', 100)
       table.integer('workload')
 
-      // table.foreign('semester').references('id').inTable(semestersTableName)
       table.foreign('course').references('id').inTable(coursesTableName)
       table.foreign('type_discipline').references('id').inTable(disciplineTypesTableName)
     })

@@ -10,12 +10,3 @@ export function toSpecifCourseDto (classId: number, studentQtd: number, semester
     professor: profName
   }
 }
-
-// {
-//     class: 1,
-//     students: 12,
-//     semester: 4,
-//     frequency: 0.8,
-//     avgNotes: 10,
-//     professor: "Deus"
-//   }

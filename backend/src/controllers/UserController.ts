@@ -1,7 +1,7 @@
 import { inject } from 'inversify'
 import { controller, httpGet, queryParam } from 'inversify-express-utils'
 import { IUser } from '../domain/interfaces/entities/IUser'
-import { UserService } from '../services/UserService'
+import { UserService } from '../services/userService'
 import { AbstractController } from './AbstractController'
 
 @controller('/user')

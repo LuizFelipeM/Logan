@@ -3,10 +3,9 @@ import cors from 'cors'
 import { urlencoded, json } from 'body-parser'
 import { InversifyExpressServer } from 'inversify-express-utils'
 import { DIContainer } from './DIContainer'
-import { AuthProvider } from './providers/AuthProvider'
 
 export function startup (): void {
-  const server = new InversifyExpressServer(DIContainer, null, null, null, AuthProvider)
+  const server = new InversifyExpressServer(DIContainer)// new InversifyExpressServer(DIContainer, null, null, null, AuthProvider)
 
   server.setConfig(app => {
     app.use(cors())

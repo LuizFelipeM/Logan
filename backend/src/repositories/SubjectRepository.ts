@@ -23,10 +23,10 @@ export class SubjectRepository extends AbstractRepository<ISubject> {
       knex().raw('trunc(avg(nf.final_note), 2) AS avg_final_note'),
       'd.workload'
     )
-    .innerJoin(`${classesTableName} as c`, 'c.id', 't1.class')
-    .innerJoin(`${coursesTableName} as co`, 'co.id', 'c.course')
-    .innerJoin(`${semestersTableName} as se`, 'se.id', 't1.semester')
-    .innerJoin(`${noteFoulsTableName} as nf`, 'nf.discipline', 't1.discipline')
-    .innerJoin(`${disciplinesTableName} as d`, 'd.id', 'nf.discipline')
+    .innerJoin({ c: classesTableName }, 'c.id', 't1.class')
+    .innerJoin({ co: coursesTableName }, 'co.id', 'c.course')
+    .innerJoin({ se: semestersTableName }, 'se.id', 't1.semester')
+    .innerJoin({ nf: noteFoulsTableName }, 'nf.discipline', 't1.discipline')
+    .innerJoin({ d: disciplinesTableName }, 'd.id', 'nf.discipline')
     .groupBy('d.workload', 'd.name', 'c.id', 't1.class_time', 'se.semester_course', 'nf.fouls')
 }

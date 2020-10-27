@@ -9,9 +9,11 @@ import { IFrequencyDto } from '../domain/contracts/IFrequencyDto'
 import { studentsTableName } from '../database/common/studentsTable'
 
 export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
-  protected readonly table = noteFoulsTable
+  constructor () {
+    super(noteFoulsTable)
+  }
 
-  getFinalNoteWithCourse = async (): Promise<IAvaregeCouseDto[]> => await knex(noteFoulsTable)
+  getFinalNoteWithCourse = async (): Promise<IAvaregeCouseDto[]> => await this.session
     .innerJoin(`${disciplineTableName} as d`, 't1.discipline', 'd.id')
     .innerJoin(`${coursesTableName} as c`, 'c.id', 'd.courses')
     .select(
@@ -22,7 +24,7 @@ export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
     .avg('finalNote as avaregeNotes')
     .groupBy('t1.discipline', 'd.courses', 'c.name')
 
-  getFrequencyOfNoteSandFouls = async (): Promise<IFrequencyDto[]> => await knex(noteFoulsTable)
+  getFrequencyOfNoteSandFouls = async (): Promise<IFrequencyDto[]> => await this.session
     .innerJoin(`${studentsTableName}as s`, 't1.students', 's.id')
     .innerJoin(`${disciplineTableName} as d`, 't1.discipline', 'd.id')
     .innerJoin(`${coursesTableName} as c`, 'c.id', 'd.courses')

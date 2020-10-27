@@ -6,6 +6,6 @@ import { AbstractService } from './AbstractService'
 export class CalendarService extends AbstractService<ICalendar, CalendarRepository> {
   constructor (
     @inject(CalendarRepository)
-    protected readonly repository: CalendarRepository
-  ) { super() }
+    protected readonly calendarRepository: CalendarRepository
+  ) { super(calendarRepository) }
 }

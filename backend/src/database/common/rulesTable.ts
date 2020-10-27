@@ -1,2 +1,4 @@
+import { Table } from '../../@types/Table'
+
 export const rulesTableName = 'rules'
-export const rulesTable = { t1: rulesTableName }
+export const rulesTable: Table = { t1: rulesTableName }

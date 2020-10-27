@@ -3,14 +3,14 @@ import { IClassStudentCountDto } from '../domain/contracts/IClassStudentCountDto
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { toClassesDto } from '../domain/mappers/classesMapper'
 import { ClasseRepository } from '../repositories/classesRepository'
-import { CoursesRepository } from '../repositories/coursesRepository'
+import { CoursesRepository } from '../repositories/CoursesRepository'
 import { StudentsRepository } from '../repositories/StudentRepository'
 import { AbstractService } from './AbstractService'
 
 export class ClassesService extends AbstractService<IClass, ClasseRepository> {
   constructor (
     @inject(ClasseRepository)
-    protected readonly repository: ClasseRepository,
+    protected readonly classeRepository: ClasseRepository,
 
     @inject(CoursesRepository)
     protected readonly courseRepository: CoursesRepository,
@@ -19,11 +19,11 @@ export class ClassesService extends AbstractService<IClass, ClasseRepository> {
     protected readonly studentRepository: StudentsRepository
 
   ) {
-    super()
+    super(classeRepository)
   }
 
   getClassWithCourse = async (): Promise<IClassStudentCountDto[]> => {
-    const classes = await this.repository.selectAll()
+    const classes = await this.classeRepository.selectAll()
     const courses = await this.courseRepository.selectAll()
     const students = await this.studentRepository.countStudentsInClass()
 

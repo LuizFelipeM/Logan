@@ -1,30 +1,31 @@
 import { Container } from 'inversify'
-import { CalendarController } from './controllers/CalendarController'
 import { CalendarRepository } from './repositories/CalendarRepository'
 import { CampusRepository } from './repositories/CampusRepository'
-import { ClasseRepository } from './repositories/classesRepository'
-import { CoursesRepository } from './repositories/coursesRepository'
-import { CurrentsemesterRepository } from './repositories/currentsemesterRepository'
+import { ClasseRepository } from './repositories/ClassesRepository'
+import { CoursesRepository } from './repositories/CoursesRepository'
+import { CurrentsemesterRepository } from './repositories/CurrentsemesterRepository'
 import { DisciplineRepository } from './repositories/DisciplineRepository'
 import { NoteFoulsRepository } from './repositories/NoteFoulsRepository'
-import { ProfessorRepository } from './repositories/professorRepository'
+import { ProfessorRepository } from './repositories/ProfessorRepository'
 import { ProfileRepository } from './repositories/ProfileRepository'
-import { RegistryRepository } from './repositories/registryRepository'
-import { RuleRepository } from './repositories/ruleRepository'
+import { RegistryRepository } from './repositories/RegistryRepository'
+import { RuleRepository } from './repositories/RuleRepository'
 import { StudentsRepository } from './repositories/StudentRepository'
+import { TypeDisciplineRepository } from './repositories/typeDisciplineRepository'
 import { UserRepository } from './repositories/UserRepository'
 import { CalendarService } from './services/CalendarService'
 import { CampusService } from './services/CampusService'
-import { ClassesService } from './services/classesService'
-import { CourseService } from './services/coursesService'
-import { CurrentsemesterService } from './services/currentsemesterService'
+import { ClassesService } from './services/ClassesService'
+import { CourseService } from './services/CoursesService'
+import { CurrentsemesterService } from './services/CurrentsemesterService'
 import { DisciplineService } from './services/DisciplineService'
 import { NoteFoulsService } from './services/NoteFoulsService'
-import { ProfessorService } from './services/professorService'
+import { ProfessorService } from './services/ProfessorService'
 import { ProfileService } from './services/ProfileService'
-import { RegistryService } from './services/registryService'
-import { RuleService } from './services/ruleService'
+import { RegistryService } from './services/RegistryService'
+import { RuleService } from './services/RuleService'
 import { StudentService } from './services/StudentService'
+import { TypeDisciplineService } from './services/TypeDisciplineService'
 import { UserService } from './services/UserService'
 
 export const DIContainer = new Container()
@@ -45,6 +46,7 @@ DIContainer.bind<RegistryRepository>(RegistryRepository).toSelf()
 DIContainer.bind<DisciplineRepository>(DisciplineRepository).toSelf()
 DIContainer.bind<CampusRepository>(CampusRepository).toSelf()
 DIContainer.bind<CalendarRepository>(CalendarRepository).toSelf()
+DIContainer.bind<TypeDisciplineRepository>(TypeDisciplineRepository).toSelf()
 /**
  * Container SERVICES configuration binding
  */
@@ -61,3 +63,4 @@ DIContainer.bind<RegistryService>(RegistryService).toSelf()
 DIContainer.bind<DisciplineService>(DisciplineService).toSelf()
 DIContainer.bind<CampusService>(CampusService).toSelf()
 DIContainer.bind<CalendarService>(CalendarService).toSelf()
+DIContainer.bind<TypeDisciplineService>(TypeDisciplineService).toSelf()

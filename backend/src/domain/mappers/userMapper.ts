@@ -1,14 +1,16 @@
-import { IUserDto } from '../contracts/IUserDto'
+import { IProfileDto } from '../interfaces/contracts/IProfileDto'
+import { IUserDto } from '../interfaces/contracts/IUserDto'
 import { IUser } from '../interfaces/entities/IUser'
 
-export function toUserDto<T extends IUser> (data: T): IUserDto {
+export function toUserDto<T extends IUser> (data: T, profile: IProfileDto | undefined): IUserDto {
   return {
     id: data.id,
-    firstName: data.firstName,
-    lastName: data.lastName,
+    first_name: data.first_name,
+    last_name: data.last_name,
     gender: data.gender,
-    birthDate: data.birthDate,
-    createdAt: data.createdAt,
-    lastUpdate: data.lastUpdate
+    birth_date: data.birth_date,
+    created_at: data.created_at,
+    last_update: data.last_update,
+    profile
   }
 }

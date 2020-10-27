@@ -1,19 +1,20 @@
 
 import { studentsTable } from '../database/common/studentsTable'
-import { knex } from '../database/knex/dbConnection'
 import { AbstractRepository } from './AbstractRepository'
 import { IStudent } from '../domain/interfaces/entities/IStudent'
 import { IStudentCountByClassDto } from '../domain/contracts/IStudentCountByClassDto'
 
 export class StudentsRepository extends AbstractRepository<IStudent> {
-  protected readonly table = studentsTable
+  constructor () {
+    super(studentsTable)
+  }
 
-  selectByUserId = async (user: number): Promise<IStudent> => await knex(this.table)
+  selectByUserId = async (user: number): Promise<IStudent | undefined > => await this.session
     .select('*')
     .where({ user })
     .first()
 
-countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await knex(this.table)
+countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await this.session
   .select('class')
   .count('class')
   .groupBy('class')

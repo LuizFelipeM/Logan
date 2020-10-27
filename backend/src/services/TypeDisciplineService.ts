@@ -1,6 +1,6 @@
 import { inject } from 'inversify'
 import { ITypeDiscipline } from '../domain/interfaces/entities/ITypeDicipline'
-import { TypeDisciplineRepository } from '../repositories/typeDisciplineRepository'
+import { TypeDisciplineRepository } from '../repositories/TypeDisciplineRepository'
 import { AbstractService } from './AbstractService'
 
 export class TypeDisciplineService extends AbstractService<ITypeDiscipline, TypeDisciplineRepository> {

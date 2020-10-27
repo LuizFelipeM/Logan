@@ -9,8 +9,6 @@ export function toUserDto<T extends IUser> (data: T, profile: IProfileDto | unde
     last_name: data.last_name,
     gender: data.gender,
     birth_date: data.birth_date,
-    created_at: data.created_at,
-    last_update: data.last_update,
     profile
   }
 }

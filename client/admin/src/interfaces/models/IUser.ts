@@ -1,9 +1,11 @@
 import { IBase } from './IBase'
 
 export interface IUser extends IBase {
-  firstName: string
-  lastName: string
+  email: string
+  password: string
+  first_name: string
+  last_name: string
   gender: string
-  birthDate?: string
+  birth_date?: string
   profile?: number
 }

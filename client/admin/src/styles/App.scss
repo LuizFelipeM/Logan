@@ -3,6 +3,12 @@
 @import "node_modules/react-vis/dist/style";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;900&display=swap");
 
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .body-wrapper {
   height: 100vh;
 
@@ -15,6 +21,9 @@
     height: 100vh;
 
     .display-container-wrapper {
+      height: 100vh;
+      overflow: hidden scroll;
+
       & > .row:not(:last-child) {
         margin-bottom: 25px;
       }

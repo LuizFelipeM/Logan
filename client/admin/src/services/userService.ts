@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/IUser'
+import { IUser } from '../interfaces/models/IUser'
 import BaseService from './BaseService'
 
 enum EndpointEnum {
@@ -13,4 +13,6 @@ class UserService extends BaseService<IUser> {
   authenticate = (email: string, password: string) => this.POST(EndpointEnum.auth, { email, password })
 }
 
-export default new UserService()
+const userService = new UserService()
+
+export default userService

@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { ISemester } from '../domain/interfaces/entities/ICurrentSemester'
+import { ISemester } from '../domain/interfaces/entities/ISemester'
 import { SemesterRepository } from '../repositories/CurrentsemesterRepository'
 import { AbstractService } from './AbstractService'
 

@@ -4,7 +4,7 @@ import { IDiscipline } from '../domain/interfaces/entities/IDiscipline'
 import { toTypeDisciplineAndWorkload } from '../domain/mappers/DisciplineMapper'
 import { CoursesRepository } from '../repositories/CoursesRepository'
 import { DisciplineRepository } from '../repositories/DisciplineRepository'
-import { TypeDisciplineRepository } from '../repositories/typeDisciplineRepository'
+import { TypeDisciplineRepository } from '../repositories/TypeDisciplineRepository'
 
 import { AbstractService } from './AbstractService'
 

@@ -1,6 +1,6 @@
 import { inject } from 'inversify'
 import { controller } from 'inversify-express-utils'
-import { ISemester } from '../domain/interfaces/entities/ICurrentSemester'
+import { ISemester } from '../domain/interfaces/entities/ISemester'
 import { CurrentsemesterService } from '../services/CurrentsemesterService'
 import { AbstractController } from './AbstractController'
 

@@ -1,7 +1,7 @@
 import { Container } from 'inversify'
 import { CalendarRepository } from './repositories/CalendarRepository'
 import { CampusRepository } from './repositories/CampusRepository'
-import { ClasseRepository } from './repositories/ClassesRepository'
+import { ClassesRepository } from './repositories/ClassesRepository'
 import { CoursesRepository } from './repositories/CoursesRepository'
 import { SemesterRepository } from './repositories/SemesterRepository'
 import { DisciplineRepository } from './repositories/DisciplineRepository'
@@ -40,7 +40,7 @@ DIContainer.bind<RuleRepository>(RuleRepository).toSelf()
 DIContainer.bind<ProfileRepository>(ProfileRepository).toSelf()
 DIContainer.bind<StudentsRepository>(StudentsRepository).toSelf()
 DIContainer.bind<CoursesRepository>(CoursesRepository).toSelf()
-DIContainer.bind<ClasseRepository>(ClasseRepository).toSelf()
+DIContainer.bind<ClassesRepository>(ClassesRepository).toSelf()
 DIContainer.bind<SemesterRepository>(SemesterRepository).toSelf()
 DIContainer.bind<NoteFoulsRepository>(NoteFoulsRepository).toSelf()
 DIContainer.bind<ProfessorRepository>(ProfessorRepository).toSelf()

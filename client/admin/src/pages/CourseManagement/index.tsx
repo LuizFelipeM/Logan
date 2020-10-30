@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import React, { useEffect, useState, useContext } from 'react'
+import { Col, Row, Toast } from 'react-bootstrap'
 import { DataGridCard, Title } from 'bootstrap-based-components'
 import {
   BarChart, CartesianGrid, Legend, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer
@@ -10,17 +10,23 @@ import disciplineService from '../../services/disciplineService'
 import { ITypeDisciplineAndWorkloadDto } from '../../interfaces/contracts/ITypeDisciplineAndWorkloadDto'
 import classService from '../../services/classService'
 import { IClassMinifyViewDto } from '../../interfaces/contracts/IClassMinifyViewDto'
+import { WrapperContext } from '../../contexts/WrapperContext'
 
 const CourseManagement: React.FC = () => {
+  const { notification, setLoading } = useContext(WrapperContext)
   const [disciplineData, setDisciplineData] = useState<ITypeDisciplineAndWorkloadDto[]>([])
   const [classesData, setClassesData] = useState<IClassMinifyViewDto[]>([])
 
   useEffect(() => {
+    setLoading(true)
+
     fetchData()
       .then(([disciplines, classes]) => {
         setDisciplineData(disciplines)
         setClassesData(classes)
       })
+      .catch(() => notification.error('Falha ao carregar', 'Erro ao carregar a página, por favor tente novamente mais tarde.'))
+      .finally(() => setLoading(false))
   }, [])
 
   const fetchData = () => Promise.all([
@@ -32,10 +38,10 @@ const CourseManagement: React.FC = () => {
     <>
       <Row>
         <Col>
-          <Title>Gerência de curso</Title>
+          <Title className="course-management">Gerência de curso</Title>
         </Col>
       </Row>
-      <Row>
+      <Row className="disciplines-subjects">
         <Col xs={4}>
           <DataGridCard
             header="Disciplinas"

@@ -4,7 +4,7 @@ import { toUserDto } from '../domain/mappers/userMapper'
 import { AbstractService } from './AbstractService'
 import { ProfileRepository } from '../repositories/ProfileRepository'
 import { IUser } from '../domain/interfaces/entities/IUser'
-import { UserRepository } from '../repositories/userRepository'
+import { UserRepository } from '../repositories/UserRepository'
 
 export class UserService extends AbstractService<IUser, UserRepository> {
   constructor (

@@ -1,5 +1,5 @@
 export interface IAvaregeCouseDto{
-    course: string | undefined
-    dicipline: number | undefined
+    course?:string
+    dicipline ?:string
     name: string
 }

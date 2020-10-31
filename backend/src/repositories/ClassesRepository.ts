@@ -5,7 +5,7 @@ import { IClassMinifyViewDto } from '../domain/interfaces/contracts/IClassMinify
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { AbstractRepository } from './AbstractRepository'
 
-export class ClasseRepository extends AbstractRepository<IClass> {
+export class ClassesRepository extends AbstractRepository<IClass> {
   constructor () {
     super(classesTable)
   }

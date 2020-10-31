@@ -32,7 +32,7 @@
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/no-use-before-define": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-array-index-key": "off",
     "react/prop-types": "off",

@@ -9,7 +9,7 @@ import { ReactComponent as Logo } from '../assets/imgs/logo.svg'
 const Routes: React.FC = () => (
   <BrowserRouter>
     <Col xs={3} className="side-menu-col">
-      <SideMenu Logo={Logo} config={routesConfig} />
+      <SideMenu config={routesConfig} > <Logo /> </SideMenu>
     </Col>
     <Col className="display-col">
       <DisplayContainer config={routesConfig} />

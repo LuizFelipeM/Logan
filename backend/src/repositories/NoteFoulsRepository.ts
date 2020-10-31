@@ -14,7 +14,7 @@ export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
     super(noteFoulsTable)
   }
 
-  getFinalNoteWithCourse = async (): Promise<IAvaregeCouseDto[]> => await this.session
+  selectFinalNoteWithCourse = async (): Promise<IAvaregeCouseDto[]> => await this.session
     .innerJoin(`${disciplinesTableName} as d`, 't1.discipline', 'd.id')
     .innerJoin(`${coursesTableName} as c`, 'c.id', 'd.course')
     .select(
@@ -25,7 +25,7 @@ export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
     .avg('final_note as avaregeNotes')
     .groupBy('t1.discipline', 'd.course', 'c.name')
 
-  getFrequencyOfNoteSandFouls = async (): Promise<IFrequencyDto[]> => await this.session
+  selectFrequencyOfNoteSandFouls = async (): Promise<IFrequencyDto[]> => await this.session
     .innerJoin(`${studentsTableName} as s`, 't1.students', 's.id')
     .innerJoin(`${disciplinesTableName} as d`, 't1.discipline', 'd.id')
     .innerJoin(`${coursesTableName} as c`, 'c.id', 'd.course')

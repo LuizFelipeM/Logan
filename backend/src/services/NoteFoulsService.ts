@@ -24,10 +24,10 @@ export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepos
   ) { super(noteFoulsRepository) }// needs mapper to complete
 
   AvaregeWithCourse = async (): Promise<IAvaregeCouseDto[]> => {
-    return this.noteFoulsRepository.getFinalNoteWithCourse()
+    return this.noteFoulsRepository.selectFinalNoteWithCourse()
   }
 
   FrequencyOfCourse = async (): Promise<IFrequencyDto[]> => {
-    return this.noteFoulsRepository.getFrequencyOfNoteSandFouls()
+    return this.noteFoulsRepository.selectFrequencyOfNoteSandFouls()
   }
 }

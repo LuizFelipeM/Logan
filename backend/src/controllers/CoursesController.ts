@@ -11,7 +11,7 @@ export class CourseController extends AbstractController<ICourse, CourseService>
     protected readonly courseService: CourseService
   ) { super(courseService) }
 
-  @httpGet('/getAllCoursesView')
+  @httpGet('/getAllCoursesMinifiedView')
   private getAllCoursesMinifiedView () {
     return this.courseService.getAllCoursesMinifiedView()
   }

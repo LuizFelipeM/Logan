@@ -11,8 +11,8 @@ export class NoteFoulsController extends AbstractController<INoteFouls, NoteFoul
     protected readonly noteFoulsService: NoteFoulsService
   ) { super(noteFoulsService) }
 
-  @httpGet('/getAvaregeNotesCourses')
-  private getAvaregeNotesCourses () {
+  @httpGet('/getAvaregeNotesByCourses')
+  private getAvaregeNotesByCourses () {
     return this.noteFoulsService.AvaregeWithCourse()
   }
 

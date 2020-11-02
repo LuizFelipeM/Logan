@@ -1,5 +1,5 @@
-export interface ICoursesMinifyView {
+export interface ICoursesMinifyViewDto {
   course_name: string
   notes_avg: number
-  fouls_avg: number
+  frequency_avg: number
 }

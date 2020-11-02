@@ -7,12 +7,16 @@ import Registry from '../pages/Registry'
 import AcademicCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
 import PasswordRecovery from '../pages/PasswordRecovery'
+import RoutesEnum from './routesEnum'
+import DisciplineDetails from '../pages/CourseManagement/DisciplineDetails'
 
-const routesConfig: RoutesConfig = {
+const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {
+    exact: true,
     path: 'login',
     name: 'Login',
     page: Login,
+    hideSideMenu: true,
     hideOnSideMenu: true
   },
 
@@ -20,6 +24,7 @@ const routesConfig: RoutesConfig = {
     path: 'passwordRecovery',
     name: 'Troca de senha',
     page: PasswordRecovery,
+    hideSideMenu: true,
     hideOnSideMenu: true
   },
 
@@ -28,6 +33,13 @@ const routesConfig: RoutesConfig = {
     name: 'Gerência de cursos',
     page: CourseManagement,
     icon: faBook
+  },
+
+  courseManagementEdit: {
+    hideOnSideMenu: true,
+    path: 'courseManagement/discipline/:id',
+    name: 'Gerência de cursos',
+    page: DisciplineDetails
   },
 
   academicCalendar: {

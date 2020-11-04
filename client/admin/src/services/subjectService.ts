@@ -12,6 +12,8 @@ class SubjectService extends BaseService<ISubject> {
   }
 
   getAllSubjectDetailed = (): Promise<ISubjectDetailedDto[]> => this.GET(EndpointEnum.detailedView)
+
+  getSubjectDetailed = (disciplineId: number): Promise<ISubjectDetailedDto[]> => this.GET(EndpointEnum.detailedView, { params: { disciplineId } })
 }
 
 const subjectService = new SubjectService()

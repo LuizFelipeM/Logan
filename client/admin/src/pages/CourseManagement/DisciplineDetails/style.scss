@@ -1,74 +1,9 @@
-.title.course-management {
-  margin-bottom: 2rem;
+.title {
+  margin: 2rem 0;
 }
 
-table {
-  text-align: center;
-}
-
-.disciplines-subjects.row {
-  margin-bottom: 2rem;
-}
-
-.bar-chart {
-  h3 {
-    text-align: center;
-  }
-}
-
-.detailed-view-card,
-.messages-board-card {
-  text-align: center;
-  border: none !important;
-  color: white;
-
-  .content {
-    display: flex;
-    border-radius: 8px;
-    flex-direction: column;
-  }
-}
-
-.detailed-view-card {
-  height: 250px;
-
-  .content {
-    justify-content: space-evenly;
-    background-color: #466492;
-
-    .title {
-      padding: 15px;
-      border-radius: 8px;
-      background: #ffffff33;
-      border-bottom: none;
-      margin: 0;
-    }
-
-    .text {
-      font-size: 23px;
-      display: block;
-    }
-  }
-}
-
-.messages-board-card {
-  height: 100%;
-
-  .content {
-    justify-content: center;
-    background: rgb(129, 187, 255);
-    background: linear-gradient(
-      0deg,
-      rgba(129, 187, 255, 0.73) 0%,
-      rgba(129, 187, 255, 1) 100%
-    );
-
-    .icon {
-      font-size: 7rem;
-    }
-
-    .text {
-      font-size: 2rem;
-    }
-  }
+.discipline-class-grid {
+  margin: auto;
+  display: block !important;
+  min-width: 100% !important;
 }

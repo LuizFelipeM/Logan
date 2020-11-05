@@ -1,6 +1,6 @@
 import { inject } from 'inversify'
-import { IAvaregeCouseDto } from '../domain/contracts/IAvaregeCourseDto'
-import { IFrequencyDto } from '../domain/contracts/IFrequencyDto'
+import { IAvaregeCouseDto } from '../domain/interfaces/contracts/IAvaregeCourseDto'
+import { IFrequencyDto } from '../domain/interfaces/contracts/IFrequencyDto'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
 import { CoursesRepository } from '../repositories/CoursesRepository'
 import { DisciplineRepository } from '../repositories/DisciplineRepository'

@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { IClassStudentCountDto } from '../domain/contracts/IClassStudentCountDto'
+import { IClassStudentCountDto } from '../domain/interfaces/contracts/IClassStudentCountDto'
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { toClassesDto } from '../domain/mappers/classesMapper'
 import { ClassesRepository } from '../repositories/ClassesRepository'

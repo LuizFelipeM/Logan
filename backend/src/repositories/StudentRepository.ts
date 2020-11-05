@@ -2,6 +2,10 @@ import { studentsTable } from '../database/common/studentsTable'
 import { AbstractRepository } from './AbstractRepository'
 import { IStudent } from '../domain/interfaces/entities/IStudent'
 import { IStudentCountByClassDto } from '../domain/interfaces/contracts/IStudentCountByClassDto'
+import { IClassStudentsAndSemesterDto } from '../domain/interfaces/contracts/IClassesStudentsAndSemesterDto'
+import { classesTableName } from '../database/common/classesTable'
+import { semestersTableName } from '../database/common/semestersTable'
+import { knex } from '../database/knex/dbConnection'
 
 export class StudentsRepository extends AbstractRepository<IStudent> {
   constructor () {
@@ -13,8 +17,18 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .where({ user })
     .first()
 
-countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await this.session
-  .select('class')
-  .count('class')
-  .groupBy('class')
+  countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await this.session
+    .select('class')
+    .count('class')
+    .groupBy('class')
+
+  getClassesStudentsAndSemester = async ():Promise<IClassStudentsAndSemesterDto[]> => await this.session
+    .innerJoin(`${classesTableName} as c`, 't1.course', 'c.course')
+    .innerJoin(`${semestersTableName} as s`, 'c.course', 's.course')
+    .select(
+      knex().raw('count(s.id) as students'),
+      's.id as semester',
+      'c.id as class'
+    )
+    .groupBy('s.id', 'c.id')
 }

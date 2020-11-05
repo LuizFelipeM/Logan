@@ -2,7 +2,7 @@
 import { studentsTable } from '../database/common/studentsTable'
 import { AbstractRepository } from './AbstractRepository'
 import { IStudent } from '../domain/interfaces/entities/IStudent'
-import { IStudentCountByClassDto } from '../domain/contracts/IStudentCountByClassDto'
+import { IStudentCountByClassDto } from '../domain/interfaces/contracts/IStudentCountByClassDto'
 
 export class StudentsRepository extends AbstractRepository<IStudent> {
   constructor () {
@@ -14,8 +14,8 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .where({ user })
     .first()
 
-countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await this.session
-  .select('class')
-  .count('class')
-  .groupBy('class')
+  countStudentsInClass = async (): Promise<IStudentCountByClassDto[]> => await this.session
+    .select('class')
+    .count('class')
+    .groupBy('class')
 }

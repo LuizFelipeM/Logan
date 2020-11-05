@@ -2,7 +2,8 @@ type RoutesEnum =
   'login' |
   'passwordRecovery' |
   'courseManagement' |
-  'courseManagementEdit' |
+  'courseManagementClassDetails' |
+  'courseManagementDisciplineDetails' |
   'academicCalendar' |
   'registry' |
   'controlPanel'

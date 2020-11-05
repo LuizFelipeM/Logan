@@ -70,6 +70,7 @@ const CourseManagement: React.FC = () => {
           <DataGridCard
             header="Turmas"
             dataSource={classesData}
+            onClick={(_, data) => history.push(`${url}/class/${data.class_id}`)}
             columnConfig={[
               { name: 'Turma', key: 'class_id' },
               { name: 'Curso', key: 'course_name' },

@@ -9,6 +9,7 @@ import ControlPanel from '../pages/ControlPanel'
 import PasswordRecovery from '../pages/PasswordRecovery'
 import RoutesEnum from './routesEnum'
 import DisciplineDetails from '../pages/CourseManagement/DisciplineDetails'
+import ClassDetails from '../pages/CourseManagement/ClassDetails'
 
 const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {
@@ -35,11 +36,18 @@ const routesConfig: RoutesConfig<RoutesEnum> = {
     icon: faBook
   },
 
-  courseManagementEdit: {
+  courseManagementDisciplineDetails: {
     hideOnSideMenu: true,
     path: 'courseManagement/discipline/:id',
     name: 'Gerência de cursos',
     page: DisciplineDetails
+  },
+
+  courseManagementClassDetails: {
+    hideOnSideMenu: true,
+    path: 'courseManagement/class/:id',
+    name: 'Gerência de cursos',
+    page: ClassDetails
   },
 
   academicCalendar: {

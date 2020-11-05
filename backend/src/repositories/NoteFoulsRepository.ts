@@ -1,13 +1,13 @@
 import { noteFoulsTable } from '../database/common/noteFoulsTable'
 import { AbstractRepository } from './AbstractRepository'
 import { INoteFouls } from '../domain/interfaces/entities/INoteFouls'
-import { IAvaregeCouseDto } from '../domain/contracts/IAvaregeCourseDto'
 import { coursesTableName } from '../database/common/coursesTable'
-import { IFrequencyDto } from '../domain/contracts/IFrequencyDto'
 import { studentsTableName } from '../database/common/studentsTable'
 import { disciplinesTableName } from '../database/common/disciplinesTable'
 import { knex } from '../database/knex/dbConnection'
 import { subjectsTableName } from '../database/common/subjectsTable'
+import { IAvaregeCouseDto } from '../domain/interfaces/contracts/IAvaregeCourseDto'
+import { IFrequencyDto } from '../domain/interfaces/contracts/IFrequencyDto'
 
 export class NoteFoulsRepository extends AbstractRepository<INoteFouls> {
   constructor () {

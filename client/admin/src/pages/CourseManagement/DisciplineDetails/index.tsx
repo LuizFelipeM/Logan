@@ -33,7 +33,7 @@ const DisciplineDetails: React.FC = () => {
             header="Informações da disciplina por turma"
             dataSource={disciplineDetails}
             columnConfig={[
-              { name: 'ID Turma', key: 'class_id' },
+              { name: 'Turma', key: 'class_id' },
               { name: 'Qtd. Alunos', key: 'students_count' },
               { name: 'Semestre', key: 'semester_course' },
               { name: 'Frequência (%)', key: 'frequency' },

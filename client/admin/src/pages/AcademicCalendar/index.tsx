@@ -1,16 +1,25 @@
 import { DataGridCard } from 'bootstrap-based-components'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { ITesteCalendarDto } from '../../contracts/ITesteCalendarDto'
+import { WrapperContext } from '../../contexts/WrapperContext'
+import { IClassStudentsAndSemesterDto } from '../../interfaces/contracts/IClassStudentsAndSemesterDto'
+import studentsService from '../../services/studentsService'
 import YearCalendar from './calendar'
 import './styles.scss'
 
 const AcademicCalendar: React.FC = () => {
-  const [Calendardata, setCalendardata] = useState<ITesteCalendarDto[]>([])
+  const { setLoading } = useContext(WrapperContext)
 
-  const fetchData = () => Promise.all([
+  const [academicCalendarData, setAcademicCalendarData] = useState<IClassStudentsAndSemesterDto[]>([])
 
-  ])
+  useEffect(() => {
+    setLoading(true)
+
+    studentsService.getClassStudentsAndSemester()
+
+      .then((data) => { console.log(data) })
+      .finally(() => setLoading(false))
+  }, [])
 
   return (
     <>
@@ -18,7 +27,7 @@ const AcademicCalendar: React.FC = () => {
         <Col xs={4} className="d-flex justify-content-center">
           <DataGridCard
             header="Ano Letivo"
-            dataSource={Calendardata}
+            dataSource={academicCalendarData}
             columnConfig={[
               { name: 'Turma', key: 'typeName' },
               { name: 'Nº Alunos', key: 'workload' },

@@ -37,6 +37,8 @@
     "react/no-array-index-key": "off",
     "react/prop-types": "off",
     "no-use-before-define": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
     "comma-dangle": ["error", "never"],
     "semi": ["error", "never"],
     "linebreak-style": "off"

@@ -4,38 +4,37 @@ import { Col, Row } from 'react-bootstrap'
 import { WrapperContext } from '../../contexts/WrapperContext'
 import { IClassStudentsAndSemesterDto } from '../../interfaces/contracts/IClassStudentsAndSemesterDto'
 import studentsService from '../../services/studentsService'
-import YearCalendar from './calendar'
+import YearCalendar from './YearAcademic'
 import './styles.scss'
 
 const AcademicCalendar: React.FC = () => {
   const { setLoading } = useContext(WrapperContext)
 
-  const [academicCalendarData, setAcademicCalendarData] = useState<IClassStudentsAndSemesterDto[]>([])
+  const [academicCalendar, setAcademicCalendar] = useState<IClassStudentsAndSemesterDto[]>([])
 
   useEffect(() => {
     setLoading(true)
 
     studentsService.getClassStudentsAndSemester()
-
-      .then((data) => { console.log(data) })
+      .then((academic) => setAcademicCalendar(academic))
       .finally(() => setLoading(false))
   }, [])
 
   return (
     <>
       <Row>
-        <Col xs={4} className="d-flex justify-content-center">
+        <Col xs={4}>
           <DataGridCard
             header="Ano Letivo"
-            dataSource={academicCalendarData}
+            dataSource={academicCalendar}
             columnConfig={[
-              { name: 'Turma', key: 'typeName' },
-              { name: 'Nº Alunos', key: 'workload' },
-              { name: 'Semestre', key: 'name' }
+              { name: 'Turma', key: 'class' },
+              { name: 'Nº Alunos', key: 'student' },
+              { name: 'Semestre', key: 'semester' }
             ]}
           />
         </Col>
-        <Col className="d-flex justify-content-center"> <YearCalendar /></Col>
+        <Col className="year_calendar"> <YearCalendar /></Col>
       </Row>
     </>
   )

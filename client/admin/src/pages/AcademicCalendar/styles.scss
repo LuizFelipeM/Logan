@@ -1,13 +1,25 @@
-.juriscreude {
-  width: 365px;
-  height: 388px;
-}
-
 .standard-calendar {
-  width: 365px;
-  height: 388px;
+  width: 436px;
+  height: 450px;
 
   .calendar {
-    border: 0ch;
+    border: none;
+    margin: auto;
+
+    .year_calendar {
+      & > div[class*="body"] {
+        padding: 50px;
+      }
+    }
+
+    .react-calendar__navigation {
+      & > button[class*="arrow"] {
+        font-size: 40px;
+      }
+      & > button[class*="label"] {
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
   }
 }

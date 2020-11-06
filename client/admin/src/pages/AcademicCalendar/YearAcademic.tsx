@@ -18,18 +18,4 @@ const YearCalendar: React.FC = () => {
   )
 }
 
-// function MyApp3() {
-//   const [datas, setDatas] = useState<Date>(new Date())
-
-//   const onChange = (date:Date | Date[]) => setDatas(date as Date)
-//   return (
-//     <div>
-//       <Calendar
-//         onChange={onChange}
-//         value={datas}
-//       />
-//     </div>
-//   )
-// }
-
 export default YearCalendar

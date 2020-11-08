@@ -12,7 +12,7 @@
   }
 }
 
-.detailed-view-card,
+.register-card,
 .messages-board-card {
   text-align: center;
   border: none !important;
@@ -25,8 +25,9 @@
   }
 }
 
-.detailed-view-card {
+.register-card {
   height: 250px;
+  cursor: pointer;
 
   .content {
     justify-content: space-evenly;

@@ -24,7 +24,7 @@ export abstract class AbstractRepository<T extends IBaseEntity> {
       .where({ id })
       .first()
 
-  insert = async (data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>): Promise<void> =>
+  insert = async (data: Omit<T, 'id'>): Promise<void> =>
     await this.abstractSession
       .insert(data)
 

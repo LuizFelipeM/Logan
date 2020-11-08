@@ -23,7 +23,7 @@ export abstract class AbstractController<T extends IBaseEntity, S extends Servic
   }
 
   @httpPost('/')
-  private post (@requestBody() body: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>) {
+  private post (@requestBody() body: Omit<T, 'id'>) {
     this.service.create(body)
   }
 

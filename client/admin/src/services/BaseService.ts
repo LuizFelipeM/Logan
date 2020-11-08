@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { IBase } from '../interfaces/models/IBase'
 
 enum BaseServiceEndpointEnum {
   getAll = '/getAll',
@@ -7,7 +8,7 @@ enum BaseServiceEndpointEnum {
   delete = '/'
 }
 
-export default abstract class BaseService<T> {
+export default abstract class BaseService<T extends IBase> {
   protected api: AxiosInstance
 
   constructor(path: string) {
@@ -30,7 +31,7 @@ export default abstract class BaseService<T> {
 
   getById = (id: number): Promise<T> => this.GET(BaseServiceEndpointEnum.getById, { params: id })
 
-  create = (data: T): Promise<void> => this.POST(BaseServiceEndpointEnum.create, data)
+  create = (data: Omit<T, 'id'>): Promise<void> => this.POST(BaseServiceEndpointEnum.create, data)
 
   delete = (id: number): Promise<void> => this.DELETE(BaseServiceEndpointEnum.delete, { params: id })
 }

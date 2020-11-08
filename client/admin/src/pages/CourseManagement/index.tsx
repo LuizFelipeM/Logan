@@ -14,7 +14,6 @@ import { IClassMinifyViewDto } from '../../interfaces/contracts/IClassMinifyView
 import { WrapperContext } from '../../contexts/WrapperContext'
 import courseService from '../../services/courseService'
 import { ICoursesMinifyViewDto } from '../../interfaces/contracts/ICoursesMinifyViewDto'
-import routesConfig from '../../Routes/routesConfig'
 import './style.scss'
 
 const CourseManagement: React.FC = () => {
@@ -91,10 +90,13 @@ const CourseManagement: React.FC = () => {
       </Row>
       <Row>
         <Col xs={4}>
-          <Card className="detailed-view-card">
+          <Card
+            className="register-card"
+            onClick={() => history.push(`${url}/register`)}
+          >
             <Card.Body className="content">
-              <h3 className="title">Visão detalhada</h3>
-              <span className="text">Acesse as notas de alunos em detalhes</span>
+              <h3 className="title">Cadastre turmas/disciplinas</h3>
+              <span className="text">Acesse a área de cadastro para inserir novas turmas ou disciplinas</span>
             </Card.Body>
           </Card>
         </Col>

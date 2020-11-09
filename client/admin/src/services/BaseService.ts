@@ -5,6 +5,7 @@ enum BaseServiceEndpointEnum {
   getAll = '/getAll',
   getById = '/getById',
   create = '/',
+  update = '/',
   delete = '/'
 }
 
@@ -31,7 +32,9 @@ export default abstract class BaseService<T extends IBase> {
 
   getById = (id: number): Promise<T> => this.GET(BaseServiceEndpointEnum.getById, { params: id })
 
-  create = (data: Omit<T, 'id'>): Promise<void> => this.POST(BaseServiceEndpointEnum.create, data)
+  create = (data: Omit<T, 'id'>): Promise<{ id: number }> => this.POST(BaseServiceEndpointEnum.create, data)
+
+  update = (data: Partial<T>): Promise<void> => this.PATCH(BaseServiceEndpointEnum.update, data)
 
   delete = (id: number): Promise<void> => this.DELETE(BaseServiceEndpointEnum.delete, { params: id })
 }

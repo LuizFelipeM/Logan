@@ -1,5 +1,5 @@
 import { injectable } from 'inversify'
-import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces, BaseHttpController } from 'inversify-express-utils'
+import { httpGet, httpPost, httpDelete, requestParam, requestBody, interfaces, BaseHttpController, httpPatch } from 'inversify-express-utils'
 import { IBaseEntity } from '../domain/interfaces/entities/IBaseEntity'
 import { AbstractRepository } from '../repositories/AbstractRepository'
 import { AbstractService } from '../services/AbstractService'
@@ -17,14 +17,17 @@ export abstract class AbstractController<T extends IBaseEntity, S extends Servic
 
   @httpGet('/getById/:id')
   private async getById (@requestParam('id') id: number) {
-    const data = await this.service.getById(id)
-
-    return data
+    return await this.service.getById(id)
   }
 
   @httpPost('/')
-  private post (@requestBody() body: Omit<T, 'id'>) {
-    this.service.create(body)
+  private async post (@requestBody() body: Omit<T, 'id'>) {
+    return await this.service.create(body)
+  }
+
+  @httpPatch('/')
+  private patch (@requestBody() body: Partial<T>) {
+    this.service.updateById(body)
   }
 
   @httpDelete('/')

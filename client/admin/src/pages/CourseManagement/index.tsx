@@ -96,7 +96,7 @@ const CourseManagement: React.FC = () => {
           >
             <Card.Body className="content">
               <h3 className="title">Cadastre turmas/disciplinas</h3>
-              <span className="text">Acesse a área de cadastro para inserir novas turmas ou disciplinas</span>
+              <span className="text">Acesse a área de cadastro para inserir novas turmas e disciplinas</span>
             </Card.Body>
           </Card>
         </Col>

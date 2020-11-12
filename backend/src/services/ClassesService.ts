@@ -1,5 +1,7 @@
 import { inject } from 'inversify'
-import { IClassStudentCountDto } from '../domain/contracts/IClassStudentCountDto'
+import { IClassDetailedViewDto } from '../domain/interfaces/contracts/IClassDetailedViewDto'
+import { IClassMinifyViewDto } from '../domain/interfaces/contracts/IClassMinifyViewDto'
+import { IClassStudentCountDto } from '../domain/interfaces/contracts/IClassStudentCountDto'
 import { IClass } from '../domain/interfaces/entities/IClass'
 import { toClassesDto } from '../domain/mappers/classesMapper'
 import { ClassesRepository } from '../repositories/ClassesRepository'
@@ -18,9 +20,9 @@ export class ClassesService extends AbstractService<IClass, ClassesRepository> {
     @inject(StudentsRepository)
     protected readonly studentRepository: StudentsRepository
 
-  ) {
-    super(classesRepository)
-  }
+  ) { super(classesRepository) }
+
+  getAllClassesMinifiedView = (): Promise<IClassMinifyViewDto[]> => this.classesRepository.selectAllClassesMinifiedView()
 
   getClassWithCourse = async (): Promise<IClassStudentCountDto[]> => {
     const classes = await this.classesRepository.selectAll()
@@ -34,4 +36,6 @@ export class ClassesService extends AbstractService<IClass, ClassesRepository> {
     })
     return getClassCoursesAndStudents
   }
+
+  getDetailedViewById = async (id: number): Promise<IClassDetailedViewDto[]> => await this.classesRepository.selectDetailedViewById(id)
 }

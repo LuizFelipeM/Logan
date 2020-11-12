@@ -6,12 +6,27 @@ import CourseManagement from '../pages/CourseManagement'
 import Registry from '../pages/Registry'
 import AcademicCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
+import PasswordRecovery from '../pages/PasswordRecovery'
+import RoutesEnum from './routesEnum'
+import DisciplineDetails from '../pages/CourseManagement/DisciplineDetails'
+import ClassDetails from '../pages/CourseManagement/ClassDetails'
+import DisciplineClassRegister from '../pages/CourseManagement/DisciplineClassRegister'
 
-const routesConfig: RoutesConfig = {
+const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {
+    exact: true,
     path: 'login',
     name: 'Login',
     page: Login,
+    hideSideMenu: true,
+    hideOnSideMenu: true
+  },
+
+  passwordRecovery: {
+    path: 'passwordRecovery',
+    name: 'Troca de senha',
+    page: PasswordRecovery,
+    hideSideMenu: true,
     hideOnSideMenu: true
   },
 
@@ -20,6 +35,27 @@ const routesConfig: RoutesConfig = {
     name: 'Gerência de cursos',
     page: CourseManagement,
     icon: faBook
+  },
+
+  courseManagementClassDetails: {
+    hideOnSideMenu: true,
+    path: 'courseManagement/class/:id',
+    name: 'Gerência de cursos',
+    page: ClassDetails
+  },
+
+  courseManagementDisciplineDetails: {
+    hideOnSideMenu: true,
+    path: 'courseManagement/discipline/:id',
+    name: 'Gerência de cursos',
+    page: DisciplineDetails
+  },
+
+  courseManagementRegister: {
+    hideOnSideMenu: true,
+    path: 'courseManagement/register',
+    name: 'Gerência de cursos',
+    page: DisciplineClassRegister
   },
 
   academicCalendar: {

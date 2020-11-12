@@ -1,13 +1,38 @@
+@import "src/styles/colorPalette.scss";
+
 .loading-container {
   height: 100vh;
   width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 9999;
   background: rgba(0, 0, 0, 0.19);
 
   div[class*="spinner"] {
     top: 50%;
     position: absolute;
+  }
+}
+
+.toast-notification {
+  position: fixed;
+  z-index: 9999;
+  top: 20px;
+  right: 20px;
+  min-width: 250px;
+
+  .icon {
+    margin-right: 8px;
+
+    &.info {
+      color: $information-color;
+    }
+    &.warn {
+      color: $warning-color;
+    }
+    &.error {
+      color: $error-color;
+    }
   }
 }

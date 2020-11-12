@@ -33,10 +33,15 @@
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
     "@typescript-eslint/no-use-before-define": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-array-index-key": "off",
     "react/prop-types": "off",
     "no-use-before-define": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "camelcase": "off",
+    "max-len": "off",
     "comma-dangle": ["error", "never"],
     "semi": ["error", "never"],
     "linebreak-style": "off"

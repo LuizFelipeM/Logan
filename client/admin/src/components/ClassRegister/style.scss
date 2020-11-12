@@ -1,0 +1,16 @@
+.students-label {
+  display: flex;
+  justify-content: space-between;
+
+  .add-student {
+  }
+}
+
+.student-field {
+  margin: 10px 0;
+
+  .btn {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+  }
+}

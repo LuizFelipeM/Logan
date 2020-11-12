@@ -1,5 +1,5 @@
-import { IClassStudentCountDto } from '../contracts/IClassStudentCountDto'
-import { IStudentCountByClassDto } from '../contracts/IStudentCountByClassDto'
+import { IClassStudentCountDto } from '../interfaces/contracts/IClassStudentCountDto'
+import { IStudentCountByClassDto } from '../interfaces/contracts/IStudentCountByClassDto'
 import { IClass } from '../interfaces/entities/IClass'
 import { ICourse } from '../interfaces/entities/ICourse'
 

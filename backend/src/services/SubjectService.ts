@@ -10,5 +10,7 @@ export class SubjectService extends AbstractService<ISubject, SubjectRepository>
     protected readonly subjectRepository: SubjectRepository
   ) { super(subjectRepository) }
 
-  getSubjectDetailedInfo = (): Promise<ISubjectDetailedDto[]> => this.subjectRepository.selectAllSubjectsDetailed()
+  getAllSubjectDetailedInfo = (): Promise<ISubjectDetailedDto[]> => this.subjectRepository.selectAllSubjectsDetailed()
+
+  getSubjectDetailedInfo = (disciplineId: number): Promise<ISubjectDetailedDto[]> => this.subjectRepository.selectSubjectsDetailed(disciplineId)
 }

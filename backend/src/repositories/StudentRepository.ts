@@ -26,7 +26,7 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .innerJoin(`${classesTableName} as c`, 't1.course', 'c.course')
     .innerJoin(`${semestersTableName} as s`, 'c.course', 's.course')
     .select(
-      knex().raw('count(s.id) as students'),
+      knex().raw('count(s.id) as student'),
       's.id as semester',
       'c.id as class'
     )

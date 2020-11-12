@@ -1,5 +1,5 @@
 export type IClassStudentsAndSemesterDto = {
-    classes: number,
-    students: number,
-    semesters: number
+    class: number,
+    student: number,
+    semester: number
 }

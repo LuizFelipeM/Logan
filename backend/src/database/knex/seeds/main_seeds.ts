@@ -179,15 +179,15 @@ async function registryStatusIds (): Promise<number[]> {
 async function registries (status: number[]): Promise<number[]> {
   const id = await knex(registriesTableName).insert([
     {
-      start_registry: new Date(2014, 2, 3).toISOString(),
-      end_estimate: new Date(2017, 12, 15).toISOString(),
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 12, 15).toISOString(),
       period_study: 'Noturno',
       familiar_income: 8000,
       origin_institution: 'Bacelar',
       status: status[0]
     },
     {
-      start_registry: new Date(2017, 2, 14).toISOString(),
+      start_registry: new Date(2018, 2, 14).toISOString(),
       end_estimate: new Date(2021, 12, 20).toISOString(),
       period_study: 'Vespertino',
       familiar_income: 3500.15,
@@ -195,8 +195,8 @@ async function registries (status: number[]): Promise<number[]> {
       status: status[2]
     },
     {
-      start_registry: new Date(2011, 2, 3).toISOString(),
-      end_estimate: new Date(2015, 11, 28).toISOString(),
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 11, 28).toISOString(),
       period_study: 'Matutino',
       familiar_income: 1968.44,
       origin_institution: 'Bacelar',
@@ -249,28 +249,28 @@ async function courses (campus:number[]): Promise<number[]> {
 async function calendars (): Promise<number[]> {
   const id = await knex(calendarsTableName).insert([
     {
-      start_academic_year: new Date(2014, 2, 3).toISOString(),
-      academic_year_end: new Date(2014, 12, 10).toISOString(),
-      start_notes_p1: new Date(2014, 4, 10).toISOString(),
-      final_notes_p1: new Date(2014, 4, 20).toISOString(),
-      start_notes_p2: new Date(2014, 5, 11).toISOString(),
-      final_notes_p2: new Date(2014, 5, 22).toISOString(),
-      start_notes_sub: new Date(2014, 6, 15).toISOString(),
-      final_notes_sub: new Date(2014, 6, 20).toISOString(),
-      start_notes_exam: new Date(2014, 6, 22).toISOString(),
-      final_notes_exam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
     },
     {
-      start_academic_year: new Date(2014, 2, 3).toISOString(),
-      academic_year_end: new Date(2014, 12, 10).toISOString(),
-      start_notes_p1: new Date(2014, 4, 10).toISOString(),
-      final_notes_p1: new Date(2014, 4, 20).toISOString(),
-      start_notes_p2: new Date(2014, 5, 11).toISOString(),
-      final_notes_p2: new Date(2014, 5, 22).toISOString(),
-      start_notes_sub: new Date(2014, 6, 15).toISOString(),
-      final_notes_sub: new Date(2014, 6, 20).toISOString(),
-      start_notes_exam: new Date(2014, 6, 22).toISOString(),
-      final_notes_exam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
     }
   ]).returning('id')
   return id
@@ -281,7 +281,6 @@ async function disciplines (courses: number[], dicilpineTypes: number[]): Promis
     {
       course: courses[0],
       type_discipline: dicilpineTypes[0],
-      // semester: semester[0],
       name: 'Termodinamica',
       workload: 50
     },
@@ -330,45 +329,45 @@ async function semesters (calendars: number[], courses: number[]): Promise<numbe
       calendar: calendars[0],
       semester_course: 1,
       semester_year: 1,
-      year: new Date(2014).toISOString(),
-      eval_p1_start: new Date(2014, 4, 10).toISOString(),
-      eval_p1_end: new Date(2014, 4, 20).toISOString(),
-      eval_p2_start: new Date(2014, 5, 11).toISOString(),
-      eval_p2_end: new Date(2014, 5, 22).toISOString(),
-      eval_sub_start: new Date(2014, 6, 15).toISOString(),
-      eval_sub_end: new Date(2014, 6, 20).toISOString(),
-      eval_exam_start: new Date(2014, 6, 22).toISOString(),
-      eval_exam_end: new Date(2014, 6, 27).toISOString()
+      year: new Date(2020).toISOString(),
+      eval_p1_start: new Date(2020, 3, 10).toISOString(),
+      eval_p1_end: new Date(2020, 3, 20).toISOString(),
+      eval_p2_start: new Date(2020, 5, 11).toISOString(),
+      eval_p2_end: new Date(2020, 5, 22).toISOString(),
+      eval_sub_start: new Date(2020, 6, 15).toISOString(),
+      eval_sub_end: new Date(2020, 6, 20).toISOString(),
+      eval_exam_start: new Date(2020, 6, 22).toISOString(),
+      eval_exam_end: new Date(2020, 6, 27).toISOString()
     },
     {
       course: courses[2],
       calendar: calendars[1],
       semester_course: 2,
       semester_year: 2,
-      year: new Date(2014).toISOString(),
-      eval_p1_start: new Date(2014, 8, 10).toISOString(),
-      eval_p1_end: new Date(2014, 8, 20).toISOString(),
-      eval_p2_start: new Date(2014, 11, 11).toISOString(),
-      eval_p2_end: new Date(2014, 11, 22).toISOString(),
-      eval_sub_start: new Date(2014, 11, 24).toISOString(),
-      eval_sub_end: new Date(2014, 11, 28).toISOString(),
-      eval_exam_start: new Date(2014, 12, 7).toISOString(),
-      eval_exam_end: new Date(2014, 6, 14).toISOString()
+      year: new Date(2020).toISOString(),
+      eval_p1_start: new Date(2020, 8, 10).toISOString(),
+      eval_p1_end: new Date(2020, 8, 20).toISOString(),
+      eval_p2_start: new Date(2020, 11, 11).toISOString(),
+      eval_p2_end: new Date(2020, 11, 22).toISOString(),
+      eval_sub_start: new Date(2020, 11, 24).toISOString(),
+      eval_sub_end: new Date(2020, 11, 28).toISOString(),
+      eval_exam_start: new Date(2020, 12, 7).toISOString(),
+      eval_exam_end: new Date(2020, 12, 14).toISOString()
     },
     {
       course: courses[1],
       calendar: calendars[0],
       semester_course: 3,
       semester_year: 1,
-      year: new Date(2015).toISOString(),
-      eval_p1_start: new Date(2015, 4, 10).toISOString(),
-      eval_p1_end: new Date(2015, 4, 20).toISOString(),
-      eval_p2_start: new Date(2015, 5, 11).toISOString(),
-      eval_p2_end: new Date(2015, 5, 22).toISOString(),
-      eval_sub_start: new Date(2015, 6, 15).toISOString(),
-      eval_sub_end: new Date(2015, 6, 20).toISOString(),
-      eval_exam_start: new Date(2015, 6, 22).toISOString(),
-      eval_exam_end: new Date(2015, 6, 27).toISOString()
+      year: new Date(2021).toISOString(),
+      eval_p1_start: new Date(2021, 4, 10).toISOString(),
+      eval_p1_end: new Date(2021, 4, 20).toISOString(),
+      eval_p2_start: new Date(2021, 5, 11).toISOString(),
+      eval_p2_end: new Date(2021, 5, 22).toISOString(),
+      eval_sub_start: new Date(2021, 6, 15).toISOString(),
+      eval_sub_end: new Date(2021, 6, 20).toISOString(),
+      eval_exam_start: new Date(2021, 6, 22).toISOString(),
+      eval_exam_end: new Date(2021, 6, 27).toISOString()
     }
   ]).returning('id')
   return id

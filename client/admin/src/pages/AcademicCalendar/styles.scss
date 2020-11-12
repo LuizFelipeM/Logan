@@ -1,25 +1,44 @@
+.card-academic-year {
+  width: 400px;
+  height: 400px;
+}
+
 .standard-calendar {
-  width: 436px;
-  height: 450px;
+  width: 400px;
+  height: 400px;
 
-  .calendar {
-    border: none;
-    margin: auto;
-
-    .year_calendar {
-      & > div[class*="body"] {
-        padding: 50px;
-      }
+  .date-picker {
+    .rdrDateDisplayWrapper {
+      display: none;
     }
+  }
+}
 
-    .react-calendar__navigation {
-      & > button[class*="arrow"] {
-        font-size: 40px;
-      }
-      & > button[class*="label"] {
-        font-size: 15px;
-        font-weight: 600;
-      }
+.subtitles {
+  padding: 65px;
+
+  .sub {
+    &::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-flex;
+      margin-right: 8px;
     }
+    &.circle1::before {
+      background-color: #5c91f2;
+    }
+    &.circle2::before {
+      background-color: #e8c551;
+    }
+    &.circle3::before {
+      background-color: #f2924e;
+    }
+  }
+
+  span {
+    display: inline-flex;
+    margin-bottom: 8px;
   }
 }

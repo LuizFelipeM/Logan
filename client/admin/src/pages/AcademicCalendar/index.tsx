@@ -25,6 +25,7 @@ const AcademicCalendar: React.FC = () => {
       <Row>
         <Col xs={4}>
           <DataGridCard
+            className="card-academic-year"
             header="Ano Letivo"
             dataSource={academicCalendar}
             columnConfig={[
@@ -34,7 +35,14 @@ const AcademicCalendar: React.FC = () => {
             ]}
           />
         </Col>
-        <Col className="year_calendar"> <YearCalendar /></Col>
+        <Col className="year_calendar"> <YearCalendar />
+        </Col>
+        <Col className="subtitles">
+          <div className="sub circle1"><span> Periodo de avaliações (P1/P1)</span> </div>
+          <div className="sub circle2"><span> Periodo de substitutivas</span> </div>
+          <div className="sub circle3"><span> Periodo de exame</span> </div>
+
+        </Col>
       </Row>
     </>
   )

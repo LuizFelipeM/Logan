@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { WrapperContext } from '../../../contexts/WrapperContext'
 import { IDisciplineDetailedDto } from '../../../interfaces/contracts/IDisciplineDetailedDto'
+import SafeRoute from '../../../Routes/SafeRoute'
 import disciplineService from '../../../services/disciplineService'
 
 import './style.scss'
@@ -24,7 +25,7 @@ const DisciplineDetails: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <SafeRoute>
       <Row>
         <Col>
           <Title>{disciplineDetails[0]?.discipline_name}</Title>
@@ -42,7 +43,7 @@ const DisciplineDetails: React.FC = () => {
           />
         </Col>
       </Row>
-    </>
+    </SafeRoute>
   )
 }
 export default DisciplineDetails

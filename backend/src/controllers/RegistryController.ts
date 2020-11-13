@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { controller } from 'inversify-express-utils'
+import { controller, httpGet, queryParam } from 'inversify-express-utils'
 import { IRegistry } from '../domain/interfaces/entities/IRegistry'
 import { RegistryService } from '../services/RegistryService'
 import { AbstractController } from './AbstractController'
@@ -10,4 +10,14 @@ export class RegistryController extends AbstractController<IRegistry, RegistrySe
     @inject(RegistryService)
     protected readonly registryService: RegistryService
   ) { super(registryService) }
+
+  @httpGet('/RegistryDetailed')
+  private AllDetailed () {
+    return this.registryService.RegistryDetailed()
+  }
+
+  @httpGet('/RegistryDetailedSearch')
+  private DetailedSearch (@queryParam('name') name: string) {
+    return this.registryService.RegistryDetailedSearch(name)
+  }
 }

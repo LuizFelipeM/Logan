@@ -6,12 +6,15 @@ import CourseManagement from '../pages/CourseManagement'
 import Registry from '../pages/Registry'
 import AcademicCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
+import RoutesEnum from './routesEnum'
 
-const routesConfig: RoutesConfig = {
+const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {
+    exact: true,
     path: 'login',
     name: 'Login',
     page: Login,
+    hideSideMenu: true,
     hideOnSideMenu: true
   },
 

@@ -1,4 +1,5 @@
 import { inject } from 'inversify'
+import { IDisciplineDetailedDto } from '../domain/interfaces/contracts/IDisciplineDetailedDto'
 import { ITypeDisciplineAndWorkloadDto } from '../domain/interfaces/contracts/ITypeDisciplineAndWorkloadDto'
 import { IDiscipline } from '../domain/interfaces/entities/IDiscipline'
 import { toTypeDisciplineAndWorkload } from '../domain/mappers/DisciplineMapper'
@@ -27,4 +28,6 @@ export class DisciplineService extends AbstractService<IDiscipline, DisciplineRe
 
     return disTypeAndWorkload
   }
+
+  getDetailedViewByDisciplineId = async (id: number): Promise<IDisciplineDetailedDto[]> => await this.disciplineRepository.selectDetailedViewById(id)
 }

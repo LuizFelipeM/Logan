@@ -24,11 +24,15 @@ export abstract class AbstractRepository<T extends IBaseEntity> {
       .where({ id })
       .first()
 
-  insert = async (data: Omit<T, 'id' | 'createdAt' | 'lastUpdate'>): Promise<void> =>
-    await this.abstractSession
+  insert = async (data: Omit<T, 'id'>): Promise<{ id: number }> => {
+    const [id] = await this.abstractSession
       .insert(data)
+      .returning<number[]>('id')
 
-  updateById = async (data: T): Promise<void> =>
+    return { id }
+  }
+
+  updateById = async (data: Partial<T>): Promise<void> =>
     await this.abstractSession
       .where({ id: data.id })
       .update(data)

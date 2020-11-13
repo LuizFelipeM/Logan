@@ -3,6 +3,20 @@
 @import "node_modules/react-vis/dist/style";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;900&display=swap");
 
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+table {
+  text-align: center;
+
+  .clickable {
+    cursor: pointer;
+  }
+}
+
 .body-wrapper {
   height: 100vh;
 
@@ -12,7 +26,20 @@
   }
 
   .body-content {
-    height: 100vh;
+    min-height: 100vh;
+
+    .display-container {
+      min-height: 100vh;
+      overflow: hidden scroll;
+
+      & > .row:not(:last-child) {
+        margin-bottom: 25px;
+      }
+    }
+
+    .display-container {
+      padding: 0 2rem !important;
+    }
 
     .display-col {
       background-color: $background-color;

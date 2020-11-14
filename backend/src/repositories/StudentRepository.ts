@@ -22,9 +22,9 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .count('class')
     .groupBy('class')
 
-  getClassesStudentsAndSemester = async ():Promise<IClassStudentsAndSemesterDto[]> => await this.session
-    .innerJoin(`${classesTableName} as c`, 't1.course', 'c.course')
-    .innerJoin(`${semestersTableName} as s`, 'c.course', 's.course')
+  selectClassesStudentsAndSemester = async ():Promise<IClassStudentsAndSemesterDto[]> => await this.session
+    .innerJoin({ c: classesTableName }, 't1.course', 'c.course')
+    .innerJoin({ s: semestersTableName }, 'c.course', 's.course')
     .select(
       knex().raw('count(s.id) as student'),
       's.id as semester',

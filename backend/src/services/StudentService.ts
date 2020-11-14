@@ -19,6 +19,6 @@ export class StudentService extends AbstractService<IStudent, StudentsRepository
   ) { super(studentsRepository) }
 
   academicYear = async (): Promise<IClassStudentsAndSemesterDto[]> => {
-    return this.studentsRepository.getClassesStudentsAndSemester()
+    return this.studentsRepository.selectClassesStudentsAndSemester()
   }
 }

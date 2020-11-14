@@ -84,7 +84,7 @@ const CourseManagement: React.FC = () => {
               <div className="icon">
                 <FontAwesomeIcon icon={faEnvelope} />
               </div>
-              <span className="text">Acesse aqui seu mural de mensagens</span>
+              <span className="text">Acesse seu mural de mensagens</span>
             </Card.Body>
           </Card>
         </Col>

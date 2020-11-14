@@ -1,4 +1,4 @@
-import { StandardCard, Title } from 'bootstrap-based-components'
+import { Title } from 'bootstrap-based-components'
 import React, { useContext, useEffect, useState } from 'react'
 import {
   Col, Row

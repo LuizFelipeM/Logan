@@ -5,6 +5,4 @@ export interface IStudent extends IBase {
   ra: number
   course: number
   class: number
-  created_at: string
-  last_update: string
 }

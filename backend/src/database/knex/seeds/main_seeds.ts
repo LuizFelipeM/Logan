@@ -78,27 +78,27 @@ async function users (profi:number[]): Promise<number[]> {
       last_name: 'Daniel',
       gender: 'Male',
       birth_date: '17/11/1999',
-      profile: profi[2],
-      email: 'lucas.daniel@teste.com',
-      password: bcrypt.hashSync('lucas.daniel', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+      // email: 'lucas.daniel@teste.com',
+      // password: bcrypt.hashSync('lucas.daniel', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
     },
     {
       first_name: 'Pedro',
       last_name: 'Henrique',
       gender: 'Male',
       birth_date: '25/09/1999',
-      profile: profi[2],
-      email: 'Pedro.Henrique@teste.com',
-      password: bcrypt.hashSync('pedro.henrique', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+      // email: 'Pedro.Henrique@teste.com',
+      // password: bcrypt.hashSync('pedro.henrique', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
     },
     {
       first_name: 'Luiz',
       last_name: 'Felipe',
       gender: 'Male',
       birth_date: '11/09/1999',
-      profile: profi[2],
-      email: 'Luiz.Felipe@teste.com',
-      password: bcrypt.hashSync('luiz.felipe', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+      // email: 'Luiz.Felipe@teste.com',
+      // password: bcrypt.hashSync('luiz.felipe', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
     },
     {
       first_name: 'Maria',
@@ -290,28 +290,24 @@ async function disciplines (courses: number[], dicilpineTypes: number[]): Promis
     {
       course: courses[0],
       type_discipline: dicilpineTypes[0],
-      // semester: semester[0],
       name: 'Termodinamica',
       workload: 50
     },
     {
       course: courses[2],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[1],
       name: 'Caricatura',
       workload: 120
     },
     {
       course: courses[2],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[1],
       name: 'Sombreamento',
       workload: 150
     },
     {
       course: courses[1],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[2],
       name: 'Mecanica',
       workload: 150
     }

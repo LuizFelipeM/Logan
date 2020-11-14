@@ -18,14 +18,29 @@ export default abstract class BaseService<T extends IBase> {
     })
   }
 
+  /**
+   * Method to READ entities data in backend API
+   */
   protected GET = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => (await this.api.get(url, config)).data
 
+  /**
+   * Method to CREATE entities data in backend API
+   */
   protected PUT = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.put(url, body, config)).data
 
+  /**
+   * Method to REPLACE entities data in backend API
+   */
   protected POST = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.post(url, body, config)).data
 
+  /**
+   * Method to MODIFY entities data in backend API
+   */
   protected PATCH = async <T>(url: string, body?: unknown, config?: AxiosRequestConfig): Promise<T> => (await this.api.patch(url, body, config)).data
 
+  /**
+   * Method to DELETE entities data in backend API
+   */
   protected DELETE = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => (await this.api.delete(url, config)).data
 
   getAll = (): Promise<T[]> => this.GET(BaseServiceEndpointEnum.getAll)

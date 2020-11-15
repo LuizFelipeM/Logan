@@ -4,9 +4,9 @@ import RoutesConfig from 'bootstrap-based-components/dist/@types/RoutesConfig'
 import Login from '../pages/Login'
 import CourseManagement from '../pages/CourseManagement'
 import Registry from '../pages/Registry'
-import YearCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
 import RoutesEnum from './routesEnum'
+import AcademicCalendar from '../pages/AcademicCalendar'
 
 const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {
@@ -26,7 +26,7 @@ const routesConfig: RoutesConfig<RoutesEnum> = {
   academicCalendar: {
     path: 'academicCalendar',
     name: 'Ano letivo',
-    page: YearCalendar,
+    page: AcademicCalendar,
     icon: faCalendar
   },
 

@@ -1,7 +1,7 @@
 
 export type ITypeDisciplineAndWorkloadDto = {
     id: number
-    typeName: string | undefined
+    discipline_name: string
+    discipline_type: string | undefined
     workload: number
-    name: string
 }

@@ -8,7 +8,7 @@ import YearCalendar from './YearAcademic'
 import './styles.scss'
 
 const AcademicCalendar: React.FC = () => {
-  const { setLoading } = useContext(WrapperContext)
+  const { notification, setLoading } = useContext(WrapperContext)
 
   const [academicCalendar, setAcademicCalendar] = useState<IClassStudentsAndSemesterDto[]>([])
 
@@ -17,6 +17,7 @@ const AcademicCalendar: React.FC = () => {
 
     studentsService.getClassStudentsAndSemester()
       .then((academic) => setAcademicCalendar(academic))
+      .catch(() => notification.error('Erro ao carregar a página', 'Ocorreu um erro ao finalizar o carretamento da página, tente carregar a página novamente'))
       .finally(() => setLoading(false))
   }, [])
 

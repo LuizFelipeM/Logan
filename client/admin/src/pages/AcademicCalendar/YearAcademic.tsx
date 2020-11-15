@@ -14,7 +14,7 @@ interface DateRangeProp{
 }
 
 const YearCalendar: React.FC = () => {
-  const { setLoading } = useContext(WrapperContext)
+  const { notification, setLoading } = useContext(WrapperContext)
 
   const [interval, setInterval] = useState<DateRangeProp[]>()
 
@@ -52,6 +52,7 @@ const YearCalendar: React.FC = () => {
         ])
         setInterval(dateRangesExams)
       })
+      .catch(() => notification.error('Falha ao carregar', 'Erro ao carregar a página, por favor tente novamente mais tarde.'))
       .finally(() => setLoading(false))
   }, [])
 

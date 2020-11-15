@@ -11,6 +11,12 @@ export class ProfileRepository extends AbstractRepository<IProfile> {
     super(profilesTable)
   }
 
+  getProfileByName = async (name: string): Promise<IProfile | undefined> =>
+    await this.session
+      .select('*')
+      .where({ name })
+      .first()
+
   getProfileWithRules = async (id: number): Promise<IProfileDto> =>
     await this.session
       .fullOuterJoin(`${rulesInProfilesTableName} as t2`, 't1.id', 't2.profile')

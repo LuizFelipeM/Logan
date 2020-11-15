@@ -11,8 +11,13 @@ export class SubjectController extends AbstractController<ISubject, SubjectServi
     protected readonly subjectService: SubjectService
   ) { super(subjectService) }
 
-  @httpGet('/getDetailedView')
-  private GetDetailedView () {
-    return this.subjectService.getSubjectDetailedInfo()
+  @httpGet('/getAllDetailedView')
+  private getAllDetailedView () {
+    return this.subjectService.getAllSubjectDetailedInfo()
   }
+
+  // @httpGet('/getDetailedView')
+  // private getDetailedView (@) {
+  //   return this.subjectService.getSubjectDetailedInfo()
+  // }
 }

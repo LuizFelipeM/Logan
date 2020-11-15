@@ -3,15 +3,15 @@ import { IBase } from './IBase'
 export interface ISemester extends IBase {
     course: number
     calendar: number
-    semesterCourse: number
-    semesterYear: number
+    semester_course: number
+    semester_year: number
     year: string
-    p1Start: string
-    p1End: string
-    p2Start: string
-    p2End: string
-    subStart: string
-    subEnd: string
-    examStart: string
-    examEnd: string
+    eval_p1_start: string
+    eval_p1_end: string
+    eval_p2_start: string
+    eval_p2_end: string
+    eval_sub_start: string
+    eval_sub_end: string
+    eval_exam_start: string
+    eval_exam_end: string
 }

@@ -1,10 +1,10 @@
 import { inject } from 'inversify'
 import { IUserDto } from '../domain/interfaces/contracts/IUserDto'
-import { UserRepository } from '../repositories/UserRepository'
 import { toUserDto } from '../domain/mappers/userMapper'
 import { AbstractService } from './AbstractService'
 import { ProfileRepository } from '../repositories/ProfileRepository'
 import { IUser } from '../domain/interfaces/entities/IUser'
+import { UserRepository } from '../repositories/UserRepository'
 
 export class UserService extends AbstractService<IUser, UserRepository> {
   constructor (

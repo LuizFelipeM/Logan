@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { controller } from 'inversify-express-utils'
+import { controller, httpGet } from 'inversify-express-utils'
 import { IStudent } from '../domain/interfaces/entities/IStudent'
 import { StudentService } from '../services/StudentService'
 import { AbstractController } from './AbstractController'
@@ -10,4 +10,9 @@ export class StudentController extends AbstractController<IStudent, StudentServi
     @inject(StudentService)
     protected readonly studentService: StudentService
   ) { super(studentService) }
+
+  @httpGet('/getClassesStudentsAndSemester')
+  private getClassesStudentsAndSemester () {
+    return this.studentService.academicYear()
+  }
 }

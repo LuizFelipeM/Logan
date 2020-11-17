@@ -21,7 +21,7 @@ export class NoteFoulsService extends AbstractService<INoteFouls, NoteFoulsRepos
 
     @inject(StudentsRepository)
     protected readonly studentsRepository:StudentsRepository
-  ) { super(noteFoulsRepository) }// needs mapper to complete
+  ) { super(noteFoulsRepository) }
 
   AvaregeWithCourse = async (): Promise<IAvaregeCouseDto[]> => {
     return this.noteFoulsRepository.selectFinalNoteWithCourse()

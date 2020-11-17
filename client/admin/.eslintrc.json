@@ -44,7 +44,8 @@
     "max-len": "off",
     "comma-dangle": ["error", "never"],
     "semi": ["error", "never"],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "camelcase": "off"
   },
   "settings": {
     "import/resolver": {

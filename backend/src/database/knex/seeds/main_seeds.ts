@@ -1,7 +1,4 @@
 import * as Knex from 'knex'
-import bcrypt from 'bcrypt'
-import dotenv from 'dotenv'
-import { join } from 'path'
 
 import { calendarsTableName } from '../../common/calendarsTable'
 import { campusTableName } from '../../common/campusTable'
@@ -79,8 +76,6 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '17/11/1999',
       profile: profi[2]
-      // email: 'lucas.daniel@teste.com',
-      // password: bcrypt.hashSync('lucas.daniel', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
     },
     {
       first_name: 'Pedro',
@@ -88,17 +83,8 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '25/09/1999',
       profile: profi[2]
-      // email: 'Pedro.Henrique@teste.com',
-      // password: bcrypt.hashSync('pedro.henrique', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
-    },
-    {
-      first_name: 'Luiz',
-      last_name: 'Felipe',
-      gender: 'Male',
       birth_date: '11/09/1999',
       profile: profi[2]
-      // email: 'Luiz.Felipe@teste.com',
-      // password: bcrypt.hashSync('luiz.felipe', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
     },
     {
       first_name: 'Maria',
@@ -188,15 +174,15 @@ async function registryStatusIds (): Promise<number[]> {
 async function registries (status: number[]): Promise<number[]> {
   const id = await knex(registriesTableName).insert([
     {
-      start_registry: new Date(2014, 2, 3).toISOString(),
-      end_estimate: new Date(2017, 12, 15).toISOString(),
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 12, 15).toISOString(),
       period_study: 'Noturno',
       familiar_income: 8000,
       origin_institution: 'Bacelar',
       status: status[0]
     },
     {
-      start_registry: new Date(2017, 2, 14).toISOString(),
+      start_registry: new Date(2018, 2, 14).toISOString(),
       end_estimate: new Date(2021, 12, 20).toISOString(),
       period_study: 'Vespertino',
       familiar_income: 3500.15,
@@ -204,8 +190,8 @@ async function registries (status: number[]): Promise<number[]> {
       status: status[2]
     },
     {
-      start_registry: new Date(2011, 2, 3).toISOString(),
-      end_estimate: new Date(2015, 11, 28).toISOString(),
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 11, 28).toISOString(),
       period_study: 'Matutino',
       familiar_income: 1968.44,
       origin_institution: 'Bacelar',
@@ -258,28 +244,28 @@ async function courses (campus:number[]): Promise<number[]> {
 async function calendars (): Promise<number[]> {
   const id = await knex(calendarsTableName).insert([
     {
-      start_academic_year: new Date(2014, 2, 3).toISOString(),
-      academic_year_end: new Date(2014, 12, 10).toISOString(),
-      start_notes_p1: new Date(2014, 4, 10).toISOString(),
-      final_notes_p1: new Date(2014, 4, 20).toISOString(),
-      start_notes_p2: new Date(2014, 5, 11).toISOString(),
-      final_notes_p2: new Date(2014, 5, 22).toISOString(),
-      start_notes_sub: new Date(2014, 6, 15).toISOString(),
-      final_notes_sub: new Date(2014, 6, 20).toISOString(),
-      start_notes_exam: new Date(2014, 6, 22).toISOString(),
-      final_notes_exam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
     },
     {
-      start_academic_year: new Date(2014, 2, 3).toISOString(),
-      academic_year_end: new Date(2014, 12, 10).toISOString(),
-      start_notes_p1: new Date(2014, 4, 10).toISOString(),
-      final_notes_p1: new Date(2014, 4, 20).toISOString(),
-      start_notes_p2: new Date(2014, 5, 11).toISOString(),
-      final_notes_p2: new Date(2014, 5, 22).toISOString(),
-      start_notes_sub: new Date(2014, 6, 15).toISOString(),
-      final_notes_sub: new Date(2014, 6, 20).toISOString(),
-      start_notes_exam: new Date(2014, 6, 22).toISOString(),
-      final_notes_exam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
     }
   ]).returning('id')
   return id

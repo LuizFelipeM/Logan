@@ -3,11 +3,14 @@ import { AbstractRepository } from './AbstractRepository'
 import { IStudent } from '../domain/interfaces/entities/IStudent'
 import { IStudentCountByClassDto } from '../domain/interfaces/contracts/IStudentCountByClassDto'
 import { IStudentDetailedDto } from '../domain/interfaces/contracts/IStudentDetailedDto'
-import { knex } from '../database/knex/dbConnection'
 import { usersTableName } from '../database/common/usersTable'
 import { coursesTableName } from '../database/common/coursesTable'
 import { registriesStatusTableName } from '../database/common/registriesStatusTable'
 import { registriesTableName } from '../database/common/registriesTable'
+import { IClassStudentsAndSemesterDto } from '../domain/interfaces/contracts/IClassesStudentsAndSemesterDto'
+import { classesTableName } from '../database/common/classesTable'
+import { semestersTableName } from '../database/common/semestersTable'
+import { knex } from '../database/knex/dbConnection'
 
 export class StudentsRepository extends AbstractRepository<IStudent> {
   constructor () {
@@ -37,4 +40,14 @@ export class StudentsRepository extends AbstractRepository<IStudent> {
     .innerJoin({ r: registriesTableName }, 'r.id', 't1.ra')
     .innerJoin({ rs: registriesStatusTableName }, 'rs.id', 'r.status')
     .orderBy('t1.ra', 'asc')
+
+  selectClassesStudentsAndSemester = async ():Promise<IClassStudentsAndSemesterDto[]> => await this.session
+    .innerJoin({ c: classesTableName }, 't1.course', 'c.course')
+    .innerJoin({ s: semestersTableName }, 'c.course', 's.course')
+    .select(
+      knex().raw('count(s.id) as student'),
+      's.id as semester',
+      'c.id as class'
+    )
+    .groupBy('s.id', 'c.id')
 }

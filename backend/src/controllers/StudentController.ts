@@ -15,4 +15,9 @@ export class StudentController extends AbstractController<IStudent, StudentServi
   private getAllDetailed () {
     return this.studentService.getStudentDetailed()
   }
+
+  @httpGet('/getClassesStudentsAndSemester')
+  private getClassesStudentsAndSemester () {
+    return this.studentService.academicYear()
+  }
 }

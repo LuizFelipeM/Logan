@@ -1,6 +1,12 @@
 .card-campus-grid {
   display: flex;
   width: 320px;
+  height: 450px;
+
+  .standard-card-body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 
   .PopUpCampus {
     button {

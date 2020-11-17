@@ -1,13 +1,6 @@
 import { DataGridCard, StandardCard, Title } from 'bootstrap-based-components'
 import React, { useContext, useEffect, useState } from 'react'
-import {
-  Row,
-  Col,
-  Form,
-  Card,
-  Modal,
-  Button
-} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { WrapperContext } from '../../../contexts/WrapperContext'
 import { ICouseNameSemesterAndCampusNameDto } from '../../../interfaces/contracts/ICourseNameSemestersAndCampusNameDto'
 import { ICampus } from '../../../interfaces/models/ICampus'

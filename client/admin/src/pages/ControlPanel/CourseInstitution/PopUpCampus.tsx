@@ -1,24 +1,20 @@
-import { StandardCard } from 'bootstrap-based-components'
 import { Formik, Form, Field } from 'formik'
 import React, { useState } from 'react'
 import { Modal, Button, Form as BForm } from 'react-bootstrap'
+import { INewCampusAndUfDto } from '../../../interfaces/contracts/INewCampusAndUfDto'
 import campusService from '../../../services/campusService'
-
-export interface INewCampusAndUf {
-  campus_name: string,
-  name_uf: string
-}
 
 const PopUpCampus: React.FC = () => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  const [campus, setCampus] = useState('')
-  const [uf, setuf] = useState('')
-
-  function handleSubmit(campusUf:INewCampusAndUf) {
-    campusService.createCampusNameAndUf(campusUf)
+  function handleSubmit(newCampus:INewCampusAndUfDto) {
+    campusService.createCampusNameAndUf(newCampus)
+      .finally(() => {
+        handleClose()
+        window.location.reload(false)
+      })
   }
 
   return (
@@ -50,12 +46,12 @@ const PopUpCampus: React.FC = () => {
                   placeholder="Nome do Campus"
                   required
                 />
-                <BForm.Label>Campus:</BForm.Label>
+                <BForm.Label>UF:</BForm.Label>
                 <Field
                   className="form-control"
                   type="text"
                   name="name_uf"
-                  placeholder="Insira a UF do campus"
+                  placeholder=" UF do campus"
                   required
                 />
               </BForm.Group>

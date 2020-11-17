@@ -1,7 +1,4 @@
 import * as Knex from 'knex'
-import bcrypt from 'bcrypt'
-import dotenv from 'dotenv'
-import { join } from 'path'
 
 import { calendarsTableName } from '../../common/calendarsTable'
 import { campusTableName } from '../../common/campusTable'

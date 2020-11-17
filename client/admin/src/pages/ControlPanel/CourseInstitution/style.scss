@@ -1,0 +1,24 @@
+.card-campus-grid {
+  display: flex;
+  width: 320px;
+  height: 450px;
+
+  .standard-card-body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .PopUpCampus {
+    button {
+      display: flex;
+      font-size: large;
+    }
+  }
+}
+
+.card-courses-grid {
+  display: block;
+  width: 500px;
+
+  left: -350px;
+}

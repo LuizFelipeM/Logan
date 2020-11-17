@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { WrapperContext } from '../../../contexts/WrapperContext'
 import { IClassDetailedViewDto } from '../../../interfaces/contracts/IClassDetailedViewDto'
+import SafeRoute from '../../../Routes/SafeRoute'
 import classService from '../../../services/classService'
 
 import './style.scss'
@@ -24,7 +25,7 @@ const ClassDetails: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <SafeRoute>
       <Row>
         <Col>
           <Title>Turma - {id}</Title>
@@ -47,7 +48,7 @@ const ClassDetails: React.FC = () => {
           />
         </Col>
       </Row>
-    </>
+    </SafeRoute>
   )
 }
 export default ClassDetails

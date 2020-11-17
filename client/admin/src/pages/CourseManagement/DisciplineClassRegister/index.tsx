@@ -13,6 +13,7 @@ import DisciplineRegister from '../../../components/DisciplineRegister'
 import ClassRegister from '../../../components/ClassRegister'
 import studentService from '../../../services/studentService'
 import { IStudent } from '../../../interfaces/models/IStudent'
+import SafeRoute from '../../../Routes/SafeRoute'
 
 const DisciplineClassRegister: React.FC = () => {
   const { setLoading, notification } = useContext(WrapperContext)
@@ -41,7 +42,7 @@ const DisciplineClassRegister: React.FC = () => {
   ])
 
   return (
-    <>
+    <SafeRoute>
       <Row>
         <Col>
           <Title>Cadastro de disciplinas e turmas</Title>
@@ -61,7 +62,7 @@ const DisciplineClassRegister: React.FC = () => {
           />
         </Col>
       </Row>
-    </>
+    </SafeRoute>
   )
 }
 

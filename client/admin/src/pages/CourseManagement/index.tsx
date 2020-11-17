@@ -15,6 +15,7 @@ import { WrapperContext } from '../../contexts/WrapperContext'
 import courseService from '../../services/courseService'
 import { ICoursesMinifyViewDto } from '../../interfaces/contracts/ICoursesMinifyViewDto'
 import './style.scss'
+import SafeRoute from '../../Routes/SafeRoute'
 
 const CourseManagement: React.FC = () => {
   const history = useHistory()
@@ -46,7 +47,7 @@ const CourseManagement: React.FC = () => {
   ])
 
   return (
-    <>
+    <SafeRoute>
       <Row>
         <Col>
           <Title className="course-management">Gerência de curso</Title>
@@ -128,7 +129,7 @@ const CourseManagement: React.FC = () => {
           </ResponsiveContainer>
         </Col>
       </Row>
-    </>
+    </SafeRoute>
   )
 }
 export default CourseManagement

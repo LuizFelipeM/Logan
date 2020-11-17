@@ -7,6 +7,9 @@ type RoutesEnum =
   'courseManagementDisciplineDetails' |
   'academicCalendar' |
   'registry' |
-  'controlPanel'
+  'controlPanel' |
+  'controlPanelAccountControl' |
+  'controlPanelCourseInstitution' |
+  'controlPanelUserPermissions'
 
 export default RoutesEnum

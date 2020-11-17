@@ -1,0 +1,35 @@
+.account-control,
+.users-permissions,
+.courses-institutions {
+  &:hover {
+    text-decoration: none;
+  }
+
+  .card {
+    text-align: center;
+    border: none !important;
+    color: white;
+    height: 60vh;
+
+    .content {
+      display: flex;
+      border-radius: 8px;
+      flex-direction: column;
+      justify-content: center;
+      background: rgb(129, 187, 255);
+      background: linear-gradient(
+        0deg,
+        rgba(129, 187, 255, 0.73) 0%,
+        rgba(129, 187, 255, 1) 100%
+      );
+
+      .icon {
+        font-size: 7rem;
+      }
+
+      .text {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}

@@ -10,6 +10,9 @@ import RoutesEnum from './routesEnum'
 import DisciplineDetails from '../pages/CourseManagement/DisciplineDetails'
 import ClassDetails from '../pages/CourseManagement/ClassDetails'
 import DisciplineClassRegister from '../pages/CourseManagement/DisciplineClassRegister'
+import AccountControl from '../pages/ControlPanel/AccountControl'
+import UsersPermissions from '../pages/ControlPanel/UsersPermissions'
+import CourseInstitution from '../pages/ControlPanel/CourseInstitution'
 import AcademicCalendar from '../pages/AcademicCalendar'
 
 const routesConfig: RoutesConfig<RoutesEnum> = {
@@ -77,6 +80,27 @@ const routesConfig: RoutesConfig<RoutesEnum> = {
     name: 'Painel de controle',
     page: ControlPanel,
     icon: faDesktop
+  },
+
+  controlPanelAccountControl: {
+    hideOnSideMenu: true,
+    path: 'controlPanel/accountControl',
+    name: 'Gerência de contas',
+    page: AccountControl
+  },
+
+  controlPanelCourseInstitution: {
+    hideOnSideMenu: true,
+    path: 'controlPanel/courseInstitution',
+    name: 'Curso e Instituição de ensino',
+    page: CourseInstitution
+  },
+
+  controlPanelUserPermissions: {
+    hideOnSideMenu: true,
+    path: 'controlPanel/userPermissions',
+    name: 'Permissões de usuários',
+    page: UsersPermissions
   }
 }
 

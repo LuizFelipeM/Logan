@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Form,
   Container,
@@ -8,7 +8,7 @@ import {
   Row,
   Button
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '../../assets/imgs/logo.svg'
 import routesConfig from '../../Routes/routesConfig'
@@ -17,17 +17,27 @@ import userService from '../../services/userService'
 import './style.scss'
 
 const Login: React.FC = () => {
-  const [validated, setValidated] = useState(false)
+  const history = useHistory()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    const token = localStorage.getItem('validated')
+
+    if (token) {
+      history.push('/')
+    }
+  }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault()
     event.stopPropagation()
 
-    userService.authenticate(email, password)
+    // userService.authenticate(email, password)
+    localStorage.setItem('validated', `${email}-${password}`)
 
-    setValidated(true)
+    history.push('/')
   }
 
   return (
@@ -42,7 +52,7 @@ const Login: React.FC = () => {
               </Card.Header>
               <Card.Body className="login-form">
                 <div>
-                  <Form onSubmit={handleSubmit} validated={validated} noValidate>
+                  <Form onSubmit={handleSubmit}> {/* validated={validated} noValidate> */}
                     <Form.Group controlId="formGroupEmail" className="email input">
                       <Form.Label>Email:</Form.Label>
                       <Form.Control
@@ -66,7 +76,7 @@ const Login: React.FC = () => {
                     </Button>
                   </Form>
                   <span className="password-recovery">
-                    <Link to={routesConfig.passwordRecovery.path}>Esqueci minha senha</Link>
+                    <Link to={`/${routesConfig.passwordRecovery.path}`}>Esqueci minha senha</Link>
                   </span>
                 </div>
               </Card.Body>

@@ -4,13 +4,13 @@ import RoutesConfig from 'bootstrap-based-components/dist/@types/RoutesConfig'
 import Login from '../pages/Login'
 import CourseManagement from '../pages/CourseManagement'
 import Registry from '../pages/Registry'
-import AcademicCalendar from '../pages/AcademicCalendar'
 import ControlPanel from '../pages/ControlPanel'
 import PasswordRecovery from '../pages/PasswordRecovery'
 import RoutesEnum from './routesEnum'
 import DisciplineDetails from '../pages/CourseManagement/DisciplineDetails'
 import ClassDetails from '../pages/CourseManagement/ClassDetails'
 import DisciplineClassRegister from '../pages/CourseManagement/DisciplineClassRegister'
+import AcademicCalendar from '../pages/AcademicCalendar'
 
 const routesConfig: RoutesConfig<RoutesEnum> = {
   login: {

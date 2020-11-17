@@ -4,10 +4,10 @@ import { ISemester } from '../domain/interfaces/entities/ISemester'
 import { SemesterService } from '../services/SemesterService'
 import { AbstractController } from './AbstractController'
 
-@controller('/currentsemester')
-export class currentsemesterController extends AbstractController<ISemester, SemesterService> {
+@controller('/semester')
+export class SemesterController extends AbstractController<ISemester, SemesterService> {
   constructor (
     @inject(SemesterService)
-    protected readonly currentsemesterService: SemesterService
-  ) { super(currentsemesterService) }
+    protected readonly semesterService: SemesterService
+  ) { super(semesterService) }
 }

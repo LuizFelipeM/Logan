@@ -1,5 +1,5 @@
 import { inject } from 'inversify'
-import { controller, httpGet } from 'inversify-express-utils'
+import { controller, httpGet, queryParam } from 'inversify-express-utils'
 import { IProfessor } from '../domain/interfaces/entities/IProfessor'
 import { ProfessorService } from '../services/ProfessorService'
 import { AbstractController } from './AbstractController'
@@ -14,5 +14,10 @@ export class ProfessorController extends AbstractController<IProfessor, Professo
   @httpGet('/getAllDetailed')
   private getAllDetailed () {
     return this.professorService.getAllDetailed()
+  }
+
+  @httpGet('/getProfessorToEdit')
+  private getProfessorToEdit (@queryParam('id') id: number) {
+    return this.professorService.getProfessorToEdit(id)
   }
 }

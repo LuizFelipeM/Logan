@@ -85,11 +85,7 @@ const AccountControl: React.FC = () => {
       </Row>
 
       <EditStudent />
-      <EditProfessor
-        show={!!selectedProfessor}
-        professor={selectedProfessor}
-        onClose={() => setSelectedProfessor(undefined)}
-      />
+      <EditProfessor professor={selectedProfessor} />
     </SafeRoute>
   )
 }

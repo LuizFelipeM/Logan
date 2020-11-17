@@ -15,7 +15,7 @@ class CampusService extends BaseService<ICampus> {
 
   getCourseNameSemesterAndCampusName = (): Promise<ICouseNameSemesterAndCampusNameDto[]> => this.GET(EndpointEnum.getCourseNameSemesterAndCampusName)
 
-  createCampusNameAndUf = (teste:INewCampusAndUf): Promise<void> => this.POST(EndpointEnum.createCampusNameAndUf, teste)
+  createCampusNameAndUf = (newCampus:INewCampusAndUf): Promise<void> => this.POST(EndpointEnum.createCampusNameAndUf, newCampus)
 }
 
 const campusService = new CampusService()

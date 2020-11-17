@@ -78,27 +78,24 @@ async function users (profi:number[]): Promise<number[]> {
       last_name: 'Daniel',
       gender: 'Male',
       birth_date: '17/11/1999',
-      profile: profi[2],
-      email: 'lucas.daniel@teste.com',
-      password: bcrypt.hashSync('lucas.daniel', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+
     },
     {
       first_name: 'Pedro',
       last_name: 'Henrique',
       gender: 'Male',
       birth_date: '25/09/1999',
-      profile: profi[2],
-      email: 'Pedro.Henrique@teste.com',
-      password: bcrypt.hashSync('pedro.henrique', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+
     },
     {
       first_name: 'Luiz',
       last_name: 'Felipe',
       gender: 'Male',
       birth_date: '11/09/1999',
-      profile: profi[2],
-      email: 'Luiz.Felipe@teste.com',
-      password: bcrypt.hashSync('luiz.felipe', process.env.HASH_ROUNDS ? parseInt(process.env.HASH_ROUNDS) : 10)
+      profile: profi[2]
+
     },
     {
       first_name: 'Maria',

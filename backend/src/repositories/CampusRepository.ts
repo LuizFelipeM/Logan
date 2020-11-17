@@ -1,6 +1,7 @@
 import { campusTable } from '../database/common/campusTable'
 import { coursesTableName } from '../database/common/coursesTable'
 import { ICouseNameSemesterAndCampusNameDto } from '../domain/interfaces/contracts/ICourseNameSemestersAndCampusNameDto'
+import { INewCampusAndUfDto } from '../domain/interfaces/contracts/INewCampusAndUfDto'
 import { ICampus } from '../domain/interfaces/entities/ICampus'
 import { AbstractRepository } from './AbstractRepository'
 
@@ -9,24 +10,18 @@ export class CampusRepository extends AbstractRepository<ICampus> {
     super(campusTable)
   }
 
-  getNameAndUf = async (): Promise<ICampus[]> => await this.session
-    .select(
-      'name',
-      'uf'
-    )
-
   getCourseNameTotalSemestersAndCampusName = async (): Promise<ICouseNameSemesterAndCampusNameDto[]> => this.session
     .innerJoin({ c: coursesTableName }, 't1.id', 'c.campus')
     .select(
-      'c.name',
+      'c.name as course_name',
       'c.total_semester',
       't1.name as campus_name'
     )
     .groupBy('c.name', 'c.total_semester', 't1.name')
 
-  insertCampus= async (): Promise<ICampus[]> => this.session
+  insertCampus= async (newCampus:INewCampusAndUfDto): Promise<ICampus[]> => this.session
     .insert({
-      name: 'teste',
-      uf: 'tt'
+      name: newCampus.campus_name,
+      uf: newCampus.name_uf
     })
 }

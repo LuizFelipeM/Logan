@@ -11,13 +11,8 @@ export class RegistryController extends AbstractController<IRegistry, RegistrySe
     protected readonly registryService: RegistryService
   ) { super(registryService) }
 
-  @httpGet('/RegistryDetailed')
-  private AllDetailed () {
-    return this.registryService.RegistryDetailed()
-  }
-
   @httpGet('/RegistryDetailedSearch')
-  private DetailedSearch (@queryParam('name') name: string) {
-    return this.registryService.RegistryDetailedSearch(name)
+  private DetailedSearch (@queryParam('text') text: string) {
+    return this.registryService.RegistryDetailedSearch(text)
   }
 }

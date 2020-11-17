@@ -12,9 +12,9 @@ class RegistryService extends BaseService<IRegistry> {
     super('registry')
   }
 
-getRegistryDetailed = (): Promise<IRegistryDetailedDto[]> => this.GET(EndpointEnum.RegistryDetailed)
+getRegistryDetailed = (): Promise<IRegistryDetailedDto[]> => this.GET(EndpointEnum.RegistryDetailedSearch)
 
-getDetailedSearch = (name: string): Promise<IRegistryDetailedDto[]> => this.GET(EndpointEnum.RegistryDetailedSearch, { params: { name } })
+getDetailedSearch = (text: string): Promise<IRegistryDetailedDto[]> => this.GET(EndpointEnum.RegistryDetailedSearch, { params: { text } })
 }
 const registryService = new RegistryService()
 export default registryService

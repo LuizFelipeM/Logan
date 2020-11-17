@@ -22,19 +22,8 @@ export class RegistryService extends AbstractService<IRegistry, RegistryReposito
     protected readonly coursesRepository:CoursesRepository
   ) { super(registryRepository) }
 
-  RegistryDetailed = async (): Promise<IRegistryDetailedDto[]> => {
-    const detailed = await this.registryRepository.selectAllDetailed()
-    return detailed.map(d => {
-      const date = new Date(d.start_registry)
-      const edate = new Date(d.end_estimate)
-      const end_estimate = `${edate.getDate()}/${edate.getMonth() + 1}/${edate.getFullYear()}`
-      const start_registry = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-      return ({ ...d, start_registry, end_estimate })
-    })
-  }
-
-  RegistryDetailedSearch = async (name : string): Promise<IRegistryDetailedDto[]> => {
-    const detailed = await this.registryRepository.selectDetailedSearch(name)
+  RegistryDetailedSearch = async (text : string | undefined): Promise<IRegistryDetailedDto[]> => {
+    const detailed = await this.registryRepository.selectDetailedSearch(text)
     return detailed.map(d => {
       const date = new Date(d.start_registry)
       const edate = new Date(d.end_estimate)

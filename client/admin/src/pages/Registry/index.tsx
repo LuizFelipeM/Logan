@@ -22,7 +22,8 @@ const Registry: React.FC = () => {
   }
 
   return (
-    <> <Title> Matriculas</Title>
+    <>
+      <Title> Matriculas</Title>
       <DataGridCard
         header="Informaçoes matricula"
         className="card-registry"

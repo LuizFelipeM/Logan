@@ -76,7 +76,6 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '17/11/1999',
       profile: profi[2]
-
     },
     {
       first_name: 'Pedro',
@@ -84,7 +83,6 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '25/09/1999',
       profile: profi[2]
-
     },
     {
       first_name: 'Luiz',
@@ -92,7 +90,6 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '11/09/1999',
       profile: profi[2]
-
     },
     {
       first_name: 'Maria',

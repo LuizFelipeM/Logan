@@ -1,101 +1,117 @@
 import * as Knex from 'knex'
 
-import { calendarTableName } from '../../common/calendarTable'
+import { calendarsTableName } from '../../common/calendarsTable'
 import { campusTableName } from '../../common/campusTable'
 import { classesTableName } from '../../common/classesTable'
 import { coursesTableName } from '../../common/coursesTable'
-import { currentSemesterTableName } from '../../common/currentSemesterTable'
-import { disciplineTableName } from '../../common/disciplineTable'
+import { disciplinesTableName } from '../../common/disciplinesTable'
 import { noteFoulsTableName } from '../../common/noteFoulsTable'
-import { professorTableName } from '../../common/professorTable'
+import { professorsTableName } from '../../common/professorsTable'
 import { profilesTableName } from '../../common/profilesTable'
-import { registryTableName } from '../../common/registryTable'
+import { registriesTableName } from '../../common/registriesTable'
 import { rulesInProfilesTableName } from '../../common/rulesInProfilesTable'
 import { rulesTableName } from '../../common/rulesTable'
-import { statusRegistryTableName } from '../../common/statusRegistryTable'
+import { semestersTableName } from '../../common/semestersTable'
+import { registriesStatusTableName } from '../../common/registriesStatusTable'
 import { studentsTableName } from '../../common/studentsTable'
-import { subjectsTableName } from '../../common/subjectTable'
-import { typeDisciplineTableName } from '../../common/typeDisciplineTable'
+import { subjectsTableName } from '../../common/subjectsTable'
+import { disciplineTypesTableName } from '../../common/disciplineTypesTable'
 import { usersTableName } from '../../common/usersTable'
 
-export async function seed (knex: Knex): Promise<void> {
-  await delAll(knex)
-  const rul = await rules(knex)
-  const profi = await profiles(knex)
-  const status = await statusRegistry(knex)
-  const type = await typeDiscipline(knex)
-  const calen = await calendar(knex)
-  const camId = await campus(knex)
+let knex: Knex
 
-  const user = await users(knex, profi)
-  const ra = await registry(knex, status)
-  const courId = await courses(knex, camId)
-  const clas = await classes(knex, courId)
-  const profe = await professor(knex, user)
+export async function seed (k: Knex): Promise<void> {
+  knex = k
 
-  const disId = await discipline(knex, courId, type)
-  const semester = await currentSemester(knex, disId, calen)
-  await subject(knex, profe, disId, clas)
-  await rulesInProfile(knex, rul, profi)
-  const studen = await students(knex, user, ra, courId, clas)
-  await noteFouls(knex, studen, disId, semester)
+  await delAll()
+
+  const rulesIds = await rules()
+  const profilesIds = await profiles()
+  const registriesStatusIds = await registryStatusIds()
+  const disciplineTypesIds = await disciplineTypes()
+  const calendarsIds = await calendars()
+  const campusIds = await campus()
+
+  const usersIds = await users(profilesIds)
+  const regiriesIds = await registries(registriesStatusIds)
+  const coursesIds = await courses(campusIds)
+  const classesIds = await classes(coursesIds)
+  const professorsIds = await professor(usersIds)
+
+  const semestersIds = await semesters(calendarsIds, coursesIds)
+  const disciplinesIds = await disciplines(coursesIds, disciplineTypesIds)
+  await subjects(professorsIds, disciplinesIds, classesIds, semestersIds)
+  await rulesInProfile(rulesIds, profilesIds)
+  const studentsIds = await students(usersIds, regiriesIds, coursesIds, classesIds)
+  await noteFouls(studentsIds, disciplinesIds)
 }
-async function delAll (knex:Knex): Promise<void> {
+
+async function delAll (): Promise<void> {
   await knex(noteFoulsTableName).del()
   await knex(studentsTableName).del()
   await knex(rulesInProfilesTableName).del()
   await knex(subjectsTableName).del()
-  await knex(currentSemesterTableName).del()
-  await knex(disciplineTableName).del()
+  await knex(semestersTableName).del()
+  await knex(disciplinesTableName).del()
 
-  await knex(professorTableName).del()
+  await knex(professorsTableName).del()
   await knex(classesTableName).del()
   await knex(coursesTableName).del()
-  await knex(registryTableName).del()
+  await knex(registriesTableName).del()
   await knex(usersTableName).del()
 
   await knex(campusTableName).del()
-  await knex(calendarTableName).del()
-  await knex(typeDisciplineTableName).del()
-  await knex(statusRegistryTableName).del()
+  await knex(calendarsTableName).del()
+  await knex(disciplineTypesTableName).del()
+  await knex(registriesStatusTableName).del()
   await knex(profilesTableName).del()
   await knex(rulesTableName).del()
 }
-async function users (knex: Knex, profi:number[]): Promise<number[]> {
+
+async function users (profi:number[]): Promise<number[]> {
   const id = await knex(usersTableName).insert([
     {
-      firstName: 'Lucas',
-      lastName: 'Daniel',
+      first_name: 'Lucas',
+      last_name: 'Daniel',
       gender: 'Male',
-      birthDate: '17/11/1999',
+      birth_date: '17/11/1999',
       profile: profi[2]
     },
     {
-      firstName: 'Pedro',
-      lastName: 'Henrique',
+      first_name: 'Pedro',
+      last_name: 'Henrique',
       gender: 'Male',
-      birthDate: '25/09/1999',
+      birth_date: '25/09/1999',
+      profile: profi[2]
+      birth_date: '11/09/1999',
       profile: profi[2]
     },
     {
-      firstName: 'Luiz',
-      lastName: 'Felipe',
-      gender: 'Male',
-      birthDate: '11/09/1999',
-      profile: profi[2]
-    },
-    {
-      firstName: 'Maria',
-      lastName: 'Da Siva',
+      first_name: 'Maria',
+      last_name: 'Da Siva',
       gender: 'Female',
-      birthDate: '10/04/1999',
+      birth_date: '10/04/1999',
+      profile: profi[1]
+    },
+    {
+      first_name: 'Ricardo',
+      last_name: 'Moreira',
+      gender: 'Male',
+      birth_date: '10/04/1970',
+      profile: profi[1]
+    },
+    {
+      first_name: 'Roberto',
+      last_name: 'Justus',
+      gender: 'Indefinido',
+      birth_date: '10/04/1968',
       profile: profi[1]
     }
   ]).returning('id')
   return id
 }
 
-async function profiles (knex:Knex): Promise<number[]> {
+async function profiles (): Promise<number[]> {
   const id = await knex(profilesTableName).insert([
     {
       name: 'Coordenador'
@@ -114,7 +130,7 @@ async function profiles (knex:Knex): Promise<number[]> {
   return id
 }
 
-async function rules (knex:Knex): Promise<number[]> {
+async function rules (): Promise<number[]> {
   const id = await knex(rulesTableName).insert([
     {
       name: 'Acesso Total',
@@ -128,8 +144,8 @@ async function rules (knex:Knex): Promise<number[]> {
   return id
 }
 
-async function typeDiscipline (knex:Knex): Promise<number[]> {
-  const id = await knex(typeDisciplineTableName).insert([
+async function disciplineTypes (): Promise<number[]> {
+  const id = await knex(disciplineTypesTableName).insert([
     {
       name: 'EAD'
     },
@@ -140,8 +156,8 @@ async function typeDiscipline (knex:Knex): Promise<number[]> {
   return id
 }
 
-async function statusRegistry (knex:Knex): Promise<number[]> {
-  const ids = await knex(statusRegistryTableName).insert([
+async function registryStatusIds (): Promise<number[]> {
+  const ids = await knex(registriesStatusTableName).insert([
     {
       name: 'Ativado'
     },
@@ -155,37 +171,37 @@ async function statusRegistry (knex:Knex): Promise<number[]> {
   return ids
 }
 
-async function registry (knex:Knex, status: number[]): Promise<number[]> {
-  const id = await knex(registryTableName).insert([
+async function registries (status: number[]): Promise<number[]> {
+  const id = await knex(registriesTableName).insert([
     {
-      startRegistry: new Date(2014, 2, 3).toISOString(),
-      endEstimate: new Date(2017, 12, 15).toISOString(),
-      periodStudy: 'Noturno',
-      familiarIncome: 8000,
-      originInstitution: 'Bacelar',
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 12, 15).toISOString(),
+      period_study: 'Noturno',
+      familiar_income: 8000,
+      origin_institution: 'Bacelar',
       status: status[0]
     },
     {
-      startRegistry: new Date(2017, 2, 14).toISOString(),
-      endEstimate: new Date(2021, 12, 20).toISOString(),
-      periodStudy: 'Vespertino',
-      familiarIncome: 3500.15,
-      originInstitution: 'Anchieta',
+      start_registry: new Date(2018, 2, 14).toISOString(),
+      end_estimate: new Date(2021, 12, 20).toISOString(),
+      period_study: 'Vespertino',
+      familiar_income: 3500.15,
+      origin_institution: 'Anchieta',
       status: status[2]
     },
     {
-      startRegistry: new Date(2011, 2, 3).toISOString(),
-      endEstimate: new Date(2015, 11, 28).toISOString(),
-      periodStudy: 'Matutino',
-      familiarIncome: 1968.44,
-      originInstitution: 'Bacelar',
+      start_registry: new Date(2018, 2, 3).toISOString(),
+      end_estimate: new Date(2021, 11, 28).toISOString(),
+      period_study: 'Matutino',
+      familiar_income: 1968.44,
+      origin_institution: 'Bacelar',
       status: status[1]
     }
   ]).returning('id')
   return id
 }
 
-async function campus (knex:Knex):Promise<number[]> {
+async function campus ():Promise<number[]> {
   const id = await knex(campusTableName).insert([
     {
       name: 'Anchieta',
@@ -203,21 +219,21 @@ async function campus (knex:Knex):Promise<number[]> {
   return id
 }
 
-async function courses (knex:Knex, campus:number[]): Promise<number[]> {
+async function courses (campus:number[]): Promise<number[]> {
   const id = await knex(coursesTableName).insert([
     {
       campus: campus[0],
-      totalSemester: 6,
+      total_semester: 6,
       name: 'Fisica'
     },
     {
       campus: campus[2],
-      totalSemester: 10,
+      total_semester: 10,
       name: 'Eng. da Computação'
     },
     {
       campus: campus[1],
-      totalSemester: 4,
+      total_semester: 4,
       name: 'Artes'
     }
   ]).returning('id')
@@ -225,49 +241,67 @@ async function courses (knex:Knex, campus:number[]): Promise<number[]> {
   return id
 }
 
-async function calendar (knex:Knex): Promise<number[]> {
-  const id = await knex(calendarTableName).insert([
+async function calendars (): Promise<number[]> {
+  const id = await knex(calendarsTableName).insert([
     {
-      startAcademicYear: new Date(2014, 2, 3).toISOString(),
-      academicYearEnd: new Date(2014, 12, 10).toISOString(),
-      startNotesP1: new Date(2014, 4, 10).toISOString(),
-      finalNotesP1: new Date(2014, 4, 20).toISOString(),
-      startNotesP2: new Date(2014, 5, 11).toISOString(),
-      finalNotesP2: new Date(2014, 5, 22).toISOString(),
-      startNotesSub: new Date(2014, 6, 15).toISOString(),
-      finalNotesSub: new Date(2014, 6, 20).toISOString(),
-      startNotesExam: new Date(2014, 6, 22).toISOString(),
-      finalNotesExam: new Date(2014, 6, 27).toISOString()
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
+    },
+    {
+      start_academic_year: new Date(2020, 2, 3).toISOString(),
+      academic_year_end: new Date(2020, 12, 10).toISOString(),
+      start_notes_p1: new Date(2020, 4, 10).toISOString(),
+      final_notes_p1: new Date(2020, 4, 20).toISOString(),
+      start_notes_p2: new Date(2020, 5, 11).toISOString(),
+      final_notes_p2: new Date(2020, 5, 22).toISOString(),
+      start_notes_sub: new Date(2020, 6, 15).toISOString(),
+      final_notes_sub: new Date(2020, 6, 20).toISOString(),
+      start_notes_exam: new Date(2020, 6, 22).toISOString(),
+      final_notes_exam: new Date(2020, 6, 27).toISOString()
     }
   ]).returning('id')
   return id
 }
 
-async function discipline (knex:Knex, courses: number[], typeDis: number[]): Promise<number[]> {
-  const id = await knex(disciplineTableName).insert([
+async function disciplines (courses: number[], dicilpineTypes: number[]): Promise<number[]> {
+  const id = await knex(disciplinesTableName).insert([
     {
-      courses: courses[0],
-      typeDiscipline: typeDis[0],
-      name: 'Fisica I',
+      course: courses[0],
+      type_discipline: dicilpineTypes[0],
+      name: 'Termodinamica',
       workload: 50
     },
     {
-      courses: courses[2],
-      typeDiscipline: typeDis[1],
-      name: 'Isometria',
+      course: courses[2],
+      type_discipline: dicilpineTypes[1],
+      name: 'Caricatura',
       workload: 120
     },
     {
-      courses: courses[2],
-      typeDiscipline: typeDis[1],
-      name: 'Calculo',
+      course: courses[2],
+      type_discipline: dicilpineTypes[1],
+      name: 'Sombreamento',
+      workload: 150
+    },
+    {
+      course: courses[1],
+      type_discipline: dicilpineTypes[1],
+      name: 'Mecanica',
       workload: 150
     }
   ]).returning('id')
   return id
 }
 
-async function rulesInProfile (knex:Knex, rul: number[], profi: number[]): Promise<void> {
+async function rulesInProfile (rul: number[], profi: number[]): Promise<void> {
   await knex(rulesInProfilesTableName).insert([
     {
       profile: profi[2],
@@ -280,25 +314,58 @@ async function rulesInProfile (knex:Knex, rul: number[], profi: number[]): Promi
   ])
 }
 
-async function currentSemester (knex: Knex, disId: number[], calen:number[]): Promise<number[]> {
-  const id = await knex(currentSemesterTableName).insert([
+async function semesters (calendars: number[], courses: number[]): Promise<number[]> {
+  const id = await knex(semestersTableName).insert([
     {
-      discipline: disId[0],
-      calendar: calen[0],
-      evalP1Start: new Date(2014, 4, 10).toISOString(),
-      evalP1End: new Date(2014, 4, 20).toISOString(),
-      evalP2Start: new Date(2014, 5, 11).toISOString(),
-      evalP2End: new Date(2014, 5, 22).toISOString(),
-      evalSubStart: new Date(2014, 6, 15).toISOString(),
-      evalSubEnd: new Date(2014, 6, 20).toISOString(),
-      evalExamStart: new Date(2014, 6, 22).toISOString(),
-      evalExamEnd: new Date(2014, 6, 27).toISOString()
+      course: courses[0],
+      calendar: calendars[0],
+      semester_course: 1,
+      semester_year: 1,
+      year: new Date(2014, 2, 21).toISOString(),
+      eval_p1_start: new Date(2014, 4, 10).toISOString(),
+      eval_p1_end: new Date(2014, 4, 20).toISOString(),
+      eval_p2_start: new Date(2014, 5, 11).toISOString(),
+      eval_p2_end: new Date(2014, 5, 22).toISOString(),
+      eval_sub_start: new Date(2014, 6, 15).toISOString(),
+      eval_sub_end: new Date(2014, 6, 20).toISOString(),
+      eval_exam_start: new Date(2014, 6, 22).toISOString(),
+      eval_exam_end: new Date(2014, 6, 27).toISOString()
+    },
+    {
+      course: courses[2],
+      calendar: calendars[1],
+      semester_course: 2,
+      semester_year: 2,
+      year: new Date(2014, 2, 21).toISOString(),
+      eval_p1_start: new Date(2014, 8, 10).toISOString(),
+      eval_p1_end: new Date(2014, 8, 20).toISOString(),
+      eval_p2_start: new Date(2014, 11, 11).toISOString(),
+      eval_p2_end: new Date(2014, 11, 22).toISOString(),
+      eval_sub_start: new Date(2014, 11, 24).toISOString(),
+      eval_sub_end: new Date(2014, 11, 28).toISOString(),
+      eval_exam_start: new Date(2014, 12, 7).toISOString(),
+      eval_exam_end: new Date(2014, 6, 14).toISOString()
+    },
+    {
+      course: courses[1],
+      calendar: calendars[0],
+      semester_course: 3,
+      semester_year: 1,
+      year: new Date(2015, 2, 21).toISOString(),
+      eval_p1_start: new Date(2015, 4, 10).toISOString(),
+      eval_p1_end: new Date(2015, 4, 20).toISOString(),
+      eval_p2_start: new Date(2015, 5, 11).toISOString(),
+      eval_p2_end: new Date(2015, 5, 22).toISOString(),
+      eval_sub_start: new Date(2015, 6, 15).toISOString(),
+      eval_sub_end: new Date(2015, 6, 20).toISOString(),
+      eval_exam_start: new Date(2015, 6, 22).toISOString(),
+      eval_exam_end: new Date(2015, 6, 27).toISOString()
     }
   ]).returning('id')
   return id
 }
 
-async function classes (knex:Knex, cour:number[]): Promise<number[]> {
+async function classes (cour:number[]): Promise<number[]> {
   const id = await knex(classesTableName).insert([
     {
       course: cour[0]
@@ -313,19 +380,19 @@ async function classes (knex:Knex, cour:number[]): Promise<number[]> {
   return id
 }
 
-async function students (knex:Knex, user:number[], ra:number[], cour: number[], clas:number[]): Promise<number[]> {
+async function students (user:number[], ra:number[], cour: number[], clas:number[]): Promise<number[]> {
   const id = await knex(studentsTableName).insert([
     {
       user: user[0],
       ra: ra[1],
-      course: cour[1],
-      class: clas[1]
+      course: cour[0],
+      class: clas[0]
     },
     {
       user: user[2],
       ra: ra[0],
       course: cour[2],
-      class: clas[1]
+      class: clas[2]
     },
     {
       user: user[1],
@@ -337,61 +404,102 @@ async function students (knex:Knex, user:number[], ra:number[], cour: number[], 
   return id
 }
 
-async function professor (knex:Knex, user:number[]): Promise<number[]> {
-  const id = await knex(professorTableName).insert([
+async function professor (user:number[]): Promise<number[]> {
+  const id = await knex(professorsTableName).insert([
     {
       user: user[3]
+    },
+    {
+      user: user[4]
+    },
+    {
+      user: user[5]
     }
   ]).returning('id')
   return id
 }
 
-async function subject (knex:Knex, profes:number[], disId:number[], clas:number[]): Promise<void> {
+async function subjects (professorsIds:number[], disciplinesId:number[], classesIds:number[], semestersIds: number[]): Promise<void> {
   await knex(subjectsTableName).insert([
     {
-      professor: profes[0],
-      discipline: disId[1],
-      classes: clas[2]
+      professor: professorsIds[0],
+      discipline: disciplinesId[1],
+      class: classesIds[2],
+      semester: semestersIds[1],
+      class_time: 100
+    },
+    {
+      professor: professorsIds[0],
+      discipline: disciplinesId[2],
+      class: classesIds[2],
+      semester: semestersIds[1],
+      class_time: 150
+    },
+    {
+      professor: professorsIds[1],
+      discipline: disciplinesId[0],
+      class: classesIds[0],
+      semester: semestersIds[0],
+      class_time: 50
+    },
+    {
+      professor: professorsIds[2],
+      discipline: disciplinesId[3],
+      class: classesIds[1],
+      semester: semestersIds[2],
+      class_time: 150
     }
   ])
 }
 
-async function noteFouls (knex:Knex, studen:number[], disId:number[], semes:number[]): Promise<void> {
+async function noteFouls (studen:number[], disId:number[]): Promise<void> {
   await knex(noteFoulsTableName).insert([
     {
       students: studen[1],
-      discipline: disId[2],
-      semester: semes[0],
+      discipline: disId[1],
+      // semester: semes[0],
 
-      noteP1: 5.00,
-      noteP2: 7.00,
-      noteSub: 0,
-      noteExam: 8.00,
-      finalNote: 7.00,
+      note_p1: 5.00,
+      note_p2: 7.00,
+      note_sub: 0,
+      note_exam: 8.00,
+      final_note: 7.00,
       fouls: 4
     },
     {
-      students: studen[0],
+      students: studen[1],
       discipline: disId[2],
-      semester: semes[0],
+      // semester: semes[1],
 
-      noteP1: 7.00,
-      noteP2: 7.00,
-      noteSub: 0,
-      noteExam: 0,
-      finalNote: 7.00,
+      note_p1: 6.00,
+      note_p2: 2.50,
+      note_sub: 3,
+      note_exam: 1,
+      final_note: 0.00,
+      fouls: 18
+    },
+    {
+      students: studen[0],
+      discipline: disId[0],
+      // semester: semes[2],
+
+      note_p1: 7.00,
+      note_p2: 7.00,
+      note_sub: 0,
+      note_exam: 0,
+      final_note: 7.00,
       fouls: 1
     },
     {
       students: studen[2],
-      discipline: disId[2],
-      semester: semes[0],
+      discipline: disId[3],
+      // semester: semes[1],
 
-      noteP1: 8.00,
-      noteP2: 6.50,
-      noteSub: 0,
-      noteExam: 0,
-      finalNote: 7.00,
+      note_p1: 8.00,
+      note_p2: 6.50,
+      note_sub: 0,
+      note_exam: 0,
+      final_note: 7.00,
       fouls: 7
     }
   ])

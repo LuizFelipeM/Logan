@@ -9,6 +9,7 @@ glob(`${path}/**/*Controller.{ts,js}`, (err, files) => {
     Promise
       .all(files.map(file => import(file)))
       .then(startup)
+      .catch(console.error)
   } else {
     console.error(err)
   }

@@ -1,7 +1,9 @@
-import { calendarTable } from '../database/common/calendarTable'
+import { calendarsTable } from '../database/common/calendarsTable'
 import { ICalendar } from '../domain/interfaces/entities/ICalendar'
 import { AbstractRepository } from './AbstractRepository'
 
 export class CalendarRepository extends AbstractRepository<ICalendar> {
-    protected readonly table = calendarTable
+  constructor () {
+    super(calendarsTable)
+  }
 }

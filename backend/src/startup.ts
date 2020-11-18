@@ -5,7 +5,7 @@ import { InversifyExpressServer } from 'inversify-express-utils'
 import { DIContainer } from './DIContainer'
 
 export function startup (): void {
-  const server = new InversifyExpressServer(DIContainer)
+  const server = new InversifyExpressServer(DIContainer)// new InversifyExpressServer(DIContainer, null, null, null, AuthProvider)
 
   server.setConfig(app => {
     app.use(cors())
@@ -16,6 +16,6 @@ export function startup (): void {
   const app = server.build()
 
   app.listen(process.env.PORT, () => {
-    console.log('\x1b[36m%s\x1b[0m', '\n\nServer is now running on port:', `${process.env.HOST}:${process.env.PORT}/api\n\n`)
+    console.log('\x1b[36m%s\x1b[0m', '\n\nServer is now running on port:', `${process.env.HOST}:${process.env.PORT}/\n\n`)
   })
 }

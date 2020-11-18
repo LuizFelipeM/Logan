@@ -1,15 +1,17 @@
 import { IBaseEntity } from './IBaseEntity'
 
 export interface ISemester extends IBaseEntity {
-    currentSemester: number
+    course: number
     calendar: number
-    discipline: number
-    evalP1Start: string
-    evalP1end: string
-    evalP2Start: string
-    evalP2end: string
-    evalSubStart: string
-    evalSubEnd: string
-    evalExamStart: string
-    evalExamEnd: string
+    semester_course: number
+    semester_year: number
+    year: string
+    eval_p1_start: string
+    eval_p1_end: string
+    eval_p2_start: string
+    eval_p2_end: string
+    eval_sub_start: string
+    eval_sub_end: string
+    eval_exam_start: string
+    eval_exam_end: string
 }

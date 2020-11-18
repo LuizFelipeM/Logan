@@ -1,9 +1,11 @@
 import { IBaseEntity } from './IBaseEntity'
 
 export interface IUser extends IBaseEntity {
-  firstName: string
-  lastName: string
+  email: string
+  password: string
+  first_name: string
+  last_name: string
   gender: string
-  birthDate?: string
+  birth_date?: string
   profile?: number
 }

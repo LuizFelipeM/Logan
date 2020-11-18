@@ -28,9 +28,9 @@ export class DisciplineRepository extends AbstractRepository<IDiscipline> {
     .count({ students_count: 'st.id' })
     .innerJoin({ s: subjectsTableName }, 's.discipline', 't1.id')
     .innerJoin({ c: classesTableName }, 's.class', 'c.id')
-    .innerJoin({ st: studentsTableName }, 'st.class', 'c.id')
     .innerJoin({ se: semestersTableName }, 'se.id', 's.semester')
     .innerJoin({ nf: noteFoulsTableName }, 'nf.discipline', 't1.id')
+    .innerJoin({ st: studentsTableName }, 'st.class', 'c.id')
     .groupBy('c.id', 'se.semester_course', 't1.name')
     .where<IDisciplineDetailedDto[]>('t1.id', id)
 }

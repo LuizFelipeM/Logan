@@ -1,6 +1,6 @@
-import { IIntervalOfExamsDto } from '../interfaces/contracts/IIntervalOfExamsDto'
 import { ISemester } from '../interfaces/models/ISemester'
 import BaseService from './BaseService'
+import { IIntervalOfExamsDto } from '../interfaces/contracts/IIntervalOfExamsDto'
 
 enum EndpointEnum{
     intervalOfExams = '/getIntervalOfExams'

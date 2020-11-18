@@ -12,7 +12,6 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '../../assets/imgs/logo.svg'
 import routesConfig from '../../Routes/routesConfig'
-import userService from '../../services/userService'
 
 import './style.scss'
 

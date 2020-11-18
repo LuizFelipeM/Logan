@@ -12,12 +12,12 @@ export class DisciplineController extends AbstractController<IDiscipline, Discip
   ) { super(disciplineService) }
 
   @httpGet('/typeWorkload')
-  private async getTypeWorkload () {
-    return await this.disciplineService.getDisciplineWithTypeandWorkload()
+  private getTypeWorkload () {
+    return this.disciplineService.getDisciplineWithTypeandWorkload()
   }
 
   @httpGet('/detailedView')
-  private async getDetailedView (@queryParam('id') id: number) {
-    return await this.disciplineService.getDetailedViewByDisciplineId(id)
+  private getDetailedView (@queryParam('id') id: number) {
+    return this.disciplineService.getDetailedViewByDisciplineId(id)
   }
 }

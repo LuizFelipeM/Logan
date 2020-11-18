@@ -5,14 +5,14 @@ import { SemesterService } from '../services/SemesterService'
 import { AbstractController } from './AbstractController'
 
 @controller('/semester')
-export class currentsemesterController extends AbstractController<ISemester, SemesterService> {
+export class SemesterController extends AbstractController<ISemester, SemesterService> {
   constructor (
     @inject(SemesterService)
-    protected readonly currentsemesterService: SemesterService
-  ) { super(currentsemesterService) }
+    protected readonly SsemesterService: SemesterService
+  ) { super(SsemesterService) }
 
   @httpGet('/getIntervalOfExams')
   private getIntervalOfExams () {
-    return this.currentsemesterService.intervalExam()
+    return this.SsemesterService.intervalExam()
   }
 }

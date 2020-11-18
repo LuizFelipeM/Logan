@@ -83,11 +83,6 @@ async function users (profi:number[]): Promise<number[]> {
       gender: 'Male',
       birth_date: '25/09/1999',
       profile: profi[2]
-    },
-    {
-      first_name: 'Luiz',
-      last_name: 'Felipe',
-      gender: 'Male',
       birth_date: '11/09/1999',
       profile: profi[2]
     },
@@ -287,21 +282,18 @@ async function disciplines (courses: number[], dicilpineTypes: number[]): Promis
     {
       course: courses[2],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[1],
       name: 'Caricatura',
       workload: 120
     },
     {
       course: courses[2],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[1],
       name: 'Sombreamento',
       workload: 150
     },
     {
       course: courses[1],
       type_discipline: dicilpineTypes[1],
-      // semester: semester[2],
       name: 'Mecanica',
       workload: 150
     }
@@ -329,45 +321,45 @@ async function semesters (calendars: number[], courses: number[]): Promise<numbe
       calendar: calendars[0],
       semester_course: 1,
       semester_year: 1,
-      year: new Date(2020).toISOString(),
-      eval_p1_start: new Date(2020, 3, 10).toISOString(),
-      eval_p1_end: new Date(2020, 3, 20).toISOString(),
-      eval_p2_start: new Date(2020, 5, 11).toISOString(),
-      eval_p2_end: new Date(2020, 5, 22).toISOString(),
-      eval_sub_start: new Date(2020, 6, 15).toISOString(),
-      eval_sub_end: new Date(2020, 6, 20).toISOString(),
-      eval_exam_start: new Date(2020, 6, 22).toISOString(),
-      eval_exam_end: new Date(2020, 6, 27).toISOString()
+      year: new Date(2014, 2, 21).toISOString(),
+      eval_p1_start: new Date(2014, 4, 10).toISOString(),
+      eval_p1_end: new Date(2014, 4, 20).toISOString(),
+      eval_p2_start: new Date(2014, 5, 11).toISOString(),
+      eval_p2_end: new Date(2014, 5, 22).toISOString(),
+      eval_sub_start: new Date(2014, 6, 15).toISOString(),
+      eval_sub_end: new Date(2014, 6, 20).toISOString(),
+      eval_exam_start: new Date(2014, 6, 22).toISOString(),
+      eval_exam_end: new Date(2014, 6, 27).toISOString()
     },
     {
       course: courses[2],
       calendar: calendars[1],
       semester_course: 2,
       semester_year: 2,
-      year: new Date(2020).toISOString(),
-      eval_p1_start: new Date(2020, 8, 10).toISOString(),
-      eval_p1_end: new Date(2020, 8, 20).toISOString(),
-      eval_p2_start: new Date(2020, 11, 11).toISOString(),
-      eval_p2_end: new Date(2020, 11, 22).toISOString(),
-      eval_sub_start: new Date(2020, 11, 24).toISOString(),
-      eval_sub_end: new Date(2020, 11, 28).toISOString(),
-      eval_exam_start: new Date(2020, 12, 7).toISOString(),
-      eval_exam_end: new Date(2020, 12, 14).toISOString()
+      year: new Date(2014, 2, 21).toISOString(),
+      eval_p1_start: new Date(2014, 8, 10).toISOString(),
+      eval_p1_end: new Date(2014, 8, 20).toISOString(),
+      eval_p2_start: new Date(2014, 11, 11).toISOString(),
+      eval_p2_end: new Date(2014, 11, 22).toISOString(),
+      eval_sub_start: new Date(2014, 11, 24).toISOString(),
+      eval_sub_end: new Date(2014, 11, 28).toISOString(),
+      eval_exam_start: new Date(2014, 12, 7).toISOString(),
+      eval_exam_end: new Date(2014, 6, 14).toISOString()
     },
     {
       course: courses[1],
       calendar: calendars[0],
       semester_course: 3,
       semester_year: 1,
-      year: new Date(2021).toISOString(),
-      eval_p1_start: new Date(2021, 4, 10).toISOString(),
-      eval_p1_end: new Date(2021, 4, 20).toISOString(),
-      eval_p2_start: new Date(2021, 5, 11).toISOString(),
-      eval_p2_end: new Date(2021, 5, 22).toISOString(),
-      eval_sub_start: new Date(2021, 6, 15).toISOString(),
-      eval_sub_end: new Date(2021, 6, 20).toISOString(),
-      eval_exam_start: new Date(2021, 6, 22).toISOString(),
-      eval_exam_end: new Date(2021, 6, 27).toISOString()
+      year: new Date(2015, 2, 21).toISOString(),
+      eval_p1_start: new Date(2015, 4, 10).toISOString(),
+      eval_p1_end: new Date(2015, 4, 20).toISOString(),
+      eval_p2_start: new Date(2015, 5, 11).toISOString(),
+      eval_p2_end: new Date(2015, 5, 22).toISOString(),
+      eval_sub_start: new Date(2015, 6, 15).toISOString(),
+      eval_sub_end: new Date(2015, 6, 20).toISOString(),
+      eval_exam_start: new Date(2015, 6, 22).toISOString(),
+      eval_exam_end: new Date(2015, 6, 27).toISOString()
     }
   ]).returning('id')
   return id

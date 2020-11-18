@@ -30,7 +30,10 @@ const DisciplineRegister: React.FC<DisciplineRegisterProps> = ({ courseList, dis
     const type_discipline = parseInt(disciplineType, 10)
 
     const discipline: Omit<IDiscipline, 'id'> = {
-      name, workload, course, type_discipline
+      name,
+      workload,
+      course,
+      type_discipline
     }
 
     disciplineService.create(discipline)

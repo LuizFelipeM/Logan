@@ -26,6 +26,7 @@ const CourseManagement: React.FC = () => {
   const [disciplineData, setDisciplineData] = useState<ITypeDisciplineAndWorkloadDto[]>([])
   const [classesData, setClassesData] = useState<IClassMinifyViewDto[]>([])
   const [frequencyFoulsByCourse, setFrequencyFoulsByCourse] = useState<ICoursesMinifyViewDto[]>([])
+  const [showBars, setShowBars] = useState({ notes_avg: true, frequency_avg: true })
 
   useEffect(() => {
     setLoading(true)
@@ -109,17 +110,20 @@ const CourseManagement: React.FC = () => {
               data={frequencyFoulsByCourse}
             >
               <Tooltip />
-              <Legend iconType="circle" />
+              <Legend onClick={(args) => setShowBars((show) => ({ ...show, [args.dataKey]: !show[args.dataKey as 'notes_avg' | 'frequency_avg'] }))} iconType="circle" />
               <YAxis />
               <XAxis dataKey="course_name" />
               <CartesianGrid strokeDasharray="3 3" />
+
               <Bar
+                fillOpacity={showBars.notes_avg ? 1 : 0}
                 name="Média de notas"
                 dataKey="notes_avg"
                 fill="#FFB978"
                 unit="%"
               />
               <Bar
+                fillOpacity={showBars.frequency_avg ? 1 : 0}
                 name="Média de frequência"
                 dataKey="frequency_avg"
                 fill="#5174A8"
